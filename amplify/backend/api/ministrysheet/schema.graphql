@@ -1,0 +1,15 @@
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } }
+
+type Place @model  {
+  id: ID!
+  name: String!
+  desc: String!
+  appointments: [Appointment] @hasMany
+}
+
+type Appointment @model {
+  id: ID!
+  place: Place! @belongsTo
+  approved: Boolean!
+  datetime: AWSDateTime
+}
