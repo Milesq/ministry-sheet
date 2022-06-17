@@ -1,5 +1,7 @@
 import { createApp } from 'vue'
 import { Amplify } from '@aws-amplify/core'
+import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import ElementPlus from 'element-plus'
 import pl from 'element-plus/es/locale/lang/pl'
 import 'element-plus/dist/index.css'
@@ -13,6 +15,12 @@ Amplify.configure(awsExports)
 const app = createApp(App)
 
 app.use(router)
+
+const pinia = createPinia()
+
+pinia.use(piniaPluginPersistedstate)
+
+app.use(pinia)
 
 app.use(ElementPlus, {
   locale: pl,

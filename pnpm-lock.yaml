@@ -21,6 +21,8 @@ specifiers:
   eslint-plugin-vue: ^9.1.1
   jsdom: ^19.0.0
   npm-run-all: ^4.1.5
+  pinia: ^2.0.14
+  pinia-plugin-persistedstate: ^1.6.1
   prettier: ^2.7.1
   typescript: ~4.7.3
   unplugin-auto-import: ^0.8.8
@@ -35,6 +37,8 @@ dependencies:
   '@aws-amplify/core': 4.5.7
   '@aws-amplify/datastore': 3.12.0
   element-plus: 2.2.5_vue@3.2.37
+  pinia: 2.0.14_vcmyupim4cga7k7f5hngmth5py
+  pinia-plugin-persistedstate: 1.6.1_pinia@2.0.14
   vue: 3.2.37
   vue-router: 4.0.16_vue@3.2.37
 
@@ -3121,6 +3125,32 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
+  /pinia-plugin-persistedstate/1.6.1_pinia@2.0.14:
+    resolution: {integrity: sha512-4re0ZO5KgqDnSNWX2RhJVIsIYvH+uaEGTN+UOx34mb7fVoE8A3CfB9QhbMT3Zn7ZSBXTfT2cgI/w7cLq2zNQMw==}
+    peerDependencies:
+      pinia: ^2.0.0
+    dependencies:
+      pinia: 2.0.14_vcmyupim4cga7k7f5hngmth5py
+    dev: false
+
+  /pinia/2.0.14_vcmyupim4cga7k7f5hngmth5py:
+    resolution: {integrity: sha512-0nPuZR4TetT/WcLN+feMSjWJku3SQU7dBbXC6uw+R6FLQJCsg+/0pzXyD82T1FmAYe0lsx+jnEDQ1BLgkRKlxA==}
+    peerDependencies:
+      '@vue/composition-api': ^1.4.0
+      typescript: '>=4.4.4'
+      vue: ^2.6.14 || ^3.2.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@vue/devtools-api': 6.1.4
+      typescript: 4.7.3
+      vue: 3.2.37
+      vue-demi: 0.13.1_vue@3.2.37
+    dev: false
+
   /pkg-types/0.3.2:
     resolution: {integrity: sha512-eBYzX/7NYsQEOR2alWY4rnQB49G62oHzFpoi9Som56aUr8vB8UGcmcIia9v8fpBeuhH3Ltentuk2OGpp4IQV3Q==}
     dependencies:
@@ -3572,7 +3602,6 @@ packages:
     resolution: {integrity: sha512-WOkT3XYvrpXx4vMMqlD+8R8R37fZkjyLGlxavMc4iB8lrl8L0DeTcHbYgw/v0N/z9wAFsgBhcsF0ruoySS22mA==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
 
   /ulid/2.3.0:
     resolution: {integrity: sha512-keqHubrlpvT6G2wH0OEfSW4mquYRcbe/J8NMmveoQOjUqmo+hXtO+ORCpWhdbZ7k72UtY61BL7haGxW6enBnjw==}
