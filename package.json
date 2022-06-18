@@ -46,7 +46,9 @@
     "unplugin-auto-import": "^0.8.8",
     "unplugin-vue-components": "^0.19.6",
     "vite": "^2.9.12",
+    "vite-plugin-windicss": "^1.8.4",
     "vitest": "^0.15.1",
-    "vue-tsc": "^0.37.9"
+    "vue-tsc": "^0.37.9",
+    "windicss": "^3.5.4"
   }
 }
