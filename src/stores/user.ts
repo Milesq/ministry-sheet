@@ -11,7 +11,10 @@ const useUser = defineStore('user', {
   actions: {
     login() {
       this.user = 'Milesq'
-    }
+    },
+    logout() {
+      this.$reset()
+    },
   },
   persist: true
 })
