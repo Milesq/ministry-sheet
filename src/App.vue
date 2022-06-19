@@ -2,9 +2,11 @@
 import Home from '~icons/mdi/Home'
 import LogoutVariant from '~icons/mdi/LogoutVariant'
 import Brightness from '~icons/mdi/brightness'
+import WeatherNight from '~icons/mdi/WeatherNight'
 
 import MenuItem from './components/MenuItem.vue'
 import useUser from './stores/user'
+import theme from './composables/theme'
 
 const user = useUser()
 </script>
@@ -31,7 +33,11 @@ const user = useUser()
 
         <div flex="1"></div>
 
-        <MenuItem tooltip="Zmień tło" :icon="Brightness" />
+        <MenuItem
+          @click="theme.toggle()"
+          tooltip="Zmień tło"
+          :icon="theme.isDark ? WeatherNight : Brightness"
+        />
         <MenuItem
           v-if="user.loggedIn"
           tooltip="Wyloguj się"
