@@ -11,6 +11,8 @@ import App from './App.vue'
 import router from './router'
 import awsExports from './aws-exports.js'
 
+import './assets/style.scss'
+
 Amplify.configure(awsExports)
 
 const app = createApp(App)

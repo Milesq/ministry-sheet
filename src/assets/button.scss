@@ -1,0 +1,28 @@
+.circle-btn {
+  position: relative;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    background-color: currentColor;
+    border-radius: inherit;
+    color: inherit;
+    pointer-events: none;
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    opacity: 0;
+    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.6, 1);
+  }
+
+  &:hover::before {
+    opacity: 0.08;
+  }
+}

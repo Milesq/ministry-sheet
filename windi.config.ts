@@ -5,4 +5,11 @@ export default defineConfig({
     include: ['./src/**/*.html', './src/**/*.vue'],
   },
   attributify: true,
+  theme: {
+    extend: {
+      colors: {
+        primary: '#69ddb7',
+      },
+    },
+  },
 })
