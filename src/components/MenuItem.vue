@@ -20,7 +20,11 @@ defineProps({
     :content="tooltip"
     placement="bottom"
   >
-    <span mx="2" class="circle-btn flex justify-center items-center">
+    <span
+      v-bind="$attrs"
+      mx="2"
+      class="circle-btn flex justify-center items-center"
+    >
       <component :is="icon" height="24" color="white" />
     </span>
   </el-tooltip>
