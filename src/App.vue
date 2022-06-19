@@ -4,6 +4,9 @@ import LogoutVariant from '~icons/mdi/LogoutVariant'
 import Brightness from '~icons/mdi/brightness'
 
 import MenuItem from './components/MenuItem.vue'
+import useUser from './stores/user'
+
+const user = useUser()
 </script>
 
 <template>
@@ -29,7 +32,11 @@ import MenuItem from './components/MenuItem.vue'
         <div flex="1"></div>
 
         <MenuItem tooltip="Zmień tło" :icon="Brightness" />
-        <MenuItem tooltip="Wyloguj się" :icon="LogoutVariant" />
+        <MenuItem
+          v-if="user.loggedIn"
+          tooltip="Wyloguj się"
+          :icon="LogoutVariant"
+        />
       </el-header>
 
       <el-main>

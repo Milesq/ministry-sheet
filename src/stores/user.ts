@@ -8,6 +8,9 @@ const useUser = defineStore('user', {
   state: (): UserState => ({
     user: null,
   }),
+  getters: {
+    loggedIn: state => !!state.user,
+  },
   actions: {
     login() {
       this.user = 'Milesq'
