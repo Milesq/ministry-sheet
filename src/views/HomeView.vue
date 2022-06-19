@@ -1,7 +1,8 @@
-<script setup lang="ts">
-import HelloWorld from '@/components/HelloWorld.vue'
-</script>
-
 <template>
-  <HelloWorld msg="asd" />
+  <el-calendar v-model="value" />
 </template>
+
+<script lang="ts" setup>
+import { ref } from 'vue'
+const value = ref(new Date())
+</script>
