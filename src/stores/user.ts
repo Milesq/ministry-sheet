@@ -9,11 +9,11 @@ const useUser = defineStore('user', {
     user: null,
   }),
   getters: {
-    loggedIn: state => !!state.user,
+    isLoggedIn: state => !!state.user,
   },
   actions: {
-    login() {
-      this.user = 'Milesq'
+    login(name: string) {
+      this.user = name
     },
     logout() {
       this.$reset()

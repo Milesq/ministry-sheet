@@ -39,7 +39,7 @@ const user = useUser()
           :icon="theme.isDark ? WeatherNight : Brightness"
         />
         <MenuItem
-          v-if="user.loggedIn"
+          v-if="user.isLoggedIn"
           tooltip="Wyloguj się"
           :icon="LogoutVariant"
         />
