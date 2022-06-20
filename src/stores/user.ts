@@ -19,7 +19,7 @@ const useUser = defineStore('user', {
       this.$reset()
     },
   },
-  persist: true
+  persist: true,
 })
 
 export default useUser

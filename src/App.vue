@@ -3,18 +3,20 @@ import Home from '~icons/mdi/Home'
 import LogoutVariant from '~icons/mdi/LogoutVariant'
 import Brightness from '~icons/mdi/brightness'
 import WeatherNight from '~icons/mdi/WeatherNight'
+import { useRouter } from 'vue-router'
 
 import MenuItem from './components/MenuItem.vue'
 import useUser from './stores/user'
 import theme from './composables/theme'
-import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const user = useUser()
 
 function logout() {
   user.logout()
-  router.push('/')
+  router.push({
+    name: 'login',
+  })
 }
 </script>
 

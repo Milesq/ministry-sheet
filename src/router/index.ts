@@ -22,11 +22,11 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: () => import('../views/LoginView.vue'),
-    }
+    },
   ],
 })
 
-router.beforeEach((to) => {
+router.beforeEach(to => {
   const { user } = useUser()
 
   if (to.meta.requiresAuth && !user) {
