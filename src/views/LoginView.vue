@@ -1,7 +1,23 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import useUser from '@/stores/user'
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const user = useUser()
+const router = useRouter()
 
 const userName = ref('')
+
+function login() {
+  user.login(userName.value)
+  router.push('/')
+}
+
+onMounted(() => {
+  if (user.isLoggedIn) {
+    router.push('/')
+  }
+})
 </script>
 
 <template>
@@ -11,7 +27,7 @@ const userName = ref('')
         <template #header>
           <span font="medium" text="xl">Podaj imię i Nazwisko</span>
         </template>
-        <el-form flex="~ col">
+        <el-form flex="~ col" @submit.prevent="login">
           <el-form-item>
             <el-input
               v-model="userName"
@@ -21,7 +37,9 @@ const userName = ref('')
 
           <el-divider />
 
-          <el-button type="success" place="self-end">Potwierdź</el-button>
+          <el-button @click="login" type="success" place="self-end">
+            Potwierdź
+          </el-button>
         </el-form>
       </el-card>
     </el-col>

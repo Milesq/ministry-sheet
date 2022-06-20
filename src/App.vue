@@ -7,8 +7,15 @@ import WeatherNight from '~icons/mdi/WeatherNight'
 import MenuItem from './components/MenuItem.vue'
 import useUser from './stores/user'
 import theme from './composables/theme'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const user = useUser()
+
+function logout() {
+  user.logout()
+  router.push('/')
+}
 </script>
 
 <template>
@@ -35,6 +42,7 @@ const user = useUser()
           :icon="theme.isDark ? WeatherNight : Brightness"
         />
         <MenuItem
+          @click="logout"
           v-if="user.isLoggedIn"
           tooltip="Wyloguj się"
           :icon="LogoutVariant"
