@@ -19,11 +19,7 @@ const user = useUser()
         class="flex justify-between items-center text-[2rem]"
       >
         <div class="md:hidden">
-          <el-button
-            round
-            color="transparent"
-            class="asd uppercase !font-semibold"
-          >
+          <el-button round color="transparent" class="uppercase !font-semibold">
             Grafik Wózków
           </el-button>
         </div>
