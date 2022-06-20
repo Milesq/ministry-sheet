@@ -10,7 +10,7 @@ import 'virtual:windi.css'
 
 import App from './App.vue'
 import router from './router'
-import awsExports from './aws-exports.js'
+import awsExports from '../aws-exports.js'
 
 import './assets/style.scss'
 
