@@ -107,6 +107,20 @@ export const onCreateAppointment = /* GraphQL */ `
         _deleted
         _lastChangedAt
       }
+      users {
+        items {
+          id
+          appointmentID
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       approved
       datetime
       createdAt
@@ -135,6 +149,20 @@ export const onUpdateAppointment = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+      }
+      users {
+        items {
+          id
+          appointmentID
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
       }
       approved
       datetime
@@ -165,6 +193,20 @@ export const onDeleteAppointment = /* GraphQL */ `
         _deleted
         _lastChangedAt
       }
+      users {
+        items {
+          id
+          appointmentID
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       approved
       datetime
       createdAt
@@ -173,6 +215,243 @@ export const onDeleteAppointment = /* GraphQL */ `
       _deleted
       _lastChangedAt
       placeAppointmentsId
+    }
+  }
+`;
+export const onCreateUser = /* GraphQL */ `
+  subscription OnCreateUser {
+    onCreateUser {
+      id
+      name
+      appointments {
+        items {
+          id
+          appointmentID
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateUser = /* GraphQL */ `
+  subscription OnUpdateUser {
+    onUpdateUser {
+      id
+      name
+      appointments {
+        items {
+          id
+          appointmentID
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteUser = /* GraphQL */ `
+  subscription OnDeleteUser {
+    onDeleteUser {
+      id
+      name
+      appointments {
+        items {
+          id
+          appointmentID
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateUserAppointment = /* GraphQL */ `
+  subscription OnCreateUserAppointment {
+    onCreateUserAppointment {
+      id
+      appointmentID
+      userID
+      appointment {
+        id
+        place {
+          id
+          name
+          desc
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        users {
+          nextToken
+          startedAt
+        }
+        approved
+        datetime
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        placeAppointmentsId
+      }
+      user {
+        id
+        name
+        appointments {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateUserAppointment = /* GraphQL */ `
+  subscription OnUpdateUserAppointment {
+    onUpdateUserAppointment {
+      id
+      appointmentID
+      userID
+      appointment {
+        id
+        place {
+          id
+          name
+          desc
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        users {
+          nextToken
+          startedAt
+        }
+        approved
+        datetime
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        placeAppointmentsId
+      }
+      user {
+        id
+        name
+        appointments {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteUserAppointment = /* GraphQL */ `
+  subscription OnDeleteUserAppointment {
+    onDeleteUserAppointment {
+      id
+      appointmentID
+      userID
+      appointment {
+        id
+        place {
+          id
+          name
+          desc
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        users {
+          nextToken
+          startedAt
+        }
+        approved
+        datetime
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        placeAppointmentsId
+      }
+      user {
+        id
+        name
+        appointments {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
