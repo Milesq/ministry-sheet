@@ -8,7 +8,7 @@
     "build": "run-p type-check build-only",
     "preview": "vite preview --port 4173",
     "test": "vitest --environment jsdom",
-    "test:run": "vitest run --environment jsdom",
+    "test:run": "vitest run --environment jsdom --passWithNoTests",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . --ext .vue,.js,.cjs,.mjs,.ts",
