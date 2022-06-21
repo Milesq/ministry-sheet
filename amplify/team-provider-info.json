@@ -10,6 +10,11 @@
       "StackName": "amplify-ministrysheet-dev-143633",
       "StackId": "arn:aws:cloudformation:eu-central-1:730527792625:stack/amplify-ministrysheet-dev-143633/9e483b50-f095-11ec-ab6f-02c9ef992636",
       "AmplifyAppId": "d3l27qv3zjd206"
+    },
+    "categories": {
+      "auth": {
+        "ministrysheetfbf379de": {}
+      }
     }
   }
 }

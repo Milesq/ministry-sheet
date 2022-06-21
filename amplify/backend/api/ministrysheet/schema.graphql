@@ -1,15 +1,11 @@
-input AMPLIFY {
-  globalAuthRule: AuthRule = { allow: public }
-}
-
-type Place @model {
+type Place @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
   desc: String!
   appointments: [Appointment] @hasMany
 }
 
-type Appointment @model {
+type Appointment @model @auth(rules: [{allow: public}]) {
   id: ID!
   place: Place! @belongsTo
   users: [User] @manyToMany(relationName: "UserAppointment")
@@ -17,8 +13,9 @@ type Appointment @model {
   datetime: AWSDateTime
 }
 
-type User @model {
+type User @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
   appointments: [Appointment] @manyToMany(relationName: "UserAppointment")
 }
+ 
