@@ -10,18 +10,18 @@ export const createPlace = /* GraphQL */ `
     createPlace(input: $input, condition: $condition) {
       id
       name
-      desc
-      appointments {
+      description
+      Appointments {
         items {
           id
           approved
           datetime
+          placeID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          placeAppointmentsId
         }
         nextToken
         startedAt
@@ -42,18 +42,18 @@ export const updatePlace = /* GraphQL */ `
     updatePlace(input: $input, condition: $condition) {
       id
       name
-      desc
-      appointments {
+      description
+      Appointments {
         items {
           id
           approved
           datetime
+          placeID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          placeAppointmentsId
         }
         nextToken
         startedAt
@@ -74,18 +74,18 @@ export const deletePlace = /* GraphQL */ `
     deletePlace(input: $input, condition: $condition) {
       id
       name
-      desc
-      appointments {
+      description
+      Appointments {
         items {
           id
           approved
           datetime
+          placeID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          placeAppointmentsId
         }
         nextToken
         startedAt
@@ -105,20 +105,8 @@ export const createAppointment = /* GraphQL */ `
   ) {
     createAppointment(input: $input, condition: $condition) {
       id
-      place {
-        id
-        name
-        desc
-        appointments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
+      approved
+      datetime
       users {
         items {
           id
@@ -133,14 +121,26 @@ export const createAppointment = /* GraphQL */ `
         nextToken
         startedAt
       }
-      approved
-      datetime
+      placeID
+      place {
+        id
+        name
+        description
+        Appointments {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      placeAppointmentsId
     }
   }
 `;
@@ -151,20 +151,8 @@ export const updateAppointment = /* GraphQL */ `
   ) {
     updateAppointment(input: $input, condition: $condition) {
       id
-      place {
-        id
-        name
-        desc
-        appointments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
+      approved
+      datetime
       users {
         items {
           id
@@ -179,14 +167,26 @@ export const updateAppointment = /* GraphQL */ `
         nextToken
         startedAt
       }
-      approved
-      datetime
+      placeID
+      place {
+        id
+        name
+        description
+        Appointments {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      placeAppointmentsId
     }
   }
 `;
@@ -197,20 +197,8 @@ export const deleteAppointment = /* GraphQL */ `
   ) {
     deleteAppointment(input: $input, condition: $condition) {
       id
-      place {
-        id
-        name
-        desc
-        appointments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
+      approved
+      datetime
       users {
         items {
           id
@@ -225,14 +213,26 @@ export const deleteAppointment = /* GraphQL */ `
         nextToken
         startedAt
       }
-      approved
-      datetime
+      placeID
+      place {
+        id
+        name
+        description
+        Appointments {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      placeAppointmentsId
     }
   }
 `;
@@ -244,7 +244,7 @@ export const createUser = /* GraphQL */ `
     createUser(input: $input, condition: $condition) {
       id
       name
-      appointments {
+      Appointments {
         items {
           id
           appointmentID
@@ -274,7 +274,7 @@ export const updateUser = /* GraphQL */ `
     updateUser(input: $input, condition: $condition) {
       id
       name
-      appointments {
+      Appointments {
         items {
           id
           appointmentID
@@ -304,7 +304,7 @@ export const deleteUser = /* GraphQL */ `
     deleteUser(input: $input, condition: $condition) {
       id
       name
-      appointments {
+      Appointments {
         items {
           id
           appointmentID
@@ -337,33 +337,33 @@ export const createUserAppointment = /* GraphQL */ `
       userID
       appointment {
         id
+        approved
+        datetime
+        users {
+          nextToken
+          startedAt
+        }
+        placeID
         place {
           id
           name
-          desc
+          description
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
         }
-        users {
-          nextToken
-          startedAt
-        }
-        approved
-        datetime
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        placeAppointmentsId
       }
       user {
         id
         name
-        appointments {
+        Appointments {
           nextToken
           startedAt
         }
@@ -392,33 +392,33 @@ export const updateUserAppointment = /* GraphQL */ `
       userID
       appointment {
         id
+        approved
+        datetime
+        users {
+          nextToken
+          startedAt
+        }
+        placeID
         place {
           id
           name
-          desc
+          description
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
         }
-        users {
-          nextToken
-          startedAt
-        }
-        approved
-        datetime
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        placeAppointmentsId
       }
       user {
         id
         name
-        appointments {
+        Appointments {
           nextToken
           startedAt
         }
@@ -447,33 +447,33 @@ export const deleteUserAppointment = /* GraphQL */ `
       userID
       appointment {
         id
+        approved
+        datetime
+        users {
+          nextToken
+          startedAt
+        }
+        placeID
         place {
           id
           name
-          desc
+          description
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
         }
-        users {
-          nextToken
-          startedAt
-        }
-        approved
-        datetime
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        placeAppointmentsId
       }
       user {
         id
         name
-        appointments {
+        Appointments {
           nextToken
           startedAt
         }

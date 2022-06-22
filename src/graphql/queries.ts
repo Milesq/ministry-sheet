@@ -7,18 +7,18 @@ export const getPlace = /* GraphQL */ `
     getPlace(id: $id) {
       id
       name
-      desc
-      appointments {
+      description
+      Appointments {
         items {
           id
           approved
           datetime
+          placeID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          placeAppointmentsId
         }
         nextToken
         startedAt
@@ -41,8 +41,8 @@ export const listPlaces = /* GraphQL */ `
       items {
         id
         name
-        desc
-        appointments {
+        description
+        Appointments {
           nextToken
           startedAt
         }
@@ -73,8 +73,8 @@ export const syncPlaces = /* GraphQL */ `
       items {
         id
         name
-        desc
-        appointments {
+        description
+        Appointments {
           nextToken
           startedAt
         }
@@ -93,20 +93,8 @@ export const getAppointment = /* GraphQL */ `
   query GetAppointment($id: ID!) {
     getAppointment(id: $id) {
       id
-      place {
-        id
-        name
-        desc
-        appointments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
+      approved
+      datetime
       users {
         items {
           id
@@ -121,14 +109,26 @@ export const getAppointment = /* GraphQL */ `
         nextToken
         startedAt
       }
-      approved
-      datetime
+      placeID
+      place {
+        id
+        name
+        description
+        Appointments {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      placeAppointmentsId
     }
   }
 `;
@@ -141,28 +141,28 @@ export const listAppointments = /* GraphQL */ `
     listAppointments(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        approved
+        datetime
+        users {
+          nextToken
+          startedAt
+        }
+        placeID
         place {
           id
           name
-          desc
+          description
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
         }
-        users {
-          nextToken
-          startedAt
-        }
-        approved
-        datetime
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        placeAppointmentsId
       }
       nextToken
       startedAt
@@ -184,28 +184,28 @@ export const syncAppointments = /* GraphQL */ `
     ) {
       items {
         id
+        approved
+        datetime
+        users {
+          nextToken
+          startedAt
+        }
+        placeID
         place {
           id
           name
-          desc
+          description
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
         }
-        users {
-          nextToken
-          startedAt
-        }
-        approved
-        datetime
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        placeAppointmentsId
       }
       nextToken
       startedAt
@@ -217,7 +217,7 @@ export const getUser = /* GraphQL */ `
     getUser(id: $id) {
       id
       name
-      appointments {
+      Appointments {
         items {
           id
           appointmentID
@@ -249,7 +249,7 @@ export const listUsers = /* GraphQL */ `
       items {
         id
         name
-        appointments {
+        Appointments {
           nextToken
           startedAt
         }
@@ -280,7 +280,7 @@ export const syncUsers = /* GraphQL */ `
       items {
         id
         name
-        appointments {
+        Appointments {
           nextToken
           startedAt
         }
@@ -303,33 +303,33 @@ export const getUserAppointment = /* GraphQL */ `
       userID
       appointment {
         id
+        approved
+        datetime
+        users {
+          nextToken
+          startedAt
+        }
+        placeID
         place {
           id
           name
-          desc
+          description
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
         }
-        users {
-          nextToken
-          startedAt
-        }
-        approved
-        datetime
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        placeAppointmentsId
       }
       user {
         id
         name
-        appointments {
+        Appointments {
           nextToken
           startedAt
         }
@@ -366,12 +366,12 @@ export const listUserAppointments = /* GraphQL */ `
           id
           approved
           datetime
+          placeID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          placeAppointmentsId
         }
         user {
           id
@@ -414,12 +414,12 @@ export const syncUserAppointments = /* GraphQL */ `
           id
           approved
           datetime
+          placeID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          placeAppointmentsId
         }
         user {
           id

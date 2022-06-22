@@ -23,8 +23,8 @@ type UserAppointmentMetaData = {
 export declare class Place {
   readonly id: string;
   readonly name: string;
-  readonly desc: string;
-  readonly appointments?: (Appointment | null)[] | null;
+  readonly description: string;
+  readonly Appointments?: (Appointment | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Place, PlaceMetaData>);
@@ -33,10 +33,10 @@ export declare class Place {
 
 export declare class Appointment {
   readonly id: string;
-  readonly place: Place;
-  readonly users?: (UserAppointment | null)[] | null;
   readonly approved: boolean;
-  readonly datetime?: string | null;
+  readonly datetime: string;
+  readonly users?: (UserAppointment | null)[] | null;
+  readonly place: Place;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Appointment, AppointmentMetaData>);
@@ -46,7 +46,7 @@ export declare class Appointment {
 export declare class User {
   readonly id: string;
   readonly name: string;
-  readonly appointments?: (UserAppointment | null)[] | null;
+  readonly Appointments?: (UserAppointment | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<User, UserMetaData>);

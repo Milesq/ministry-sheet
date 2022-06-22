@@ -17,15 +17,15 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "desc": {
-                    "name": "desc",
+                "description": {
+                    "name": "description",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
-                "appointments": {
-                    "name": "appointments",
+                "Appointments": {
+                    "name": "Appointments",
                     "isArray": true,
                     "type": {
                         "model": "Appointment"
@@ -35,7 +35,7 @@ export const schema = {
                     "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
-                        "associatedWith": "placeAppointmentsId"
+                        "associatedWith": "place"
                     }
                 },
                 "createdAt": {
@@ -90,18 +90,19 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "place": {
-                    "name": "place",
+                "approved": {
+                    "name": "approved",
                     "isArray": false,
-                    "type": {
-                        "model": "Place"
-                    },
+                    "type": "Boolean",
                     "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "placeAppointmentsId"
-                    }
+                    "attributes": []
+                },
+                "datetime": {
+                    "name": "datetime",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": true,
+                    "attributes": []
                 },
                 "users": {
                     "name": "users",
@@ -117,19 +118,18 @@ export const schema = {
                         "associatedWith": "appointment"
                     }
                 },
-                "approved": {
-                    "name": "approved",
+                "place": {
+                    "name": "place",
                     "isArray": false,
-                    "type": "Boolean",
+                    "type": {
+                        "model": "Place"
+                    },
                     "isRequired": true,
-                    "attributes": []
-                },
-                "datetime": {
-                    "name": "datetime",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "placeID"
+                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -154,6 +154,15 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byPlace",
+                        "fields": [
+                            "placeID"
+                        ]
+                    }
                 },
                 {
                     "type": "auth",
@@ -190,8 +199,8 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "appointments": {
-                    "name": "appointments",
+                "Appointments": {
+                    "name": "Appointments",
                     "isArray": true,
                     "type": {
                         "model": "UserAppointment"
@@ -329,5 +338,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "28394455eea2677f0b314a3bbd5e0ab5"
+    "version": "b58ee99662ffe5a84e6d45404358bbc3"
 };
