@@ -5,6 +5,11 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AppCalendar: typeof import('./src/components/AppCalendar.vue')['default']
+    AppCalendarDateController: typeof import('./src/components/AppCalendarDateController.vue')['default']
+    AppCalendarDays: typeof import('./src/components/AppCalendarDays.vue')['default']
+    AppCalendarEvent: typeof import('./src/components/AppCalendarEvent.vue')['default']
+    AppCalendarEvents: typeof import('./src/components/AppCalendarEvents.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCalendar: typeof import('element-plus/es')['ElCalendar']
     ElCard: typeof import('element-plus/es')['ElCard']
@@ -21,9 +26,15 @@ declare module '@vue/runtime-core' {
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     MenuItem: typeof import('./src/components/MenuItem.vue')['default']
+    MyCal: typeof import('./src/components/MyCal.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ShowAppointments: typeof import('./src/components/ShowAppointments.vue')['default']
+    VCalendar: typeof import('./src/components/VCalendar.vue')['default']
+    VCalendarDateController: typeof import('./src/components/VCalendarDateController.vue')['default']
+    VCalendarDay: typeof import('./src/components/VCalendar/VCalendarDay.vue')['default']
+    VCalendarDays: typeof import('./src/components/VCalendarDays.vue')['default']
+    VCalendarHeader: typeof import('./src/components/VCalendar/VCalendarHeader.vue')['default']
   }
 }
 
