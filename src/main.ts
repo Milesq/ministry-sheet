@@ -7,12 +7,17 @@ import pl from 'element-plus/es/locale/lang/pl'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import 'virtual:windi.css'
+import dayjs from 'dayjs'
+import 'dayjs/locale/pl'
+import weekday from 'dayjs/plugin/weekday'
 
 import App from './App.vue'
 import router from './router'
 import awsExports from '../aws-exports.js'
-
 import './assets/style.scss'
+
+dayjs.extend(weekday)
+dayjs.locale('pl')
 
 Amplify.configure(awsExports)
 
