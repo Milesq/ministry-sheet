@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import dayjs from 'dayjs'
 import { computed } from 'vue'
 
 const WEEK = 7 // days
-const DAY = 24 * 3600 * 1000 // ms
 
 const props = withDefaults(
   defineProps<{
@@ -13,20 +13,8 @@ const props = withDefaults(
   }
 )
 
-const weekDay = computed(() => props.today.getDay() || 7) // 7 for sunday which is 0 by default
-
-function day(offset: number): { name: string; num: number } {
-  const date = new Date(props.today.getTime() + DAY * offset)
-
-  const num = date.getUTCDate()
-  let name = date.toLocaleDateString('pl-PL', { weekday: 'short' })
-
-  if (name.endsWith('.')) {
-    name = name.slice(0, -1)
-  }
-
-  return { name, num }
-}
+const monday = computed(() => dayjs(props.today).weekday(0))
+const weekDay = computed(() => dayjs(props.today).weekday())
 </script>
 
 <template>
@@ -43,12 +31,12 @@ function day(offset: number): { name: string; num: number } {
       class="day"
     >
       <div :class="weekDay === n && 'text-primary'" class="text-xs uppercase">
-        {{ day(n - weekDay).name }}
+        {{ monday.add(n - 1, 'day').format('ddd') }}
       </div>
 
       <div class="pt-4">
         <span :class="{ active: weekDay === n }">
-          {{ day(n - weekDay).num }}
+          {{ monday.add(n - 1, 'day').date() }}
         </span>
       </div>
     </span>
