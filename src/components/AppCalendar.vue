@@ -68,7 +68,7 @@ const hoursRangeLength = computed(() => hoursRange.value.length)
 @import '../assets/app-calendar.scss';
 
 .container {
-  font-family: 'Google Sans', Roboto, 'Segoe UI', Arial, sans-serif;
+  font-family: 'Google Sans', 'Segoe UI', Arial, sans-serif;
 
   width: 100%;
   display: grid;
