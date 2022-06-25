@@ -5,6 +5,7 @@ import { range } from '@/utils'
 import VCalendarDays from './AppCalendarDays.vue'
 import VCalendarDateController from './AppCalendarDateController.vue'
 import AppCalendarEvent from './AppCalendarEvent.vue'
+import AppCalendarCurrentTime from './AppCalendarCurrentTime.vue'
 
 const props = defineProps({
   hours: {
@@ -58,9 +59,7 @@ const hoursRangeLength = computed(() => hoursRange.value.length)
 
       <AppCalendarEvent :day="1" :start-hour="2" />
 
-      <div class="current-time">
-        <div class="circle"></div>
-      </div>
+      <AppCalendarCurrentTime />
     </div>
   </div>
 </template>
@@ -112,24 +111,5 @@ const hoursRangeLength = computed(() => hoursRange.value.length)
 }
 .col--disabled {
   background-color: #f1f3f4;
-}
-
-.current-time {
-  grid-column: 4;
-  grid-row: 4;
-  border-top: 2px solid $current-time-color;
-  position: relative;
-  top: calc(50% - 1px);
-}
-
-.circle {
-  width: 12px;
-  height: 12px;
-  border: 1px solid $current-time-color;
-  border-radius: 50%;
-  background: $current-time-color;
-  position: relative;
-  top: -6px;
-  left: -6px;
 }
 </style>

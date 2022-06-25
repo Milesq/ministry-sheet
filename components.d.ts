@@ -6,6 +6,7 @@ import '@vue/runtime-core'
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppCalendar: typeof import('./src/components/AppCalendar.vue')['default']
+    AppCalendarCurrentTime: typeof import('./src/components/AppCalendarCurrentTime.vue')['default']
     AppCalendarDateController: typeof import('./src/components/AppCalendarDateController.vue')['default']
     AppCalendarDays: typeof import('./src/components/AppCalendarDays.vue')['default']
     AppCalendarEvent: typeof import('./src/components/AppCalendarEvent.vue')['default']
