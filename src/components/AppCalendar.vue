@@ -68,6 +68,7 @@ const isCurrentWeekDisplayed = ref(true)
       <AppCalendarCurrentTime
         v-if="isCurrentWeekDisplayed"
         :start-hour="hours[0]"
+        :end-hour="hours[1]"
       />
     </div>
   </div>

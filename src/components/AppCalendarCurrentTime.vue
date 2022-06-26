@@ -6,6 +6,7 @@ const props = withDefaults(
   defineProps<{
     now?: Dayjs
     startHour: number
+    endHour: number
   }>(),
   {
     now: () => dayjs(),
@@ -17,7 +18,7 @@ const hourCol = computed(() => props.now.hour() - props.startHour + 1)
 </script>
 
 <template>
-  <div class="current-time">
+  <div class="current-time" v-if="now.hour() <= endHour">
     <div class="circle"></div>
   </div>
 </template>
