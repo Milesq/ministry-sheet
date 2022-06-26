@@ -1,20 +1,27 @@
 <script setup lang="ts">
-import dayjs from 'dayjs'
+import dayjs, { type Dayjs } from 'dayjs'
 import { computed } from 'vue'
 
 const WEEK = 7 // days
 
 const props = withDefaults(
   defineProps<{
-    today?: Date
+    today?: Dayjs
+    currentWeek: Dayjs
   }>(),
   {
-    today: () => new Date(),
+    today: () => dayjs(),
   }
 )
 
-const monday = computed(() => dayjs(props.today).weekday(0))
-const weekDay = computed(() => dayjs(props.today).weekday())
+const monday = computed(() => props.currentWeek.weekday(0))
+
+function isToday(dayInWeek: number): boolean {
+  // cannot use isSame(..., 'week') because they starts week at the sunday
+  const isTheSameWeek = monday.value.isSame(props.today.weekday(0), 'day')
+
+  return isTheSameWeek && props.today.weekday() === dayInWeek
+}
 </script>
 
 <template>
@@ -24,19 +31,19 @@ const weekDay = computed(() => dayjs(props.today).weekday())
     <div></div>
 
     <span
-      v-for="n in WEEK"
+      v-for="(_, n) in WEEK"
       :key="n"
       text="[#757575] [25px] dark:light-600"
       font="medium"
       class="day"
     >
-      <div :class="weekDay === n && 'text-primary'" class="text-xs uppercase">
-        {{ monday.add(n - 1, 'day').format('ddd') }}
+      <div :class="isToday(n) && 'text-primary'" class="text-xs uppercase">
+        {{ monday.add(n, 'day').format('ddd') }}
       </div>
 
       <div class="pt-4">
-        <span :class="{ active: weekDay === n }">
-          {{ monday.add(n - 1, 'day').date() }}
+        <span :class="{ active: isToday(n) }">
+          {{ monday.add(n, 'day').date() }}
         </span>
       </div>
     </span>
