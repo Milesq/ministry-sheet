@@ -24,12 +24,16 @@ const hoursRange = computed(() => {
 
 const hoursRangeLength = computed(() => hoursRange.value.length)
 const currentWeek = ref(dayjs())
+const isCurrentWeekDisplayed = ref(true)
 </script>
 
 <template>
   <div class="container">
     <AppCalendarDateController v-model="currentWeek" />
-    <AppCalendarDays :current-week="currentWeek" />
+    <AppCalendarDays
+      :current-week="currentWeek"
+      @update-is-the-same-week="isCurrentWeekDisplayed = $event"
+    />
 
     <div class="content">
       <div
@@ -61,7 +65,10 @@ const currentWeek = ref(dayjs())
 
       <AppCalendarEvent :day="1" :start-hour="2" />
 
-      <AppCalendarCurrentTime :start-hour="hours[0]" />
+      <AppCalendarCurrentTime
+        v-if="isCurrentWeekDisplayed"
+        :start-hour="hours[0]"
+      />
     </div>
   </div>
 </template>

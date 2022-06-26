@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import dayjs, { type Dayjs } from 'dayjs'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 
 const WEEK = 7 // days
 
+const emit = defineEmits<{
+  (e: 'updateIsTheSameWeek', value: boolean): void
+}>()
 const props = withDefaults(
   defineProps<{
     today?: Dayjs
@@ -16,11 +19,17 @@ const props = withDefaults(
 
 const monday = computed(() => props.currentWeek.weekday(0))
 
-function isToday(dayInWeek: number): boolean {
-  // cannot use isSame(..., 'week') because they starts week at the sunday
-  const isTheSameWeek = monday.value.isSame(props.today.weekday(0), 'day')
+// cannot use isSame(..., 'week') because they starts week at the sunday
+const isTheSameWeek = computed(() =>
+  monday.value.isSame(props.today.weekday(0), 'day')
+)
 
-  return isTheSameWeek && props.today.weekday() === dayInWeek
+watch([isTheSameWeek], () => {
+  emit('updateIsTheSameWeek', isTheSameWeek.value)
+})
+
+function isToday(dayInWeek: number): boolean {
+  return isTheSameWeek.value && props.today.weekday() === dayInWeek
 }
 </script>
 
