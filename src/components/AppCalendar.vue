@@ -61,7 +61,7 @@ const currentWeek = ref(dayjs())
 
       <AppCalendarEvent :day="1" :start-hour="2" />
 
-      <AppCalendarCurrentTime />
+      <AppCalendarCurrentTime :start-hour="hours[0]" />
     </div>
   </div>
 </template>
