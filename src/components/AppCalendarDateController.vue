@@ -11,9 +11,15 @@ const props = defineProps<{
 
 const weekBeg = computed(() => props.modelValue.weekday(0))
 
-function change(dir: 'prev' | 'next') {
-  emit(dir)
-  emit('update:modelValue')
+enum ChangeDirection {
+  Prev = -1,
+  Next = 1,
+}
+
+function change(dir: ChangeDirection) {
+  emit(dir === ChangeDirection.Prev ? 'prev' : 'next')
+
+  emit('update:modelValue', props.modelValue.add(dir, 'week'))
 }
 
 function format(day: Dayjs): string {
@@ -33,7 +39,11 @@ function format(day: Dayjs): string {
   <div
     class="flex justify-center items-center text-[22px] text-[rgba(0,0,0,.54)] font-normal"
   >
-    <ChevronLeft @click="change('prev')" class="arrow" text="25px" />
+    <ChevronLeft
+      @click="change(ChangeDirection.Prev)"
+      class="arrow"
+      text="25px"
+    />
 
     <span px="4">
       {{ format(weekBeg) }}
@@ -41,7 +51,11 @@ function format(day: Dayjs): string {
       {{ format(weekBeg.add(6, 'days')) }}
     </span>
 
-    <ChevronRight @click="change('next')" class="arrow" text="25px" />
+    <ChevronRight
+      @click="change(ChangeDirection.Next)"
+      class="arrow"
+      text="25px"
+    />
   </div>
 </template>
 

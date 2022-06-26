@@ -31,11 +31,6 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ShowAppointments: typeof import('./src/components/ShowAppointments.vue')['default']
-    VCalendar: typeof import('./src/components/VCalendar.vue')['default']
-    VCalendarDateController: typeof import('./src/components/VCalendarDateController.vue')['default']
-    VCalendarDay: typeof import('./src/components/VCalendar/VCalendarDay.vue')['default']
-    VCalendarDays: typeof import('./src/components/VCalendarDays.vue')['default']
-    VCalendarHeader: typeof import('./src/components/VCalendar/VCalendarHeader.vue')['default']
   }
 }
 

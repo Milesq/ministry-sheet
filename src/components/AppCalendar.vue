@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { range } from '@/utils'
+import dayjs from 'dayjs'
 
-import VCalendarDays from './AppCalendarDays.vue'
-import VCalendarDateController from './AppCalendarDateController.vue'
+import AppCalendarDays from './AppCalendarDays.vue'
+import AppCalendarDateController from './AppCalendarDateController.vue'
 import AppCalendarEvent from './AppCalendarEvent.vue'
 import AppCalendarCurrentTime from './AppCalendarCurrentTime.vue'
 
@@ -22,12 +23,13 @@ const hoursRange = computed(() => {
 })
 
 const hoursRangeLength = computed(() => hoursRange.value.length)
+const currentWeek = ref(dayjs())
 </script>
 
 <template>
   <div class="container">
-    <VCalendarDateController />
-    <VCalendarDays />
+    <AppCalendarDateController v-model="currentWeek" />
+    <AppCalendarDays :current-week="currentWeek" />
 
     <div class="content">
       <div
