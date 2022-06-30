@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import useUser from '@/stores/user'
-import { onMounted, ref } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const user = useUser()
@@ -13,7 +13,7 @@ function login() {
   router.push('/')
 }
 
-onMounted(() => {
+onBeforeMount(() => {
   if (user.isLoggedIn) {
     router.push('/')
   }
