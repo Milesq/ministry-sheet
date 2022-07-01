@@ -12,4 +12,7 @@ export default defineConfig({
       },
     },
   },
+  shortcuts: {
+    center: 'flex justify-center items-center'
+  }
 })

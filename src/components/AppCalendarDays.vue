@@ -50,8 +50,8 @@ function isToday(dayInWeek: number): boolean {
         {{ monday.add(n, 'day').format('ddd') }}
       </div>
 
-      <div class="pt-4">
-        <span :class="{ active: isToday(n) }">
+      <div class="pt-2 flex justify-center">
+        <span :class="{ 'date-box--active': isToday(n) }" class="date-box">
           {{ monday.add(n, 'day').date() }}
         </span>
       </div>
@@ -79,14 +79,20 @@ function isToday(dayInWeek: number): boolean {
   border-left: 1px solid $grid-color;
 }
 
-.active {
-  @apply bg-primary
-    rounded-full
+.date-box {
+  @apply rounded-full
     p-2
+    w-12
+    h-12
 
-    text-white
+    center;
 
-    shadow-md
-    dark:shadow-none;
+  &--active {
+    @apply bg-primary
+      text-white
+
+      shadow-md
+      dark:shadow-none;
+  }
 }
 </style>
