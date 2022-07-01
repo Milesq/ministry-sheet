@@ -3,6 +3,7 @@ withDefaults(
   defineProps<{
     day: number
     startHour: number
+    content: string
     length?: number
   }>(),
   {
@@ -12,7 +13,9 @@ withDefaults(
 </script>
 
 <template>
-  <div class="event calendar1">Event 1</div>
+  <div class="event">
+    {{ content }}
+  </div>
 </template>
 
 <style scoped>

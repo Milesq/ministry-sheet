@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { range } from '@/utils'
 import dayjs from 'dayjs'
+import { range } from '@/utils'
+import type { CalendarEvent } from '@/common'
 
 import AppCalendarDays from './AppCalendarDays.vue'
 import AppCalendarDateController from './AppCalendarDateController.vue'
@@ -13,6 +14,10 @@ const props = defineProps({
     type: Array as () => number[],
     default: () => [8, 18],
     validator: (value: number[]) => value.length === 2,
+  },
+  events: {
+    type: Array as () => CalendarEvent[],
+    default: () => [],
   },
 })
 
@@ -119,6 +124,7 @@ const isCurrentWeekDisplayed = ref(true)
   grid-column: 3 / -1;
   border-bottom: 1px solid $grid-color;
 }
+
 .col--disabled {
   background-color: #f1f3f4;
 }

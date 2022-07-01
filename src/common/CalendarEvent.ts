@@ -1,7 +1,7 @@
 import type { Dayjs } from "dayjs"
 
 export default interface CalendarEvent {
-  name: string
-  description: string
+  id: string
+  content: string
   datetime: Dayjs
 }
