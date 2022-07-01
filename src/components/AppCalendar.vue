@@ -24,7 +24,7 @@ const props = defineProps({
 const hoursRange = computed(() => {
   const [beg, end] = props.hours
 
-  return range(beg, end)
+  return range(beg, end + 1)
 })
 
 const hoursRangeLength = computed(() => hoursRange.value.length)
@@ -101,7 +101,6 @@ const currentWeekEvents = computed(() => {
   width: 100%;
   display: grid;
   grid-template-rows: $title-height $days-height auto;
-  position: absolute;
 }
 
 .content {

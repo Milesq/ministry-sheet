@@ -14,7 +14,7 @@ const props = withDefaults(
 )
 
 const day = computed(() => props.now.weekday())
-const hourCol = computed(() => props.now.hour() - props.startHour + 1)
+const hourCol = computed(() => props.now.hour() - props.startHour + 2)
 </script>
 
 <template>
