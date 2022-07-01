@@ -30,6 +30,13 @@ const hoursRange = computed(() => {
 const hoursRangeLength = computed(() => hoursRange.value.length)
 const currentWeek = ref(dayjs())
 const isCurrentWeekDisplayed = ref(true)
+
+const currentWeekEvents = computed(() => {
+  const week = currentWeek.value
+  const events = props.events
+
+  return events.filter(event => event.datetime.isSame(week, 'week'))
+})
 </script>
 
 <template>
@@ -68,7 +75,13 @@ const isCurrentWeekDisplayed = ref(true)
         :style="{ gridRow: n + 1 }"
       ></div>
 
-      <AppCalendarEvent :day="1" :start-hour="2" />
+      <AppCalendarEvent
+        v-for="event in currentWeekEvents"
+        :key="event.id"
+        :day="event.datetime.weekday() + 1"
+        :start-hour="event.datetime.hour() - hours[0] + 2"
+        :content="event.content"
+      />
 
       <AppCalendarCurrentTime
         v-if="isCurrentWeekDisplayed"
