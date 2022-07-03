@@ -2,18 +2,26 @@
 import dayjs from 'dayjs'
 import type { Appointment } from '@/models'
 import type { CalendarEvent } from '@/common'
+import { computed } from 'vue'
 
-defineProps<{
+const props = defineProps<{
   appointments: Appointment[]
 }>()
 
-const events: CalendarEvent[] = [
-  {
-    id: 'asdasd',
-    content: 'Abc def',
-    datetime: dayjs().hour(12),
-  },
-]
+function makeAppointmentContent(appointment: Appointment): string[] {
+  return 'Miłosz Wiśniewski\nMiłosz Wiśniewski\nMiłosz Wiśniewski'.split('\n')
+}
+
+const events = computed<CalendarEvent[]>(() => {
+  return props.appointments.map(
+    appointment =>
+      ({
+        id: appointment.id,
+        content: makeAppointmentContent(appointment),
+        datetime: dayjs(appointment.datetime),
+      } as CalendarEvent)
+  )
+})
 </script>
 
 <template>
