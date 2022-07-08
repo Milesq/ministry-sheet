@@ -1,16 +1,30 @@
 <script setup lang="ts">
-import type { Appointment } from '@/models'
-import { onMounted } from 'vue'
+import { computed } from 'vue'
+import dayjs from 'dayjs'
+import type { AppointmentWithUsers, CalendarEvent } from '@/common'
 
 const props = defineProps<{
-  appointments: Appointment[]
+  appointments: AppointmentWithUsers[]
 }>()
 
-onMounted(() => {
-  console.log(props.appointments)
+function makeAppointmentContent(appointment: AppointmentWithUsers): string[] {
+  return appointment.users.map(user => user.name)
+}
+
+const events = computed<CalendarEvent[]>(() => {
+  return props.appointments.map(
+    appointment =>
+      ({
+        id: appointment.appointment.id,
+        content: makeAppointmentContent(appointment),
+        datetime: dayjs(appointment.appointment.datetime),
+      } as CalendarEvent)
+  )
 })
 </script>
 
 <template>
-  <div>ok</div>
+  <div class="flex justify-center">
+    <AppCalendar :events="events" />
+  </div>
 </template>
