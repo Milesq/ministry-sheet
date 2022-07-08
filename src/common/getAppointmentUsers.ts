@@ -1,5 +1,5 @@
-import { type User, UserAppointment } from '@/models'
 import { DataStore } from '@aws-amplify/datastore'
+import { type User, UserAppointment } from '@/models'
 
 async function getAppointmentUsers(appointmentID: string): Promise<User[]> {
   const uas = await DataStore.query(UserAppointment)
