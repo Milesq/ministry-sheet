@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import dayjs, { type Dayjs } from 'dayjs'
 
 const props = withDefaults(
@@ -7,14 +7,26 @@ const props = withDefaults(
     now?: Dayjs
     startHour: number
     endHour: number
+    reactive: boolean
   }>(),
   {
     now: () => dayjs(),
+    reactive: true,
   }
 )
 
-const day = computed(() => props.now.weekday())
-const hourCol = computed(() => props.now.hour() - props.startHour + 2)
+const currTime = ref<Dayjs>(props.now)
+const day = computed(() => currTime.value.weekday())
+const hourCol = computed(() => currTime.value.hour() - props.startHour + 2)
+const hourPercent = computed(() => currTime.value.minute() / 60)
+
+onMounted(() => {
+  if (props.reactive) {
+    setInterval(() => {
+      currTime.value = currTime.value.add(5, 'minute')
+    }, 1000 * 60 * 5)
+  }
+})
 </script>
 
 <template>
@@ -34,7 +46,7 @@ const hourCol = computed(() => props.now.hour() - props.startHour + 2)
 
   border-top: 2px solid $current-time-color;
   position: relative;
-  top: calc(50% - 1px);
+  top: calc((v-bind(hourPercent) * 100%) - 1px);
 }
 
 .circle {
