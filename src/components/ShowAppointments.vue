@@ -28,13 +28,28 @@ const events = computed<CalendarEvent[]>(() => {
   )
 })
 
+async function missingPlaceSwal() {
+  const dontShowAgainKey = 'dont-show-missing-place-again'
+  const shouldNotShowMissingPlace = localStorage.getItem(dontShowAgainKey)
+  if (shouldNotShowMissingPlace) return
+
+  const { value } = await Swal.fire({
+    title: 'Błąd',
+    text: 'Najpierw wybierz miejsce w którym chcesz stanąć',
+    icon: 'error',
+    input: 'checkbox',
+    inputPlaceholder: 'Nie pokazuj ponownie',
+  })
+
+  if (value) {
+    localStorage.setItem(dontShowAgainKey, 'true')
+  }
+}
+
 async function addEvent(date: Dayjs) {
   if (!props.place) {
-    Swal.fire(
-      'Błąd',
-      'Najpierw wybierz miejsce w którym chcesz stanąć',
-      'error'
-    )
+    await missingPlaceSwal()
+
     return
   }
 
