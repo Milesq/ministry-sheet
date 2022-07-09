@@ -42,6 +42,7 @@ function getAppointments({ id }: Place): AppointmentWithUsers[] {
         <ShowAppointments
           v-if="activePlace === place.name"
           :appointments="getAppointments(place)"
+          :place="place"
         />
       </el-tab-pane>
     </el-tabs>

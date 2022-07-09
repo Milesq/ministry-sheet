@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import dayjs from 'dayjs'
+import dayjs, { type Dayjs } from 'dayjs'
+import { Swal } from '@/common'
 import useAppointments from '@/stores/appointments'
+import type { Place } from '@/models'
 import type { AppointmentWithUsers, CalendarEvent } from '@/common'
 
 const props = defineProps<{
   appointments: AppointmentWithUsers[]
+  place?: Place
 }>()
 
 const appointments = useAppointments()
@@ -24,6 +27,38 @@ const events = computed<CalendarEvent[]>(() => {
       } as CalendarEvent)
   )
 })
+
+async function addEvent(date: Dayjs) {
+  if (!props.place) {
+    Swal.fire(
+      'Błąd',
+      'Najpierw wybierz miejsce w którym chcesz stanąć',
+      'error'
+    )
+    return
+  }
+
+  const day = date.locale('pl').format('D MMMM')
+  const hour = date.locale('pl').format('H:mm')
+  const formattedDate = `${day} o godzinie ${hour}`
+
+  const confirmed = await Swal.fire({
+    title: 'Czy chcesz się zapisać?',
+    text: formattedDate,
+    icon: 'question',
+    showCancelButton: true,
+    reverseButtons: true,
+    confirmButtonText: 'Tak, potwierdź',
+    cancelButtonText: 'Anuluj',
+  })
+
+  if (!confirmed) {
+    return
+  }
+
+  await appointments.add(date, props.place)
+  Swal.fire('Sukces', 'Poczekaj na zatwierdzenie', 'success')
+}
 </script>
 
 <template>

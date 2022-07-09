@@ -56,7 +56,10 @@ const eventMatrix = computed(() => {
 })
 
 function makeDate(day: number, hour: number) {
-  return currentWeek.value.weekday(day).hour(hour + props.hours[0])
+  return currentWeek.value
+    .weekday(day)
+    .hour(hour + props.hours[0])
+    .minute(0)
 }
 </script>
 

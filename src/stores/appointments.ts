@@ -36,6 +36,9 @@ const useAppointments = defineStore('appointments', {
 
       this.appointments = await Promise.all(appointmentsWithUsers)
     },
+    async add(date: Dayjs, place: Place) {
+
+    },
   },
 })
 
