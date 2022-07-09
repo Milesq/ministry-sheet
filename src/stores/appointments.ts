@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia'
 import dayjs, { type Dayjs } from 'dayjs'
 import { DataStore } from '@aws-amplify/datastore'
-import { Appointment, Place } from '@/models'
+import { Appointment, Place, User } from '@/models'
 import { getAppointmentUsers, type AppointmentWithUsers } from '@/common'
+import { UserAppointment } from '@/models'
 
 import useUser from './user'
 
@@ -37,7 +38,34 @@ const useAppointments = defineStore('appointments', {
       this.appointments = await Promise.all(appointmentsWithUsers)
     },
     async add(date: Dayjs, place: Place) {
+      const userStore = useUser()
 
+      if (!userStore.isLoggedIn) {
+        throw new Error('User is not logged in')
+      }
+
+      const [user] = await DataStore.query(
+        User,
+        c => c.name('eq', userStore.user!),
+        {
+          limit: 1,
+        }
+      )
+
+      const appointment = await DataStore.save(
+        new Appointment({
+          place,
+          approved: false,
+          datetime: date.toISOString(),
+        })
+      )
+
+      await DataStore.save(
+        new UserAppointment({
+          user,
+          appointment,
+        })
+      )
     },
   },
 })
