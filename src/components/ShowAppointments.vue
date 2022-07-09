@@ -42,7 +42,7 @@ async function addEvent(date: Dayjs) {
   const hour = date.locale('pl').format('H:mm')
   const formattedDate = `${day} o godzinie ${hour}`
 
-  const confirmed = await Swal.fire({
+  const { isConfirmed } = await Swal.fire({
     title: 'Czy chcesz się zapisać?',
     text: formattedDate,
     icon: 'question',
@@ -52,7 +52,7 @@ async function addEvent(date: Dayjs) {
     cancelButtonText: 'Anuluj',
   })
 
-  if (!confirmed) {
+  if (!isConfirmed) {
     return
   }
 
