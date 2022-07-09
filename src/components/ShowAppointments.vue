@@ -78,6 +78,6 @@ async function addEvent(date: Dayjs) {
 
 <template>
   <div class="flex justify-center">
-    <AppCalendar :events="events" @onEventAdd="addEvent" />
+    <AppCalendar :events="events" @onEventAdd="addEvent" :addEvents="!!place" />
   </div>
 </template>

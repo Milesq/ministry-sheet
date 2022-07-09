@@ -24,6 +24,10 @@ const props = defineProps({
     type: Array as () => CalendarEvent[],
     default: () => [],
   },
+  addEvents: {
+    type: Boolean,
+    default: true,
+  },
 })
 
 const hoursRange = computed(() => {
@@ -104,6 +108,7 @@ function makeDate(day: number, hour: number) {
         :key="x + '-' + y"
         @click="$emit('onEventAdd', makeDate(x, y))"
         class="z-99"
+        :class="{ 'cursor-pointer': props.addEvents }"
         :style="{ gridRow: y + 2, gridColumn: x + 3 }"
       ></div>
 
