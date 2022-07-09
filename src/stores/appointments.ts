@@ -67,13 +67,22 @@ const useAppointments = defineStore('appointments', {
         }
       )
 
-      const appointment = await DataStore.save(
-        new Appointment({
-          place,
-          approved: false,
-          datetime: date.toISOString(),
-        })
-      )
+      const oldAppointment = (
+        await DataStore.query(Appointment, c =>
+          c.datetime('eq', date.toISOString())
+        )
+      ).find(c => c.place.id === place.id)
+
+      const newAppointment = () =>
+        DataStore.save(
+          new Appointment({
+            place,
+            approved: false,
+            datetime: date.toISOString(),
+          })
+        )
+
+      const appointment = oldAppointment || (await newAppointment())
 
       await DataStore.save(
         new UserAppointment({

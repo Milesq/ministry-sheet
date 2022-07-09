@@ -64,6 +64,8 @@ function makeDate(day: number, hour: number) {
     .weekday(day)
     .hour(hour + props.hours[0])
     .minute(0)
+    .second(0)
+    .millisecond(0)
 }
 </script>
 
