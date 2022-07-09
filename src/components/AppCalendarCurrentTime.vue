@@ -7,7 +7,7 @@ const props = withDefaults(
     now?: Dayjs
     startHour: number
     endHour: number
-    reactive: boolean
+    reactive?: boolean
   }>(),
   {
     now: () => dayjs(),

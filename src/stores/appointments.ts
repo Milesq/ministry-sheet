@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 import dayjs, { type Dayjs } from 'dayjs'
 import { DataStore } from '@aws-amplify/datastore'
-import { Appointment, Place, User } from '@/models'
+import { Appointment, Place, User, UserAppointment } from '@/models'
 import { getAppointmentUsers, type AppointmentWithUsers } from '@/common'
-import { UserAppointment } from '@/models'
+import Errors from '@/errors'
 
 import useUser from './user'
 
@@ -42,6 +42,21 @@ const useAppointments = defineStore('appointments', {
 
       if (!userStore.isLoggedIn) {
         throw new Error('User is not logged in')
+      }
+
+      const termAlreadyOccupied = (await DataStore.query(UserAppointment)).some(
+        ua => {
+          const isTheSameUser = ua.user.name === userStore.user
+          if (!isTheSameUser) {
+            return false
+          }
+
+          return dayjs(ua.appointment.datetime).isSame(date, 'hour')
+        }
+      )
+
+      if (termAlreadyOccupied) {
+        throw new Error(Errors.TermAlreadyOccupied)
       }
 
       const [user] = await DataStore.query(

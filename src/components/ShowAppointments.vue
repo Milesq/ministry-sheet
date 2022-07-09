@@ -71,8 +71,12 @@ async function addEvent(date: Dayjs) {
     return
   }
 
-  await appointments.add(date, props.place)
-  Swal.fire('Sukces', 'Poczekaj na zatwierdzenie', 'success')
+  try {
+    await appointments.add(date, props.place)
+    Swal.fire('Sukces', 'Poczekaj na zatwierdzenie', 'success')
+  } catch {
+    Swal.fire('Błąd', 'Nie udało się zapisać, ju stoisz w tym miejscu', 'error')
+  }
 }
 </script>
 
