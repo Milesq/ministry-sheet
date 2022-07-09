@@ -9,6 +9,11 @@ import AppCalendarDateController from './AppCalendarDateController.vue'
 import AppCalendarEvent from './AppCalendarEvent.vue'
 import AppCalendarCurrentTime from './AppCalendarCurrentTime.vue'
 
+defineEmits<{
+  onDateChange(date: dayjs.Dayjs): void
+  onEventAdd(date: dayjs.Dayjs): void
+}>()
+
 const props = defineProps({
   hours: {
     type: Array as () => number[],
@@ -37,6 +42,22 @@ const currentWeekEvents = computed(() => {
 
   return events.filter(event => event.datetime.isSame(week, 'week'))
 })
+
+const daysInWeek = ref(7)
+
+const eventMatrix = computed(() => {
+  const {
+    hours: [start, stop],
+  } = props
+
+  return range(0, daysInWeek.value - 1)
+    .map(x => range(0, stop - start - 1).map((_, y) => [x, y]))
+    .flat()
+})
+
+function makeDate(day: number, hour: number) {
+  return currentWeek.value.weekday(day).hour(hour + props.hours[0])
+}
 </script>
 
 <template>
@@ -62,7 +83,7 @@ const currentWeekEvents = computed(() => {
       <div class="filler-col"></div>
 
       <div
-        v-for="n in range(1, 7)"
+        v-for="n in range(1, daysInWeek)"
         :key="n"
         class="col"
         :style="{ gridColumn: n + 2 }"
@@ -73,6 +94,14 @@ const currentWeekEvents = computed(() => {
         :key="n"
         class="row"
         :style="{ gridRow: n + 1 }"
+      ></div>
+
+      <div
+        v-for="[x, y] in eventMatrix"
+        :key="x + '-' + y"
+        @click="$emit('onEventAdd', makeDate(x, y))"
+        class="z-99"
+        :style="{ gridRow: y + 2, gridColumn: x + 3 }"
       ></div>
 
       <AppCalendarEvent
