@@ -53,6 +53,11 @@ async function addEvent(date: Dayjs) {
     return
   }
 
+  if (date.isBefore(dayjs())) {
+    Swal.fire('Nie możesz stanąć w przeszłości', '', 'error')
+    return
+  }
+
   const day = date.locale('pl').format('D MMMM')
   const hour = date.locale('pl').format('H:mm')
   const formattedDate = `${day} o godzinie ${hour}`
