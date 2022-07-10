@@ -28,7 +28,9 @@ const useAppointments = defineStore('appointments', {
 
       await this.loadEvents(monday, sunday)
 
-      DataStore.observeQuery(Appointment).subscribe(async appointments => {
+      DataStore.observeQuery(Appointment, c =>
+        c.approved('eq', true)
+      ).subscribe(async appointments => {
         this.appointments = await this.fillUsers(appointments.items)
       })
     },
@@ -42,7 +44,9 @@ const useAppointments = defineStore('appointments', {
     },
     async loadEvents(after: string, before: string) {
       const appointments = await DataStore.query(Appointment, c =>
-        c.and(c => c.datetime('gt', after).datetime('lt', before))
+        c.and(c =>
+          c.approved('eq', true).datetime('gt', after).datetime('lt', before)
+        )
       )
 
       this.appointments = await this.fillUsers(appointments)
