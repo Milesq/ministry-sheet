@@ -13,7 +13,7 @@ import weekday from 'dayjs/plugin/weekday'
 
 import App from './App.vue'
 import router from './router'
-import awsExports from '../aws-exports.js'
+import awsExports from './aws-exports.js'
 import './assets/style.scss'
 
 dayjs.extend(weekday)
