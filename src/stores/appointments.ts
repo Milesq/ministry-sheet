@@ -22,20 +22,30 @@ const useAppointments = defineStore('appointments', {
       const monday = dayjs().weekday(0).subtract(1, 'day').toISOString()
       const sunday = dayjs().weekday(6).add(1, 'day').toISOString()
 
-      this.loadEvents(monday, sunday)
+      DataStore.query(Place).then(places => {
+        this.places = places
+      })
 
-      this.places = await DataStore.query(Place)
+      await this.loadEvents(monday, sunday)
+
+      DataStore.observeQuery(Appointment).subscribe(async appointments => {
+        this.appointments = await this.fillUsers(appointments.items)
+      })
     },
-    async loadEvents(after: string, before: string) {
-      const appointments = await DataStore.query(Appointment, c =>
-        c.and(c => c.datetime('gt', after).datetime('lt', before))
-      )
+    async fillUsers(appointments: Appointment[]) {
       const appointmentsWithUsers = appointments.map(async appointment => ({
         appointment,
         users: await getAppointmentUsers(appointment.id),
       }))
 
-      this.appointments = await Promise.all(appointmentsWithUsers)
+      return Promise.all(appointmentsWithUsers)
+    },
+    async loadEvents(after: string, before: string) {
+      const appointments = await DataStore.query(Appointment, c =>
+        c.and(c => c.datetime('gt', after).datetime('lt', before))
+      )
+
+      this.appointments = await this.fillUsers(appointments)
     },
     async add(date: Dayjs, place: Place) {
       const userStore = useUser()
