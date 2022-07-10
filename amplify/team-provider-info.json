@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "ministrysheetfbf379de": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d281ymvfg1b2ig",
+          "type": "manual"
+        }
       }
     }
   }
