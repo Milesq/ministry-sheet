@@ -24,6 +24,7 @@ const events = computed<CalendarEvent[]>(() => {
         id: appointment.appointment.id,
         content: makeAppointmentContent(appointment),
         datetime: dayjs(appointment.appointment.datetime),
+        title: !props.place ? appointment.appointment.place.name : '',
       } as CalendarEvent)
   )
 })

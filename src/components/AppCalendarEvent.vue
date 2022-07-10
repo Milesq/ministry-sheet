@@ -5,6 +5,7 @@ withDefaults(
     startHour: number
     content: string[]
     length?: number
+    title?: string
   }>(),
   {
     length: 1,
@@ -14,7 +15,9 @@ withDefaults(
 
 <template>
   <div class="event">
-    <span class="additional-info">asd</span>
+    <span v-if="title" class="additional-info">
+      {{ title }}
+    </span>
     <div v-for="row in content" :key="row">
       {{ row }}
     </div>
@@ -23,9 +26,11 @@ withDefaults(
 
 <style scoped lang="scss">
 .event {
+  position: relative;
   .additional-info {
     position: absolute;
     left: 0;
+    top: 0;
   }
 
   @apply bg-primary flex flex-col justify-around items-center;

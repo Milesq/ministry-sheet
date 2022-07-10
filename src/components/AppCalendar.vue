@@ -120,6 +120,7 @@ function makeDate(day: number, hour: number) {
         :day="event.datetime.weekday() + 1"
         :start-hour="event.datetime.hour() - hours[0] + 2"
         :content="event.content"
+        :title="event.title"
       />
 
       <AppCalendarCurrentTime
