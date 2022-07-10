@@ -5,6 +5,7 @@ import { Swal } from '@/common'
 import useAppointments from '@/stores/appointments'
 import type { Place } from '@/models'
 import type { AppointmentWithUsers, CalendarEvent } from '@/common'
+import Errors from '@/errors'
 
 const props = defineProps<{
   appointments: AppointmentWithUsers[]
@@ -80,7 +81,11 @@ async function addEvent(date: Dayjs) {
   try {
     await appointments.add(date, props.place)
     Swal.fire('Sukces', 'Poczekaj na zatwierdzenie', 'success')
-  } catch {
+  } catch (err: unknown) {
+    if (!(err instanceof Error) || err.message !== Errors.TermAlreadyOccupied) {
+      throw err
+    }
+
     Swal.fire('Błąd', 'Nie udało się zapisać, ju stoisz w tym miejscu', 'error')
   }
 }
