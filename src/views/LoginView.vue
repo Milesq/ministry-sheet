@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import useUser from '@/stores/user'
 import { onBeforeMount, ref } from 'vue'
+import { Auth } from '@aws-amplify/auth'
 import { useRouter } from 'vue-router'
+import useUser from '@/stores/user'
 
 const user = useUser()
 const router = useRouter()

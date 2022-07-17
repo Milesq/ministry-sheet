@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { Amplify } from '@aws-amplify/core'
+import { Auth } from '@aws-amplify/auth'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import ElementPlus from 'element-plus'
@@ -20,6 +21,7 @@ dayjs.extend(weekday)
 dayjs.locale('pl')
 
 Amplify.configure(awsExports)
+Auth.configure(awsExports)
 
 const app = createApp(App)
 
