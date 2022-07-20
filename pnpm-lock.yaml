@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@aws-amplify/api-rest': ^2.0.45
   '@aws-amplify/auth': ^4.5.9
   '@aws-amplify/core': ^4.5.7
   '@aws-amplify/datastore': ^3.12.0
@@ -43,6 +44,7 @@ specifiers:
   windicss: ^3.5.4
 
 dependencies:
+  '@aws-amplify/api-rest': 2.0.45
   '@aws-amplify/auth': 4.5.9
   '@aws-amplify/core': 4.5.7
   '@aws-amplify/datastore': 3.12.0
@@ -121,6 +123,16 @@ packages:
     dependencies:
       '@aws-amplify/core': 4.5.7
       axios: 0.21.4
+    transitivePeerDependencies:
+      - debug
+      - react-native
+    dev: false
+
+  /@aws-amplify/api-rest/2.0.45:
+    resolution: {integrity: sha512-Mw2Bn2YzKVrolNBWLHTyJlEWV6UpFLbA7d2xnZcEMX0LGEx1Qz7s4+52hnGJpF6yZZC3kNw6scQpSFsZXSd4JA==}
+    dependencies:
+      '@aws-amplify/core': 4.5.9
+      axios: 0.26.0
     transitivePeerDependencies:
       - debug
       - react-native
@@ -1534,6 +1546,14 @@ packages:
 
   /axios/0.21.4:
     resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
+    dependencies:
+      follow-redirects: 1.15.1
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /axios/0.26.0:
+    resolution: {integrity: sha512-lKoGLMYtHvFrPVt3r+RBMp9nh34N0M8zEfCWqdWZx6phynIEhQqAdydpyBAAG211zlhX9Rgu08cOamy6XjE5Og==}
     dependencies:
       follow-redirects: 1.15.1
     transitivePeerDependencies:
@@ -3441,7 +3461,7 @@ packages:
     dev: true
 
   /querystring/0.2.0:
-    resolution: {integrity: sha1-sgmEkgO7Jd+CDadW50cAWHhSFiA=}
+    resolution: {integrity: sha512-X/xY82scca2tau62i9mDyU9K+I+djTMUsvwf7xnUX5GLvVzgJybOJf4Y6o9Zx3oJK/LSXg5tTZBjwzqVPaPO2g==}
     engines: {node: '>=0.4.x'}
     deprecated: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
     dev: false
