@@ -20,6 +20,12 @@
       },
       "auth": {
         "ministrysheetauth": {}
+      },
+      "function": {
+        "AdminQueriese87bd5cc": {
+          "deploymentBucketName": "amplify-ministrysheet-dev-85535-deployment",
+          "s3Key": "amplify-builds/AdminQueriese87bd5cc-524b78786f55652b6c37-build.zip"
+        }
       }
     }
   }
