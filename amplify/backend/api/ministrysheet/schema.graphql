@@ -1,4 +1,11 @@
-type Place @model @auth(rules: [{ allow: groups, groups: ["admins"] }]) {
+type Place
+  @model
+  @auth(
+    rules: [
+      { allow: private, operations: [read] }
+      { allow: groups, groups: ["admins"] }
+    ]
+  ) {
   id: ID!
   name: String!
   description: String!
@@ -6,7 +13,14 @@ type Place @model @auth(rules: [{ allow: groups, groups: ["admins"] }]) {
   Appointments: [Appointment] @hasMany(indexName: "byPlace", fields: ["id"])
 }
 
-type Appointment @model @auth(rules: [{ allow: groups, groups: ["admins", "authenticated"] }]) {
+type Appointment
+  @model
+  @auth(
+    rules: [
+      { allow: private, operations: [read] }
+      { allow: groups, groups: ["admins"] }
+    ]
+  ) {
   id: ID!
   approved: Boolean!
   datetime: AWSDateTime!
@@ -16,7 +30,14 @@ type Appointment @model @auth(rules: [{ allow: groups, groups: ["admins", "authe
   place: Place! @belongsTo(fields: ["placeID"])
 }
 
-type User @model @auth(rules: [{ allow: groups, groups: ["admins", "authenticated"] }]) {
+type User
+  @model
+  @auth(
+    rules: [
+      { allow: private, operations: [read] }
+      { allow: groups, groups: ["admins"] }
+    ]
+  ) {
   id: ID!
   name: String!
 
