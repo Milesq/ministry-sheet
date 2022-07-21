@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ministrysheet-dev-85535-authRole",
+      "UnauthRoleArn": "arn:aws:iam::730527792625:role/amplify-ministrysheet-dev-85535-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::730527792625:role/amplify-ministrysheet-dev-85535-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-ministrysheet-dev-85535-deployment",
+      "UnauthRoleName": "amplify-ministrysheet-dev-85535-unauthRole",
+      "StackName": "amplify-ministrysheet-dev-85535",
+      "StackId": "arn:aws:cloudformation:eu-central-1:730527792625:stack/amplify-ministrysheet-dev-85535/20d2b1b0-08c2-11ed-a202-0ac4f82c2708",
+      "AmplifyAppId": "d1281mx4x76whe"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d1281mx4x76whe",
+          "type": "manual"
+        }
+      },
+      "auth": {
+        "ministrysheetauth": {}
+      }
+    }
+  }
+}
