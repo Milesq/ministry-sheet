@@ -26,6 +26,7 @@
     "pinia-plugin-persistedstate": "^1.6.1",
     "sweetalert2": "^11.4.20",
     "vue": "^3.2.37",
+    "vue-i18n": "^9.1.10",
     "vue-router": "^4.0.16"
   },
   "devDependencies": {
