@@ -2,5 +2,11 @@
   "AppSyncApiName": "ministrysheet",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2022-06-20T22:13:28.511Z"
+  "AuthModeLastUpdated": "2022-07-21T21:03:32.797Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authministrysheetauth",
+      "Outputs.UserPoolId"
+    ]
+  }
 }

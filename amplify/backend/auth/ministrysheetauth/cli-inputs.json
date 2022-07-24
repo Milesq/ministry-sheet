@@ -1,12 +1,12 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "ministrysheetfbf379de_identitypool_fbf379de",
+    "identityPoolName": "ministrysheetidentitypool",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "ministfbf379de",
-    "userPoolName": "ministrysheetfbf379de_userpool_fbf379de",
+    "resourceNameTruncated": "minist021b3b59",
+    "userPoolName": "ministrysheetauthuserpool",
     "autoVerifiedAttributes": [
-      "email"
+      "phone_number"
     ],
     "mfaConfiguration": "OFF",
     "mfaTypes": [
@@ -19,9 +19,7 @@
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
-    "requiredAttributes": [
-      "email"
-    ],
+    "requiredAttributes": [],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
@@ -31,13 +29,21 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "ministfbf379de_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "minist021b3b59_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "fbf379de",
-    "resourceName": "ministrysheetfbf379de",
+    "sharedId": "021b3b59",
+    "resourceName": "ministrysheetauth",
     "authSelections": "identityPoolAndUserPool",
-    "useDefault": "default",
-    "userPoolGroupList": [],
+    "useDefault": "manual",
+    "thirdPartyAuth": false,
+    "userPoolGroups": true,
+    "adminQueries": true,
+    "triggers": {},
+    "hostedUI": false,
+    "userPoolGroupList": [
+      "admins"
+    ],
+    "adminQueryGroup": "admins",
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
     "useEnabledMfas": true

@@ -1,4 +1,11 @@
-type Place @model @auth(rules: [{allow: public}]) {
+type Place
+  @model
+  @auth(
+    rules: [
+      { allow: private, operations: [read] }
+      { allow: groups, groups: ["admins"] }
+    ]
+  ) {
   id: ID!
   name: String!
   description: String!
@@ -6,9 +13,16 @@ type Place @model @auth(rules: [{allow: public}]) {
   Appointments: [Appointment] @hasMany(indexName: "byPlace", fields: ["id"])
 }
 
-type Appointment @model @auth(rules: [{allow: public}]) {
+type Appointment
+  @model
+  @auth(
+    rules: [
+      { allow: private, operations: [read, create] }
+      { allow: groups, groups: ["admins"] }
+    ]
+  ) {
   id: ID!
-  approved: Boolean!
+  approved: Boolean! @auth(rules: [{ allow: private, operations: [read] }])
   datetime: AWSDateTime!
 
   users: [User] @manyToMany(relationName: "UserAppointment")
@@ -16,7 +30,14 @@ type Appointment @model @auth(rules: [{allow: public}]) {
   place: Place! @belongsTo(fields: ["placeID"])
 }
 
-type User @model @auth(rules: [{allow: public}]) {
+type User
+  @model
+  @auth(
+    rules: [
+      { allow: private, operations: [read] }
+      { allow: groups, groups: ["admins"] }
+    ]
+  ) {
   id: ID!
   name: String!
 

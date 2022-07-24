@@ -1,15 +1,22 @@
 <script setup lang="ts">
-import useUser from '@/stores/user'
 import { onBeforeMount, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { Swal } from '@/common'
+import useUser from '@/stores/user'
 
 const user = useUser()
 const router = useRouter()
 
 const userName = ref('')
 
-function login() {
-  user.login(userName.value)
+async function login() {
+  try {
+    await user.login(userName.value)
+  } catch {
+    await user.requestAccess(userName.value)
+    Swal.fire('asked for access')
+  }
+
   router.push('/')
 }
 
