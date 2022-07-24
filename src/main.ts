@@ -14,6 +14,7 @@ import weekday from 'dayjs/plugin/weekday'
 
 import App from './App.vue'
 import router from './router'
+import i18n from './i18n'
 import awsExports from './aws-exports.js'
 import './assets/style.scss'
 
@@ -36,5 +37,7 @@ app.use(router)
 app.use(ElementPlus, {
   locale: pl,
 })
+
+app.use(i18n)
 
 app.mount('#app')
