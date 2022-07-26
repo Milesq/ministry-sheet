@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
 import Home from '~icons/mdi/Home'
 import LogoutVariant from '~icons/mdi/LogoutVariant'
 import Brightness from '~icons/mdi/brightness'
+import Translate from '~icons/mdi/translate'
 import WeatherNight from '~icons/mdi/WeatherNight'
-import { useRouter } from 'vue-router'
+import useLocale from '@/stores/locale'
 
 import MenuItem from './components/MenuItem.vue'
 import useUser from './stores/user'
@@ -11,6 +14,9 @@ import theme from './composables/theme'
 
 const router = useRouter()
 const user = useUser()
+
+const locale = useLocale()
+const { availableLocales } = useI18n()
 
 function logout() {
   user.logout()
@@ -37,6 +43,24 @@ function logout() {
         </div>
 
         <div flex="1"></div>
+
+        <el-dropdown @command="locale.setLocale">
+          <span mx="2" class="circle-btn flex justify-center items-center">
+            <Translate height="24" color="white" />
+          </span>
+
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item
+                v-for="locale in availableLocales"
+                :key="locale"
+                :command="locale"
+              >
+                {{ locale.toLocaleUpperCase() }}
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
 
         <MenuItem
           @click="theme.toggle()"
