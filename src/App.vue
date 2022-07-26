@@ -6,10 +6,10 @@ import LogoutVariant from '~icons/mdi/LogoutVariant'
 import Brightness from '~icons/mdi/brightness'
 import Translate from '~icons/mdi/translate'
 import WeatherNight from '~icons/mdi/WeatherNight'
+import useUser from '@/stores/user'
 import useLocale from '@/stores/locale'
 
 import MenuItem from './components/MenuItem.vue'
-import useUser from './stores/user'
 import theme from './composables/theme'
 
 const router = useRouter()
