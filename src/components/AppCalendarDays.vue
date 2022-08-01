@@ -2,8 +2,6 @@
 import dayjs, { type Dayjs } from 'dayjs'
 import { computed, watch } from 'vue'
 
-const WEEK = 7 // days
-
 const emit = defineEmits<{
   (e: 'updateIsTheSameWeek', value: boolean): void
 }>()
@@ -11,9 +9,11 @@ const props = withDefaults(
   defineProps<{
     today?: Dayjs
     currentWeek: Dayjs
+    daysInWeek?: number
   }>(),
   {
     today: () => dayjs(),
+    daysInWeek: 7,
   }
 )
 
@@ -40,7 +40,7 @@ function isToday(dayInWeek: number): boolean {
     <div></div>
 
     <span
-      v-for="(_, n) in WEEK"
+      v-for="(_, n) in daysInWeek"
       :key="n"
       text="[#757575] [25px] dark:light-600"
       font="medium"
