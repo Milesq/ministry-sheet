@@ -6,7 +6,7 @@ import en from './locales/en.json'
 const i18n = createI18n({
   legacy: false,
   globalInjection: true,
-  locale: localStorage.getItem('lang') || navigator.language || 'pl',
+  locale: 'pl',
   messages: {
     en,
     pl,

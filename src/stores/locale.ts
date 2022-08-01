@@ -10,7 +10,7 @@ interface LocaleState {
 
 const useLocale = defineStore('locale', {
   state: (): LocaleState => ({
-    locale: navigator.language || 'pl',
+    locale: 'pl',
   }),
   actions: {
     setLocale(locale: string) {
