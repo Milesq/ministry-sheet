@@ -1,3 +1,24 @@
 {
-  "changeTheme": "Zmień tło"
+  "appName": "Grafik Wózków",
+  "homePage": "Strona Główna",
+  "changeTheme": "Zmień tło",
+  "logout": "Wyloguj się",
+  "myCalendar": "Mój kalendarz",
+  "userNamePlaceholder": "Imie i nazwisko",
+  "confirm": ["Potwierdź", "Tak, potwierdź"],
+  "cancel": "Anuluj",
+  "fulfillForm": "Podaj imię i Nazwisko",
+  "dontShowAgain": "Nie pokazuj ponownie",
+  "success": "Sukces",
+  "waitForApprove": "Poczekaj na zatwierdzenie",
+  "error": {
+    "err": "Błąd",
+    "missingPlace": "Najpierw wybierz miejsce w którym chcesz stanąć",
+    "dateInThePast": "Nie możesz stanąć w przeszłości",
+    "alreadyFilled": "Nie udało się zapisać, już stoisz w tym miejscu"
+  },
+  "confirmDate": {
+    "question": "Czy chcesz się zapisać?",
+    "dateFormat": "{day} o godzinie {hour}"
+  }
 }

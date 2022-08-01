@@ -28,12 +28,15 @@ function logout() {
         class="flex justify-between items-center text-[2rem]"
       >
         <div class="md:hidden">
-          <el-button round color="transparent" class="uppercase !font-semibold">
-            Grafik Wózków
-          </el-button>
+          <el-button
+            round
+            color="transparent"
+            class="uppercase !font-semibold"
+            v-t="'appName'"
+          ></el-button>
         </div>
         <div class="hidden md:block">
-          <MenuItem tooltip="Strona Główna" :icon="Home" />
+          <MenuItem :tooltip="$t('homePage')" :icon="Home" />
         </div>
 
         <div flex="1"></div>
@@ -46,7 +49,7 @@ function logout() {
         <MenuItem
           @click="logout"
           v-if="user.isLoggedIn"
-          tooltip="Wyloguj się"
+          :tooltip="$t('logout')"
           :icon="LogoutVariant"
         />
       </el-header>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import dayjs, { type Dayjs } from 'dayjs'
+import { useI18n } from 'vue-i18n'
 import { Swal } from '@/common'
 import useAppointments from '@/stores/appointments'
 import type { Place } from '@/models'
@@ -11,6 +12,8 @@ const props = defineProps<{
   appointments: AppointmentWithUsers[]
   place?: Place
 }>()
+
+const { t } = useI18n()
 
 const appointments = useAppointments()
 
@@ -36,11 +39,11 @@ async function missingPlaceSwal() {
   if (shouldNotShowMissingPlace) return
 
   const { value } = await Swal.fire({
-    title: 'Błąd',
-    text: 'Najpierw wybierz miejsce w którym chcesz stanąć',
+    title: t('error.err'),
+    text: t('error.missingPlace'),
     icon: 'error',
     input: 'checkbox',
-    inputPlaceholder: 'Nie pokazuj ponownie',
+    inputPlaceholder: t('dontShowAgain'),
   })
 
   if (value) {
@@ -56,22 +59,22 @@ async function addEvent(date: Dayjs) {
   }
 
   if (date.isBefore(dayjs())) {
-    Swal.fire('Nie możesz stanąć w przeszłości', '', 'error')
+    Swal.fire(t('error.dateInThePast'), '', 'error')
     return
   }
 
-  const day = date.locale('pl').format('D MMMM')
-  const hour = date.locale('pl').format('H:mm')
-  const formattedDate = `${day} o godzinie ${hour}`
+  const day = date.format('D MMMM')
+  const hour = date.format('H:mm')
+  const formattedDate = t('confirmDate.dateFormat', { day, hour })
 
   const { isConfirmed } = await Swal.fire({
-    title: 'Czy chcesz się zapisać?',
+    title: t('confirmDate.question'),
     text: formattedDate,
     icon: 'question',
     showCancelButton: true,
     reverseButtons: true,
-    confirmButtonText: 'Tak, potwierdź',
-    cancelButtonText: 'Anuluj',
+    confirmButtonText: t('confirm[1]'),
+    cancelButtonText: t('cancel'),
   })
 
   if (!isConfirmed) {
@@ -80,13 +83,13 @@ async function addEvent(date: Dayjs) {
 
   try {
     await appointments.add(date, props.place)
-    Swal.fire('Sukces', 'Poczekaj na zatwierdzenie', 'success')
+    Swal.fire(t('success'), t('waitForApprove'), 'success')
   } catch (err: unknown) {
     if (!(err instanceof Error) || err.message !== Errors.TermAlreadyOccupied) {
       throw err
     }
 
-    Swal.fire('Błąd', 'Nie udało się zapisać, ju stoisz w tym miejscu', 'error')
+    Swal.fire(t('error.err'), t('error.alreadyFilled'), 'error')
   }
 }
 </script>
