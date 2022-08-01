@@ -64,7 +64,7 @@ function logout() {
 
         <MenuItem
           @click="theme.toggle()"
-          tooltip="Zmień tło"
+          :tooltip="$t('changeTheme')"
           :icon="theme.isDark ? WeatherNight : Brightness"
         />
         <MenuItem
