@@ -6,7 +6,7 @@ import en from './locales/en.json'
 const i18n = createI18n({
   legacy: false,
   globalInjection: true,
-  locale: 'pl',
+  locale: 'en',
   messages: {
     en,
     pl,
