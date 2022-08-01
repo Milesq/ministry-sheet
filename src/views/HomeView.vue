@@ -26,7 +26,7 @@ function getAppointments({ id }: Place): AppointmentWithUsers[] {
       v-model="activePlace"
       class="demo-tabs"
     >
-      <el-tab-pane label="Mój kalendarz" name="my-calendar">
+      <el-tab-pane :label="$t('myCalendar')" name="my-calendar">
         <ShowAppointments
           v-if="activePlace === 'my-calendar'"
           :appointments="appointments.appointments"
