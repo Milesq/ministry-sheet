@@ -47,7 +47,7 @@ const currentWeekEvents = computed(() => {
   return events.filter(event => event.datetime.isSame(week, 'week'))
 })
 
-const daysInWeek = ref(7)
+const daysInWeek = ref(1)
 
 const eventMatrix = computed(() => {
   const {
@@ -78,6 +78,7 @@ function makeDate(day: number, hour: number) {
     <AppCalendarDays
       :current-week="currentWeek"
       @update-is-the-same-week="isCurrentWeekDisplayed = $event"
+      :days-in-week="daysInWeek"
     />
 
     <div class="content">
