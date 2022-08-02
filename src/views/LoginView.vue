@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeMount, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { Swal } from '@/common'
 import { Routes } from '@/router'
 import useUser from '@/stores/user'
@@ -14,13 +15,27 @@ const pass = ref<string | undefined>()
 
 const isAdminLogin = computed(() => route.name === Routes.AdminLogin)
 
+const { t } = useI18n()
+
 async function login() {
-  console.log(pass.value)
   try {
     await user.login(userName.value)
   } catch {
-    await user.requestAccess(userName.value)
-    Swal.fire('asked for access')
+    if (isAdminLogin.value) {
+      Swal.fire(t('error.err'), t('error.incorrectLogin'), 'error')
+
+      return
+    }
+
+    try {
+      await user.requestAccess(userName.value)
+      Swal.fire('', t('waitForUserAccept'), 'info')
+    } catch {
+      Swal.fire('', t('error.stillNotAccepted'), 'info')
+    }
+  } finally {
+    userName.value = ''
+    pass.value = undefined
   }
 
   router.push('/')

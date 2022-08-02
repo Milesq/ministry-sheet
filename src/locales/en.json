@@ -12,11 +12,14 @@
   "dontShowAgain": "Don't show again",
   "success": "Success",
   "waitForApprove": "Wait for approve",
+  "waitForUserAccept": "You didn't use the table yet or you have a letter in your username.\nYour request for access has been sent",
   "error": {
     "err": "Error",
     "missingPlace": "Firstfully select the place",
     "dateInThePast": "Selected date is in the past",
-    "alreadyFilled": "You already stay in this place at this time"
+    "alreadyFilled": "You already stay in this place at this time",
+    "incorrectLogin": "Incorrect login or password",
+    "stillNotAccepted": "You still have not been accepted. Please, wait or contact with the administrator"
   },
   "confirmDate": {
     "question": "Are you sure you want stay here?",
