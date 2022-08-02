@@ -28,10 +28,10 @@ const useUser = defineStore('user', {
         password: DEFAULT_PASS,
       })
     },
-    async login(username: string) {
+    async login(username: string, pass: string = DEFAULT_PASS) {
       const user = (await Auth.signIn(
         transformUserName(username),
-        DEFAULT_PASS
+        pass
       )) as CognitoUser
 
       this.user = user.getUsername()
