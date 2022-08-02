@@ -1,15 +1,21 @@
 <script setup lang="ts">
-import { onBeforeMount, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { computed, onBeforeMount, ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { Swal } from '@/common'
+import { Routes } from '@/router'
 import useUser from '@/stores/user'
 
 const user = useUser()
 const router = useRouter()
+const route = useRoute()
 
 const userName = ref('')
+const pass = ref<string | undefined>()
+
+const isAdminLogin = computed(() => route.name === Routes.AdminLogin)
 
 async function login() {
+  console.log(pass.value)
   try {
     await user.login(userName.value)
   } catch {
@@ -42,6 +48,14 @@ onBeforeMount(() => {
             ></el-input>
           </el-form-item>
 
+          <el-form-item v-if="isAdminLogin">
+            <el-input
+              v-model="pass"
+              type="password"
+              :placeholder="$t('passwordPlaceholder')"
+            ></el-input>
+          </el-form-item>
+
           <el-divider />
 
           <el-button
@@ -49,6 +63,7 @@ onBeforeMount(() => {
             type="success"
             place="self-end"
             v-t="'confirm[0]'"
+            :disabled="!(userName && (!isAdminLogin || pass))"
           ></el-button>
         </el-form>
       </el-card>

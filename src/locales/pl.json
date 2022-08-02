@@ -5,6 +5,7 @@
   "logout": "Wyloguj się",
   "myCalendar": "Mój kalendarz",
   "userNamePlaceholder": "Imie i nazwisko",
+  "passwordPlaceholder": "Hasło",
   "confirm": ["Potwierdź", "Tak, potwierdź"],
   "cancel": "Anuluj",
   "fulfillForm": "Podaj imię i Nazwisko",
