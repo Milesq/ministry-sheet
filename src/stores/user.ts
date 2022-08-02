@@ -1,5 +1,6 @@
 import { Auth, type CognitoUser } from '@aws-amplify/auth'
 import { defineStore } from 'pinia'
+import { useRouter } from 'vue-router'
 
 interface UserState {
   user: string | null
@@ -51,9 +52,15 @@ const useUser = defineStore('user', {
         this.isAdmin = true
       }
     },
-    logout(): Promise<void> {
+    async logout(): Promise<void> {
       this.$reset()
-      return Auth.signOut()
+
+      await Auth.signOut()
+
+      const router = useRouter()
+      router.push({
+        name: 'login',
+      })
     },
   },
   persist: true,
