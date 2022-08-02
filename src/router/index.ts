@@ -5,8 +5,16 @@ import HomeView from '../views/HomeView.vue'
 
 declare module 'vue-router' {
   interface RouteMeta {
-    requiresAuth: boolean
+    requiresAuth?: boolean
+    adminOnly?: boolean
   }
+}
+
+export enum Routes {
+  Home = 'home',
+  Admin = 'admin',
+  Login = 'login',
+  AdminLogin = 'adminLogin',
 }
 
 const router = createRouter({
@@ -14,24 +22,41 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: Routes.Home,
       component: HomeView,
       meta: { requiresAuth: true },
     },
     {
+      path: '/admin',
+      name: Routes.Admin,
+      component: () => import('../views/AdminView.vue'),
+      meta: { adminOnly: true },
+    },
+    {
       path: '/login',
-      name: 'login',
+      name: Routes.Login,
+      component: () => import('../views/LoginView.vue'),
+    },
+    {
+      path: '/login/admin',
+      name: Routes.AdminLogin,
       component: () => import('../views/LoginView.vue'),
     },
   ],
 })
 
 router.beforeEach(to => {
-  const { user } = useUser()
+  const { user, isAdmin } = useUser()
 
   if (to.meta.requiresAuth && !user) {
     return {
       name: 'login',
+    }
+  }
+
+  if (to.meta.adminOnly && !isAdmin) {
+    return {
+      name: 'adminLogin',
     }
   }
 })
