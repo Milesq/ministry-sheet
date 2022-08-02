@@ -5,6 +5,7 @@
   "logout": "Logout",
   "myCalendar": "My calendar",
   "userNamePlaceholder": "Name",
+  "passwordPlaceholder": "Password",
   "confirm": ["OK", "Confirm"],
   "cancel": "Cancel",
   "fulfillForm": "Type name and surname",
