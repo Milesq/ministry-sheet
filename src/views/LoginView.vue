@@ -45,7 +45,7 @@ async function login() {
     pass.value = undefined
   }
 
-  router.push('/')
+  router.push(isAdminLogin.value ? '/admin' : '/')
 }
 
 onBeforeMount(() => {
