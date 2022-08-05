@@ -19,6 +19,7 @@
     "dateInThePast": "Nie możesz stanąć w przeszłości",
     "alreadyFilled": "Nie udało się zapisać, już stoisz w tym miejscu",
     "incorrectLogin": "Błędna nazwa użytkownika lub hasło",
+    "forceChangePassword": "Musisz zmienić hasło",
     "stillNotAccepted": "Nadal nie masz dostępu do grafiku. Poczekaj lub skontaktuj się z administratorem"
   },
   "confirmDate": {
