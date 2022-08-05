@@ -19,8 +19,15 @@ const { t } = useI18n()
 
 async function login() {
   try {
-    await user.login(userName.value, pass.value)
-  } catch {
+    await user.login(userName.value, pass.value, async () => {
+      const { value } = await Swal.fire({
+        title: t('error.forceChangePassword'),
+        input: 'password',
+      })
+
+      return value
+    })
+  } catch (err) {
     if (isAdminLogin.value) {
       Swal.fire(t('error.err'), t('error.incorrectLogin'), 'error')
 

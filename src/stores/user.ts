@@ -1,6 +1,6 @@
+import { unimplemented } from '@/common'
 import { Auth, type CognitoUser } from '@aws-amplify/auth'
 import { defineStore } from 'pinia'
-import { useRouter } from 'vue-router'
 
 interface UserState {
   user: string | null
@@ -28,11 +28,20 @@ const useUser = defineStore('user', {
         password: DEFAULT_PASS,
       })
     },
-    async login(username: string, pass: string = DEFAULT_PASS) {
+    async login(
+      username: string,
+      pass: string = DEFAULT_PASS,
+      newPasswordCb: () => Promise<string> = unimplemented
+    ) {
       const user = (await Auth.signIn(
         transformUserName(username),
         pass
       )) as CognitoUser
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if ((user as any).challengeName === 'NEW_PASSWORD_REQUIRED') {
+        await Auth.completeNewPassword(user, await newPasswordCb())
+      }
 
       this.user = user.getUsername()
 
@@ -56,11 +65,6 @@ const useUser = defineStore('user', {
       this.$reset()
 
       await Auth.signOut()
-
-      const router = useRouter()
-      router.push({
-        name: 'login',
-      })
     },
   },
   persist: true,
