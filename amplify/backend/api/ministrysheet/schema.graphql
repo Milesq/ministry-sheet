@@ -25,21 +25,7 @@ type Appointment
   approved: Boolean! @auth(rules: [{ allow: private, operations: [read] }])
   datetime: AWSDateTime!
 
-  users: [User] @manyToMany(relationName: "UserAppointment")
+  users: [String]
   placeID: ID! @index(name: "byPlace")
   place: Place! @belongsTo(fields: ["placeID"])
-}
-
-type User
-  @model
-  @auth(
-    rules: [
-      { allow: private, operations: [read] }
-      { allow: groups, groups: ["admins"] }
-    ]
-  ) {
-  id: ID!
-  name: String!
-
-  Appointments: [Appointment] @manyToMany(relationName: "UserAppointment")
 }
