@@ -36,7 +36,9 @@ function logout() {
           ></el-button>
         </div>
         <div class="hidden md:block">
-          <MenuItem :tooltip="$t('homePage')" :icon="Home" />
+          <router-link to="/">
+            <MenuItem :tooltip="$t('homePage')" :icon="Home" />
+          </router-link>
         </div>
 
         <div flex="1"></div>
