@@ -1,69 +1,4 @@
 {
-  "api": {
-    "ministrysheet": {
-      "service": "AppSync",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "auth",
-          "resourceName": "ministrysheetauth",
-          "attributes": [
-            "UserPoolId"
-          ]
-        }
-      ],
-      "output": {
-        "authConfig": {
-          "defaultAuthentication": {
-            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-            "userPoolConfig": {
-              "userPoolId": "authministrysheetauth"
-            }
-          },
-          "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "AWS_IAM"
-            },
-            {
-              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-              "userPoolConfig": {
-                "userPoolId": "authministrysheetauth"
-              }
-            }
-          ]
-        }
-      }
-    },
-    "AdminQueries": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
-      "authorizationType": "AMAZON_COGNITO_USER_POOLS",
-      "dependsOn": [
-        {
-          "category": "auth",
-          "resourceName": "ministrysheetauth",
-          "attributes": [
-            "UserPoolId"
-          ]
-        },
-        {
-          "category": "function",
-          "resourceName": "AdminQueriese87bd5cc",
-          "attributes": [
-            "Arn",
-            "Name"
-          ]
-        }
-      ]
-    }
-  },
-  "hosting": {
-    "amplifyhosting": {
-      "service": "amplifyhosting",
-      "providerPlugin": "awscloudformation",
-      "type": "manual"
-    }
-  },
   "auth": {
     "userPoolGroups": {
       "service": "Cognito-UserPool-Groups",
@@ -71,7 +6,7 @@
       "dependsOn": [
         {
           "category": "auth",
-          "resourceName": "ministrysheetauth",
+          "resourceName": "ministrysheetbe198505be198505",
           "attributes": [
             "UserPoolId",
             "AppClientIDWeb",
@@ -81,7 +16,7 @@
         }
       ]
     },
-    "ministrysheetauth": {
+    "ministrysheetbe198505be198505": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -91,7 +26,7 @@
         "usernameAttributes": [],
         "signupAttributes": [],
         "passwordProtectionSettings": {
-          "passwordPolicyMinLength": 8,
+          "passwordPolicyMinLength": "6",
           "passwordPolicyCharacters": []
         },
         "mfaConfiguration": "OFF",
@@ -105,19 +40,67 @@
     }
   },
   "function": {
-    "AdminQueriese87bd5cc": {
+    "AdminQueriesbee25ea4": {
       "service": "Lambda",
       "providerPlugin": "awscloudformation",
       "build": true,
       "dependsOn": [
         {
           "category": "auth",
-          "resourceName": "ministrysheetauth",
+          "resourceName": "ministrysheetbe198505be198505",
           "attributes": [
             "UserPoolId"
           ]
         }
       ]
+    }
+  },
+  "api": {
+    "AdminQueries": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "authorizationType": "AMAZON_COGNITO_USER_POOLS",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "ministrysheetbe198505be198505",
+          "attributes": [
+            "UserPoolId"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "AdminQueriesbee25ea4",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        }
+      ]
+    },
+    "ministrysheet": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "ministrysheetbe198505be198505",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authministrysheetbe198505be198505"
+            }
+          },
+          "additionalAuthenticationProviders": []
+        }
+      }
     }
   }
 }

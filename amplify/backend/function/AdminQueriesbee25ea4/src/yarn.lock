@@ -29,9 +29,9 @@ available-typed-arrays@^1.0.5:
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
 aws-sdk@^2.1113.0:
-  version "2.1179.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1179.0.tgz#c53b44e2f2137159d6092e1fd17d99e20184894f"
-  integrity sha512-QAfefyo20L6wCgWu1g0sOmH7AM822E7Wmdrp1AbFwPpXUBes8uKei2AQqkJmxaDnhAxyk79V7oEiosZYVZOBvg==
+  version "2.1189.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1189.0.tgz#8dd6b48dd7896642af8e2f86e026932a28e380d5"
+  integrity sha512-EqluXSo8XAR086nF9UAtPYwUm82ZIRqg8OmHBRQyftcrD1Z0pqMmiuvacXoEAJ/4UU8KKafbpYarxx8rH/pZjQ==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -329,7 +329,7 @@ has-property-descriptors@^1.0.0:
   dependencies:
     get-intrinsic "^1.1.1"
 
-has-symbols@^1.0.1, has-symbols@^1.0.2, has-symbols@^1.0.3:
+has-symbols@^1.0.2, has-symbols@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/has-symbols/-/has-symbols-1.0.3.tgz#bb7b2c4349251dce87b125f7bdf874aa7c8b39f8"
   integrity sha512-l3LCuF6MgDNwTDKkdYGEihYjt5pRPbEg46rtlmnSPlUbgmB8LOIrKJbYYFBSbnPaJexMKtiPO8hmeRjRz2Td+A==
@@ -564,13 +564,13 @@ object-keys@^1.1.1:
   integrity sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
 
 object.assign@^4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/object.assign/-/object.assign-4.1.2.tgz#0ed54a342eceb37b38ff76eb831a0e788cb63940"
-  integrity sha512-ixT2L5THXsApyiUPYKmW+2EHpXXe5Ii3M+f4e+aJFAHao5amFRW6J0OO6c/LU8Be47utCx2GL89hxGB6XSmKuQ==
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/object.assign/-/object.assign-4.1.3.tgz#d36b7700ddf0019abb6b1df1bb13f6445f79051f"
+  integrity sha512-ZFJnX3zltyjcYJL0RoCJuzb+11zWGyaDbjgxZbdV7rFEcHQuYxrZqhow67aA7xpes6LhojyFDaBKAFfogQrikA==
   dependencies:
-    call-bind "^1.0.0"
-    define-properties "^1.1.3"
-    has-symbols "^1.0.1"
+    call-bind "^1.0.2"
+    define-properties "^1.1.4"
+    has-symbols "^1.0.3"
     object-keys "^1.1.1"
 
 on-finished@2.4.1:

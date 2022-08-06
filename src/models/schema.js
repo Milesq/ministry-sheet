@@ -118,16 +118,10 @@ export const schema = {
                 "users": {
                     "name": "users",
                     "isArray": true,
-                    "type": {
-                        "model": "UserAppointment"
-                    },
+                    "type": "String",
                     "isRequired": false,
                     "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "appointment"
-                    }
+                    "isArrayNullable": true
                 },
                 "place": {
                     "name": "place",
@@ -204,173 +198,9 @@ export const schema = {
                     }
                 }
             ]
-        },
-        "User": {
-            "name": "User",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "name": {
-                    "name": "name",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "Appointments": {
-                    "name": "Appointments",
-                    "isArray": true,
-                    "type": {
-                        "model": "UserAppointment"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "user"
-                    }
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                }
-            },
-            "syncable": true,
-            "pluralName": "Users",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "private",
-                                "operations": [
-                                    "read"
-                                ]
-                            },
-                            {
-                                "groupClaim": "cognito:groups",
-                                "provider": "userPools",
-                                "allow": "groups",
-                                "groups": [
-                                    "admins"
-                                ],
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "UserAppointment": {
-            "name": "UserAppointment",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "appointment": {
-                    "name": "appointment",
-                    "isArray": false,
-                    "type": {
-                        "model": "Appointment"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "appointmentID"
-                    }
-                },
-                "user": {
-                    "name": "user",
-                    "isArray": false,
-                    "type": {
-                        "model": "User"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "userID"
-                    }
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                }
-            },
-            "syncable": true,
-            "pluralName": "UserAppointments",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byAppointment",
-                        "fields": [
-                            "appointmentID"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byUser",
-                        "fields": [
-                            "userID"
-                        ]
-                    }
-                }
-            ]
         }
     },
     "enums": {},
     "nonModels": {},
-    "version": "b58ee99662ffe5a84e6d45404358bbc3"
+    "version": "878979c8aad02c9a61e0f1fcedb06dc9"
 };

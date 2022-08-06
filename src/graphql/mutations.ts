@@ -16,6 +16,7 @@ export const createPlace = /* GraphQL */ `
           id
           approved
           datetime
+          users
           placeID
           createdAt
           updatedAt
@@ -48,6 +49,7 @@ export const updatePlace = /* GraphQL */ `
           id
           approved
           datetime
+          users
           placeID
           createdAt
           updatedAt
@@ -80,6 +82,7 @@ export const deletePlace = /* GraphQL */ `
           id
           approved
           datetime
+          users
           placeID
           createdAt
           updatedAt
@@ -107,20 +110,7 @@ export const createAppointment = /* GraphQL */ `
       id
       approved
       datetime
-      users {
-        items {
-          id
-          appointmentID
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
+      users
       placeID
       place {
         id
@@ -153,20 +143,7 @@ export const updateAppointment = /* GraphQL */ `
       id
       approved
       datetime
-      users {
-        items {
-          id
-          appointmentID
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
+      users
       placeID
       place {
         id
@@ -199,280 +176,12 @@ export const deleteAppointment = /* GraphQL */ `
       id
       approved
       datetime
-      users {
-        items {
-          id
-          appointmentID
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
+      users
       placeID
       place {
         id
         name
         description
-        Appointments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const createUser = /* GraphQL */ `
-  mutation CreateUser(
-    $input: CreateUserInput!
-    $condition: ModelUserConditionInput
-  ) {
-    createUser(input: $input, condition: $condition) {
-      id
-      name
-      Appointments {
-        items {
-          id
-          appointmentID
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const updateUser = /* GraphQL */ `
-  mutation UpdateUser(
-    $input: UpdateUserInput!
-    $condition: ModelUserConditionInput
-  ) {
-    updateUser(input: $input, condition: $condition) {
-      id
-      name
-      Appointments {
-        items {
-          id
-          appointmentID
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const deleteUser = /* GraphQL */ `
-  mutation DeleteUser(
-    $input: DeleteUserInput!
-    $condition: ModelUserConditionInput
-  ) {
-    deleteUser(input: $input, condition: $condition) {
-      id
-      name
-      Appointments {
-        items {
-          id
-          appointmentID
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const createUserAppointment = /* GraphQL */ `
-  mutation CreateUserAppointment(
-    $input: CreateUserAppointmentInput!
-    $condition: ModelUserAppointmentConditionInput
-  ) {
-    createUserAppointment(input: $input, condition: $condition) {
-      id
-      appointmentID
-      userID
-      appointment {
-        id
-        approved
-        datetime
-        users {
-          nextToken
-          startedAt
-        }
-        placeID
-        place {
-          id
-          name
-          description
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      user {
-        id
-        name
-        Appointments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const updateUserAppointment = /* GraphQL */ `
-  mutation UpdateUserAppointment(
-    $input: UpdateUserAppointmentInput!
-    $condition: ModelUserAppointmentConditionInput
-  ) {
-    updateUserAppointment(input: $input, condition: $condition) {
-      id
-      appointmentID
-      userID
-      appointment {
-        id
-        approved
-        datetime
-        users {
-          nextToken
-          startedAt
-        }
-        placeID
-        place {
-          id
-          name
-          description
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      user {
-        id
-        name
-        Appointments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const deleteUserAppointment = /* GraphQL */ `
-  mutation DeleteUserAppointment(
-    $input: DeleteUserAppointmentInput!
-    $condition: ModelUserAppointmentConditionInput
-  ) {
-    deleteUserAppointment(input: $input, condition: $condition) {
-      id
-      appointmentID
-      userID
-      appointment {
-        id
-        approved
-        datetime
-        users {
-          nextToken
-          startedAt
-        }
-        placeID
-        place {
-          id
-          name
-          description
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      user {
-        id
-        name
         Appointments {
           nextToken
           startedAt

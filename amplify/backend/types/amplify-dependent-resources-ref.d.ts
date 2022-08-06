@@ -1,20 +1,9 @@
 export type AmplifyDependentResourcesAttributes = {
-    "api": {
-        "ministrysheet": {
-            "GraphQLAPIIdOutput": "string",
-            "GraphQLAPIEndpointOutput": "string"
-        },
-        "AdminQueries": {
-            "RootUrl": "string",
-            "ApiName": "string",
-            "ApiId": "string"
-        }
-    },
     "auth": {
         "userPoolGroups": {
             "adminsGroupRole": "string"
         },
-        "ministrysheetauth": {
+        "ministrysheetbe198505be198505": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",
@@ -26,11 +15,22 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "function": {
-        "AdminQueriese87bd5cc": {
+        "AdminQueriesbee25ea4": {
             "Name": "string",
             "Arn": "string",
             "Region": "string",
             "LambdaExecutionRole": "string"
+        }
+    },
+    "api": {
+        "AdminQueries": {
+            "RootUrl": "string",
+            "ApiName": "string",
+            "ApiId": "string"
+        },
+        "ministrysheet": {
+            "GraphQLAPIIdOutput": "string",
+            "GraphQLAPIEndpointOutput": "string"
         }
     }
 }
