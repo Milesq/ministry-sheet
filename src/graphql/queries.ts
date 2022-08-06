@@ -13,6 +13,7 @@ export const getPlace = /* GraphQL */ `
           id
           approved
           datetime
+          users
           placeID
           createdAt
           updatedAt
@@ -95,20 +96,7 @@ export const getAppointment = /* GraphQL */ `
       id
       approved
       datetime
-      users {
-        items {
-          id
-          appointmentID
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
+      users
       placeID
       place {
         id
@@ -143,10 +131,7 @@ export const listAppointments = /* GraphQL */ `
         id
         approved
         datetime
-        users {
-          nextToken
-          startedAt
-        }
+        users
         placeID
         place {
           id
@@ -186,244 +171,12 @@ export const syncAppointments = /* GraphQL */ `
         id
         approved
         datetime
-        users {
-          nextToken
-          startedAt
-        }
+        users
         placeID
         place {
           id
           name
           description
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getUser = /* GraphQL */ `
-  query GetUser($id: ID!) {
-    getUser(id: $id) {
-      id
-      name
-      Appointments {
-        items {
-          id
-          appointmentID
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const listUsers = /* GraphQL */ `
-  query ListUsers(
-    $filter: ModelUserFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        Appointments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncUsers = /* GraphQL */ `
-  query SyncUsers(
-    $filter: ModelUserFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncUsers(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        name
-        Appointments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getUserAppointment = /* GraphQL */ `
-  query GetUserAppointment($id: ID!) {
-    getUserAppointment(id: $id) {
-      id
-      appointmentID
-      userID
-      appointment {
-        id
-        approved
-        datetime
-        users {
-          nextToken
-          startedAt
-        }
-        placeID
-        place {
-          id
-          name
-          description
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      user {
-        id
-        name
-        Appointments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const listUserAppointments = /* GraphQL */ `
-  query ListUserAppointments(
-    $filter: ModelUserAppointmentFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listUserAppointments(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        appointmentID
-        userID
-        appointment {
-          id
-          approved
-          datetime
-          placeID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        user {
-          id
-          name
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncUserAppointments = /* GraphQL */ `
-  query SyncUserAppointments(
-    $filter: ModelUserAppointmentFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncUserAppointments(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        appointmentID
-        userID
-        appointment {
-          id
-          approved
-          datetime
-          placeID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        user {
-          id
-          name
           createdAt
           updatedAt
           _version

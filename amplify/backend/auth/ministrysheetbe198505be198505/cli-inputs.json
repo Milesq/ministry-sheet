@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "ministrysheetidentitypool",
+    "identityPoolName": "ministrysheetbe198505_identitypool_be198505",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "minist021b3b59",
-    "userPoolName": "ministrysheetauthuserpool",
+    "resourceNameTruncated": "ministbe198505",
+    "userPoolName": "ministrysheetbe198505_userpool_be198505",
     "autoVerifiedAttributes": [
       "phone_number"
     ],
@@ -16,8 +16,8 @@
     "smsVerificationMessage": "Your verification code is {####}",
     "emailVerificationSubject": "Your verification code",
     "emailVerificationMessage": "Your verification code is {####}",
-    "defaultPasswordPolicy": false,
-    "passwordPolicyMinLength": 8,
+    "defaultPasswordPolicy": true,
+    "passwordPolicyMinLength": "6",
     "passwordPolicyCharacters": [],
     "requiredAttributes": [],
     "aliasAttributes": [],
@@ -29,10 +29,10 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "minist021b3b59_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "ministbe198505_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "021b3b59",
-    "resourceName": "ministrysheetauth",
+    "sharedId": "be198505",
+    "resourceName": "ministrysheetbe198505be198505",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "manual",
     "thirdPartyAuth": false,

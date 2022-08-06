@@ -13,6 +13,7 @@ export const onCreatePlace = /* GraphQL */ `
           id
           approved
           datetime
+          users
           placeID
           createdAt
           updatedAt
@@ -42,6 +43,7 @@ export const onUpdatePlace = /* GraphQL */ `
           id
           approved
           datetime
+          users
           placeID
           createdAt
           updatedAt
@@ -71,6 +73,7 @@ export const onDeletePlace = /* GraphQL */ `
           id
           approved
           datetime
+          users
           placeID
           createdAt
           updatedAt
@@ -95,20 +98,7 @@ export const onCreateAppointment = /* GraphQL */ `
       id
       approved
       datetime
-      users {
-        items {
-          id
-          appointmentID
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
+      users
       placeID
       place {
         id
@@ -138,20 +128,7 @@ export const onUpdateAppointment = /* GraphQL */ `
       id
       approved
       datetime
-      users {
-        items {
-          id
-          appointmentID
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
+      users
       placeID
       place {
         id
@@ -181,262 +158,12 @@ export const onDeleteAppointment = /* GraphQL */ `
       id
       approved
       datetime
-      users {
-        items {
-          id
-          appointmentID
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
+      users
       placeID
       place {
         id
         name
         description
-        Appointments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser {
-    onCreateUser {
-      id
-      name
-      Appointments {
-        items {
-          id
-          appointmentID
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser {
-    onUpdateUser {
-      id
-      name
-      Appointments {
-        items {
-          id
-          appointmentID
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser {
-    onDeleteUser {
-      id
-      name
-      Appointments {
-        items {
-          id
-          appointmentID
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onCreateUserAppointment = /* GraphQL */ `
-  subscription OnCreateUserAppointment {
-    onCreateUserAppointment {
-      id
-      appointmentID
-      userID
-      appointment {
-        id
-        approved
-        datetime
-        users {
-          nextToken
-          startedAt
-        }
-        placeID
-        place {
-          id
-          name
-          description
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      user {
-        id
-        name
-        Appointments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onUpdateUserAppointment = /* GraphQL */ `
-  subscription OnUpdateUserAppointment {
-    onUpdateUserAppointment {
-      id
-      appointmentID
-      userID
-      appointment {
-        id
-        approved
-        datetime
-        users {
-          nextToken
-          startedAt
-        }
-        placeID
-        place {
-          id
-          name
-          description
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      user {
-        id
-        name
-        Appointments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onDeleteUserAppointment = /* GraphQL */ `
-  subscription OnDeleteUserAppointment {
-    onDeleteUserAppointment {
-      id
-      appointmentID
-      userID
-      appointment {
-        id
-        approved
-        datetime
-        users {
-          nextToken
-          startedAt
-        }
-        placeID
-        place {
-          id
-          name
-          description
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      user {
-        id
-        name
         Appointments {
           nextToken
           startedAt

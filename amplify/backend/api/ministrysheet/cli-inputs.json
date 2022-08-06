@@ -6,21 +6,12 @@
     "gqlSchemaPath": "C:\\Users\\wmilo\\Desktop\\ministry-sheet\\amplify\\backend\\api\\ministrysheet\\schema.graphql",
     "defaultAuthType": {
       "mode": "AMAZON_COGNITO_USER_POOLS",
-      "cognitoUserPoolId": "authministrysheetauth"
+      "cognitoUserPoolId": "authministrysheetbe198505be198505"
     },
     "conflictResolution": {
       "defaultResolutionStrategy": {
         "type": "AUTOMERGE"
       }
-    },
-    "additionalAuthTypes": [
-      {
-        "mode": "AWS_IAM"
-      },
-      {
-        "mode": "AMAZON_COGNITO_USER_POOLS",
-        "cognitoUserPoolId": "authministrysheetauth"
-      }
-    ]
+    }
   }
 }

@@ -82,42 +82,9 @@ export type Appointment = {
   id: string,
   approved: boolean,
   datetime: string,
-  users?: ModelUserAppointmentConnection | null,
+  users?: Array< string | null > | null,
   placeID: string,
   place: Place,
-  createdAt: string,
-  updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
-};
-
-export type ModelUserAppointmentConnection = {
-  __typename: "ModelUserAppointmentConnection",
-  items:  Array<UserAppointment | null >,
-  nextToken?: string | null,
-  startedAt?: number | null,
-};
-
-export type UserAppointment = {
-  __typename: "UserAppointment",
-  id: string,
-  appointmentID: string,
-  userID: string,
-  appointment: Appointment,
-  user: User,
-  createdAt: string,
-  updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
-};
-
-export type User = {
-  __typename: "User",
-  id: string,
-  name: string,
-  Appointments?: ModelUserAppointmentConnection | null,
   createdAt: string,
   updatedAt: string,
   _version: number,
@@ -141,6 +108,7 @@ export type CreateAppointmentInput = {
   id?: string | null,
   approved: boolean,
   datetime: string,
+  users?: Array< string | null > | null,
   placeID: string,
   _version?: number | null,
 };
@@ -148,6 +116,7 @@ export type CreateAppointmentInput = {
 export type ModelAppointmentConditionInput = {
   approved?: ModelBooleanInput | null,
   datetime?: ModelStringInput | null,
+  users?: ModelStringInput | null,
   placeID?: ModelIDInput | null,
   and?: Array< ModelAppointmentConditionInput | null > | null,
   or?: Array< ModelAppointmentConditionInput | null > | null,
@@ -181,62 +150,12 @@ export type UpdateAppointmentInput = {
   id: string,
   approved?: boolean | null,
   datetime?: string | null,
+  users?: Array< string | null > | null,
   placeID?: string | null,
   _version?: number | null,
 };
 
 export type DeleteAppointmentInput = {
-  id: string,
-  _version?: number | null,
-};
-
-export type CreateUserInput = {
-  id?: string | null,
-  name: string,
-  _version?: number | null,
-};
-
-export type ModelUserConditionInput = {
-  name?: ModelStringInput | null,
-  and?: Array< ModelUserConditionInput | null > | null,
-  or?: Array< ModelUserConditionInput | null > | null,
-  not?: ModelUserConditionInput | null,
-};
-
-export type UpdateUserInput = {
-  id: string,
-  name?: string | null,
-  _version?: number | null,
-};
-
-export type DeleteUserInput = {
-  id: string,
-  _version?: number | null,
-};
-
-export type CreateUserAppointmentInput = {
-  id?: string | null,
-  appointmentID: string,
-  userID: string,
-  _version?: number | null,
-};
-
-export type ModelUserAppointmentConditionInput = {
-  appointmentID?: ModelIDInput | null,
-  userID?: ModelIDInput | null,
-  and?: Array< ModelUserAppointmentConditionInput | null > | null,
-  or?: Array< ModelUserAppointmentConditionInput | null > | null,
-  not?: ModelUserAppointmentConditionInput | null,
-};
-
-export type UpdateUserAppointmentInput = {
-  id: string,
-  appointmentID?: string | null,
-  userID?: string | null,
-  _version?: number | null,
-};
-
-export type DeleteUserAppointmentInput = {
   id: string,
   _version?: number | null,
 };
@@ -261,34 +180,11 @@ export type ModelAppointmentFilterInput = {
   id?: ModelIDInput | null,
   approved?: ModelBooleanInput | null,
   datetime?: ModelStringInput | null,
+  users?: ModelStringInput | null,
   placeID?: ModelIDInput | null,
   and?: Array< ModelAppointmentFilterInput | null > | null,
   or?: Array< ModelAppointmentFilterInput | null > | null,
   not?: ModelAppointmentFilterInput | null,
-};
-
-export type ModelUserFilterInput = {
-  id?: ModelIDInput | null,
-  name?: ModelStringInput | null,
-  and?: Array< ModelUserFilterInput | null > | null,
-  or?: Array< ModelUserFilterInput | null > | null,
-  not?: ModelUserFilterInput | null,
-};
-
-export type ModelUserConnection = {
-  __typename: "ModelUserConnection",
-  items:  Array<User | null >,
-  nextToken?: string | null,
-  startedAt?: number | null,
-};
-
-export type ModelUserAppointmentFilterInput = {
-  id?: ModelIDInput | null,
-  appointmentID?: ModelIDInput | null,
-  userID?: ModelIDInput | null,
-  and?: Array< ModelUserAppointmentFilterInput | null > | null,
-  or?: Array< ModelUserAppointmentFilterInput | null > | null,
-  not?: ModelUserAppointmentFilterInput | null,
 };
 
 export type CreatePlaceMutationVariables = {
@@ -309,6 +205,7 @@ export type CreatePlaceMutation = {
         id: string,
         approved: boolean,
         datetime: string,
+        users?: Array< string | null > | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
@@ -345,6 +242,7 @@ export type UpdatePlaceMutation = {
         id: string,
         approved: boolean,
         datetime: string,
+        users?: Array< string | null > | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
@@ -381,6 +279,7 @@ export type DeletePlaceMutation = {
         id: string,
         approved: boolean,
         datetime: string,
+        users?: Array< string | null > | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
@@ -410,22 +309,7 @@ export type CreateAppointmentMutation = {
     id: string,
     approved: boolean,
     datetime: string,
-    users?:  {
-      __typename: "ModelUserAppointmentConnection",
-      items:  Array< {
-        __typename: "UserAppointment",
-        id: string,
-        appointmentID: string,
-        userID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
+    users?: Array< string | null > | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -462,22 +346,7 @@ export type UpdateAppointmentMutation = {
     id: string,
     approved: boolean,
     datetime: string,
-    users?:  {
-      __typename: "ModelUserAppointmentConnection",
-      items:  Array< {
-        __typename: "UserAppointment",
-        id: string,
-        appointmentID: string,
-        userID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
+    users?: Array< string | null > | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -514,22 +383,7 @@ export type DeleteAppointmentMutation = {
     id: string,
     approved: boolean,
     datetime: string,
-    users?:  {
-      __typename: "ModelUserAppointmentConnection",
-      items:  Array< {
-        __typename: "UserAppointment",
-        id: string,
-        appointmentID: string,
-        userID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
+    users?: Array< string | null > | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -538,294 +392,6 @@ export type DeleteAppointmentMutation = {
       description: string,
       Appointments?:  {
         __typename: "ModelAppointmentConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type CreateUserMutationVariables = {
-  input: CreateUserInput,
-  condition?: ModelUserConditionInput | null,
-};
-
-export type CreateUserMutation = {
-  createUser?:  {
-    __typename: "User",
-    id: string,
-    name: string,
-    Appointments?:  {
-      __typename: "ModelUserAppointmentConnection",
-      items:  Array< {
-        __typename: "UserAppointment",
-        id: string,
-        appointmentID: string,
-        userID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type UpdateUserMutationVariables = {
-  input: UpdateUserInput,
-  condition?: ModelUserConditionInput | null,
-};
-
-export type UpdateUserMutation = {
-  updateUser?:  {
-    __typename: "User",
-    id: string,
-    name: string,
-    Appointments?:  {
-      __typename: "ModelUserAppointmentConnection",
-      items:  Array< {
-        __typename: "UserAppointment",
-        id: string,
-        appointmentID: string,
-        userID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type DeleteUserMutationVariables = {
-  input: DeleteUserInput,
-  condition?: ModelUserConditionInput | null,
-};
-
-export type DeleteUserMutation = {
-  deleteUser?:  {
-    __typename: "User",
-    id: string,
-    name: string,
-    Appointments?:  {
-      __typename: "ModelUserAppointmentConnection",
-      items:  Array< {
-        __typename: "UserAppointment",
-        id: string,
-        appointmentID: string,
-        userID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type CreateUserAppointmentMutationVariables = {
-  input: CreateUserAppointmentInput,
-  condition?: ModelUserAppointmentConditionInput | null,
-};
-
-export type CreateUserAppointmentMutation = {
-  createUserAppointment?:  {
-    __typename: "UserAppointment",
-    id: string,
-    appointmentID: string,
-    userID: string,
-    appointment:  {
-      __typename: "Appointment",
-      id: string,
-      approved: boolean,
-      datetime: string,
-      users?:  {
-        __typename: "ModelUserAppointmentConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      placeID: string,
-      place:  {
-        __typename: "Place",
-        id: string,
-        name: string,
-        description: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      },
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    user:  {
-      __typename: "User",
-      id: string,
-      name: string,
-      Appointments?:  {
-        __typename: "ModelUserAppointmentConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type UpdateUserAppointmentMutationVariables = {
-  input: UpdateUserAppointmentInput,
-  condition?: ModelUserAppointmentConditionInput | null,
-};
-
-export type UpdateUserAppointmentMutation = {
-  updateUserAppointment?:  {
-    __typename: "UserAppointment",
-    id: string,
-    appointmentID: string,
-    userID: string,
-    appointment:  {
-      __typename: "Appointment",
-      id: string,
-      approved: boolean,
-      datetime: string,
-      users?:  {
-        __typename: "ModelUserAppointmentConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      placeID: string,
-      place:  {
-        __typename: "Place",
-        id: string,
-        name: string,
-        description: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      },
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    user:  {
-      __typename: "User",
-      id: string,
-      name: string,
-      Appointments?:  {
-        __typename: "ModelUserAppointmentConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type DeleteUserAppointmentMutationVariables = {
-  input: DeleteUserAppointmentInput,
-  condition?: ModelUserAppointmentConditionInput | null,
-};
-
-export type DeleteUserAppointmentMutation = {
-  deleteUserAppointment?:  {
-    __typename: "UserAppointment",
-    id: string,
-    appointmentID: string,
-    userID: string,
-    appointment:  {
-      __typename: "Appointment",
-      id: string,
-      approved: boolean,
-      datetime: string,
-      users?:  {
-        __typename: "ModelUserAppointmentConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      placeID: string,
-      place:  {
-        __typename: "Place",
-        id: string,
-        name: string,
-        description: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      },
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    user:  {
-      __typename: "User",
-      id: string,
-      name: string,
-      Appointments?:  {
-        __typename: "ModelUserAppointmentConnection",
         nextToken?: string | null,
         startedAt?: number | null,
       } | null,
@@ -860,6 +426,7 @@ export type GetPlaceQuery = {
         id: string,
         approved: boolean,
         datetime: string,
+        users?: Array< string | null > | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
@@ -949,22 +516,7 @@ export type GetAppointmentQuery = {
     id: string,
     approved: boolean,
     datetime: string,
-    users?:  {
-      __typename: "ModelUserAppointmentConnection",
-      items:  Array< {
-        __typename: "UserAppointment",
-        id: string,
-        appointmentID: string,
-        userID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
+    users?: Array< string | null > | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -1004,11 +556,7 @@ export type ListAppointmentsQuery = {
       id: string,
       approved: boolean,
       datetime: string,
-      users?:  {
-        __typename: "ModelUserAppointmentConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
+      users?: Array< string | null > | null,
       placeID: string,
       place:  {
         __typename: "Place",
@@ -1047,265 +595,13 @@ export type SyncAppointmentsQuery = {
       id: string,
       approved: boolean,
       datetime: string,
-      users?:  {
-        __typename: "ModelUserAppointmentConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
+      users?: Array< string | null > | null,
       placeID: string,
       place:  {
         __typename: "Place",
         id: string,
         name: string,
         description: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      },
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type GetUserQueryVariables = {
-  id: string,
-};
-
-export type GetUserQuery = {
-  getUser?:  {
-    __typename: "User",
-    id: string,
-    name: string,
-    Appointments?:  {
-      __typename: "ModelUserAppointmentConnection",
-      items:  Array< {
-        __typename: "UserAppointment",
-        id: string,
-        appointmentID: string,
-        userID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type ListUsersQueryVariables = {
-  filter?: ModelUserFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListUsersQuery = {
-  listUsers?:  {
-    __typename: "ModelUserConnection",
-    items:  Array< {
-      __typename: "User",
-      id: string,
-      name: string,
-      Appointments?:  {
-        __typename: "ModelUserAppointmentConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncUsersQueryVariables = {
-  filter?: ModelUserFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncUsersQuery = {
-  syncUsers?:  {
-    __typename: "ModelUserConnection",
-    items:  Array< {
-      __typename: "User",
-      id: string,
-      name: string,
-      Appointments?:  {
-        __typename: "ModelUserAppointmentConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type GetUserAppointmentQueryVariables = {
-  id: string,
-};
-
-export type GetUserAppointmentQuery = {
-  getUserAppointment?:  {
-    __typename: "UserAppointment",
-    id: string,
-    appointmentID: string,
-    userID: string,
-    appointment:  {
-      __typename: "Appointment",
-      id: string,
-      approved: boolean,
-      datetime: string,
-      users?:  {
-        __typename: "ModelUserAppointmentConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      placeID: string,
-      place:  {
-        __typename: "Place",
-        id: string,
-        name: string,
-        description: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      },
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    user:  {
-      __typename: "User",
-      id: string,
-      name: string,
-      Appointments?:  {
-        __typename: "ModelUserAppointmentConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type ListUserAppointmentsQueryVariables = {
-  filter?: ModelUserAppointmentFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListUserAppointmentsQuery = {
-  listUserAppointments?:  {
-    __typename: "ModelUserAppointmentConnection",
-    items:  Array< {
-      __typename: "UserAppointment",
-      id: string,
-      appointmentID: string,
-      userID: string,
-      appointment:  {
-        __typename: "Appointment",
-        id: string,
-        approved: boolean,
-        datetime: string,
-        placeID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      },
-      user:  {
-        __typename: "User",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      },
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncUserAppointmentsQueryVariables = {
-  filter?: ModelUserAppointmentFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncUserAppointmentsQuery = {
-  syncUserAppointments?:  {
-    __typename: "ModelUserAppointmentConnection",
-    items:  Array< {
-      __typename: "UserAppointment",
-      id: string,
-      appointmentID: string,
-      userID: string,
-      appointment:  {
-        __typename: "Appointment",
-        id: string,
-        approved: boolean,
-        datetime: string,
-        placeID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      },
-      user:  {
-        __typename: "User",
-        id: string,
-        name: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -1336,6 +632,7 @@ export type OnCreatePlaceSubscription = {
         id: string,
         approved: boolean,
         datetime: string,
+        users?: Array< string | null > | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
@@ -1367,6 +664,7 @@ export type OnUpdatePlaceSubscription = {
         id: string,
         approved: boolean,
         datetime: string,
+        users?: Array< string | null > | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
@@ -1398,6 +696,7 @@ export type OnDeletePlaceSubscription = {
         id: string,
         approved: boolean,
         datetime: string,
+        users?: Array< string | null > | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
@@ -1422,22 +721,7 @@ export type OnCreateAppointmentSubscription = {
     id: string,
     approved: boolean,
     datetime: string,
-    users?:  {
-      __typename: "ModelUserAppointmentConnection",
-      items:  Array< {
-        __typename: "UserAppointment",
-        id: string,
-        appointmentID: string,
-        userID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
+    users?: Array< string | null > | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -1469,22 +753,7 @@ export type OnUpdateAppointmentSubscription = {
     id: string,
     approved: boolean,
     datetime: string,
-    users?:  {
-      __typename: "ModelUserAppointmentConnection",
-      items:  Array< {
-        __typename: "UserAppointment",
-        id: string,
-        appointmentID: string,
-        userID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
+    users?: Array< string | null > | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -1516,22 +785,7 @@ export type OnDeleteAppointmentSubscription = {
     id: string,
     approved: boolean,
     datetime: string,
-    users?:  {
-      __typename: "ModelUserAppointmentConnection",
-      items:  Array< {
-        __typename: "UserAppointment",
-        id: string,
-        appointmentID: string,
-        userID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
+    users?: Array< string | null > | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -1540,264 +794,6 @@ export type OnDeleteAppointmentSubscription = {
       description: string,
       Appointments?:  {
         __typename: "ModelAppointmentConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type OnCreateUserSubscription = {
-  onCreateUser?:  {
-    __typename: "User",
-    id: string,
-    name: string,
-    Appointments?:  {
-      __typename: "ModelUserAppointmentConnection",
-      items:  Array< {
-        __typename: "UserAppointment",
-        id: string,
-        appointmentID: string,
-        userID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type OnUpdateUserSubscription = {
-  onUpdateUser?:  {
-    __typename: "User",
-    id: string,
-    name: string,
-    Appointments?:  {
-      __typename: "ModelUserAppointmentConnection",
-      items:  Array< {
-        __typename: "UserAppointment",
-        id: string,
-        appointmentID: string,
-        userID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type OnDeleteUserSubscription = {
-  onDeleteUser?:  {
-    __typename: "User",
-    id: string,
-    name: string,
-    Appointments?:  {
-      __typename: "ModelUserAppointmentConnection",
-      items:  Array< {
-        __typename: "UserAppointment",
-        id: string,
-        appointmentID: string,
-        userID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type OnCreateUserAppointmentSubscription = {
-  onCreateUserAppointment?:  {
-    __typename: "UserAppointment",
-    id: string,
-    appointmentID: string,
-    userID: string,
-    appointment:  {
-      __typename: "Appointment",
-      id: string,
-      approved: boolean,
-      datetime: string,
-      users?:  {
-        __typename: "ModelUserAppointmentConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      placeID: string,
-      place:  {
-        __typename: "Place",
-        id: string,
-        name: string,
-        description: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      },
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    user:  {
-      __typename: "User",
-      id: string,
-      name: string,
-      Appointments?:  {
-        __typename: "ModelUserAppointmentConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type OnUpdateUserAppointmentSubscription = {
-  onUpdateUserAppointment?:  {
-    __typename: "UserAppointment",
-    id: string,
-    appointmentID: string,
-    userID: string,
-    appointment:  {
-      __typename: "Appointment",
-      id: string,
-      approved: boolean,
-      datetime: string,
-      users?:  {
-        __typename: "ModelUserAppointmentConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      placeID: string,
-      place:  {
-        __typename: "Place",
-        id: string,
-        name: string,
-        description: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      },
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    user:  {
-      __typename: "User",
-      id: string,
-      name: string,
-      Appointments?:  {
-        __typename: "ModelUserAppointmentConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type OnDeleteUserAppointmentSubscription = {
-  onDeleteUserAppointment?:  {
-    __typename: "UserAppointment",
-    id: string,
-    appointmentID: string,
-    userID: string,
-    appointment:  {
-      __typename: "Appointment",
-      id: string,
-      approved: boolean,
-      datetime: string,
-      users?:  {
-        __typename: "ModelUserAppointmentConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      placeID: string,
-      place:  {
-        __typename: "Place",
-        id: string,
-        name: string,
-        description: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      },
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    },
-    user:  {
-      __typename: "User",
-      id: string,
-      name: string,
-      Appointments?:  {
-        __typename: "ModelUserAppointmentConnection",
         nextToken?: string | null,
         startedAt?: number | null,
       } | null,

@@ -1,30 +1,24 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-ministrysheet-dev-85535-authRole",
-      "UnauthRoleArn": "arn:aws:iam::730527792625:role/amplify-ministrysheet-dev-85535-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::730527792625:role/amplify-ministrysheet-dev-85535-authRole",
+      "AuthRoleName": "amplify-ministrysheet-dev-151240-authRole",
+      "UnauthRoleArn": "arn:aws:iam::730527792625:role/amplify-ministrysheet-dev-151240-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::730527792625:role/amplify-ministrysheet-dev-151240-authRole",
       "Region": "eu-central-1",
-      "DeploymentBucketName": "amplify-ministrysheet-dev-85535-deployment",
-      "UnauthRoleName": "amplify-ministrysheet-dev-85535-unauthRole",
-      "StackName": "amplify-ministrysheet-dev-85535",
-      "StackId": "arn:aws:cloudformation:eu-central-1:730527792625:stack/amplify-ministrysheet-dev-85535/20d2b1b0-08c2-11ed-a202-0ac4f82c2708",
-      "AmplifyAppId": "d1281mx4x76whe"
+      "DeploymentBucketName": "amplify-ministrysheet-dev-151240-deployment",
+      "UnauthRoleName": "amplify-ministrysheet-dev-151240-unauthRole",
+      "StackName": "amplify-ministrysheet-dev-151240",
+      "StackId": "arn:aws:cloudformation:eu-central-1:730527792625:stack/amplify-ministrysheet-dev-151240/7390dd90-1589-11ed-9660-0246d99ab2ee",
+      "AmplifyAppId": "dh6s9h7p9tlz9"
     },
     "categories": {
-      "hosting": {
-        "amplifyhosting": {
-          "appId": "d1281mx4x76whe",
-          "type": "manual"
-        }
-      },
       "auth": {
-        "ministrysheetauth": {}
+        "ministrysheetbe198505be198505": {}
       },
       "function": {
-        "AdminQueriese87bd5cc": {
-          "deploymentBucketName": "amplify-ministrysheet-dev-85535-deployment",
-          "s3Key": "amplify-builds/AdminQueriese87bd5cc-524b78786f55652b6c37-build.zip"
+        "AdminQueriesbee25ea4": {
+          "deploymentBucketName": "amplify-ministrysheet-dev-151240-deployment",
+          "s3Key": "amplify-builds/AdminQueriesbee25ea4-4576654d384c45304853-build.zip"
         }
       }
     }
