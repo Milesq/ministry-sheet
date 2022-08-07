@@ -3,8 +3,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreatePlace = /* GraphQL */ `
-  subscription OnCreatePlace {
-    onCreatePlace {
+  subscription OnCreatePlace($filter: ModelSubscriptionPlaceFilterInput) {
+    onCreatePlace(filter: $filter) {
       id
       name
       description
@@ -33,8 +33,8 @@ export const onCreatePlace = /* GraphQL */ `
   }
 `;
 export const onUpdatePlace = /* GraphQL */ `
-  subscription OnUpdatePlace {
-    onUpdatePlace {
+  subscription OnUpdatePlace($filter: ModelSubscriptionPlaceFilterInput) {
+    onUpdatePlace(filter: $filter) {
       id
       name
       description
@@ -63,8 +63,8 @@ export const onUpdatePlace = /* GraphQL */ `
   }
 `;
 export const onDeletePlace = /* GraphQL */ `
-  subscription OnDeletePlace {
-    onDeletePlace {
+  subscription OnDeletePlace($filter: ModelSubscriptionPlaceFilterInput) {
+    onDeletePlace(filter: $filter) {
       id
       name
       description
@@ -93,8 +93,10 @@ export const onDeletePlace = /* GraphQL */ `
   }
 `;
 export const onCreateAppointment = /* GraphQL */ `
-  subscription OnCreateAppointment {
-    onCreateAppointment {
+  subscription OnCreateAppointment(
+    $filter: ModelSubscriptionAppointmentFilterInput
+  ) {
+    onCreateAppointment(filter: $filter) {
       id
       approved
       datetime
@@ -123,8 +125,10 @@ export const onCreateAppointment = /* GraphQL */ `
   }
 `;
 export const onUpdateAppointment = /* GraphQL */ `
-  subscription OnUpdateAppointment {
-    onUpdateAppointment {
+  subscription OnUpdateAppointment(
+    $filter: ModelSubscriptionAppointmentFilterInput
+  ) {
+    onUpdateAppointment(filter: $filter) {
       id
       approved
       datetime
@@ -153,8 +157,10 @@ export const onUpdateAppointment = /* GraphQL */ `
   }
 `;
 export const onDeleteAppointment = /* GraphQL */ `
-  subscription OnDeleteAppointment {
-    onDeleteAppointment {
+  subscription OnDeleteAppointment(
+    $filter: ModelSubscriptionAppointmentFilterInput
+  ) {
+    onDeleteAppointment(filter: $filter) {
       id
       approved
       datetime

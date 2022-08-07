@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
+import type { Appointment, Place } from '@/models'
 import useAppointments from '@/stores/appointments'
-import type { Place } from '@/models'
-import type { AppointmentWithUsers } from '@/common'
 
 const appointments = useAppointments()
 
@@ -12,10 +11,8 @@ onMounted(() => {
   appointments.init()
 })
 
-function getAppointments({ id }: Place): AppointmentWithUsers[] {
-  return appointments.appointments?.filter(
-    ({ appointment: { place } }) => place.id === id
-  )
+function getAppointments({ id }: Place): Appointment[] {
+  return appointments.appointments?.filter(({ place }) => place.id === id)
 }
 </script>
 

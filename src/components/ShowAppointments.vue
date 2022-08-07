@@ -4,12 +4,12 @@ import dayjs, { type Dayjs } from 'dayjs'
 import { useI18n } from 'vue-i18n'
 import { Swal } from '@/common'
 import useAppointments from '@/stores/appointments'
-import type { Place } from '@/models'
-import type { AppointmentWithUsers, CalendarEvent } from '@/common'
+import type { Place, Appointment } from '@/models'
+import type { CalendarEvent } from '@/common'
 import Errors from '@/errors'
 
 const props = defineProps<{
-  appointments: AppointmentWithUsers[]
+  appointments: Appointment[]
   place?: Place
 }>()
 
@@ -17,18 +17,14 @@ const { t } = useI18n()
 
 const appointments = useAppointments()
 
-function makeAppointmentContent(appointment: AppointmentWithUsers): string[] {
-  return appointment.users.map(user => user.name)
-}
-
 const events = computed<CalendarEvent[]>(() => {
   return props.appointments.map(
     appointment =>
       ({
-        id: appointment.appointment.id,
-        content: makeAppointmentContent(appointment),
-        datetime: dayjs(appointment.appointment.datetime),
-        title: !props.place ? appointment.appointment.place.name : '',
+        id: appointment.id,
+        content: appointment.users || [],
+        datetime: dayjs(appointment.datetime),
+        title: !props.place ? appointment.place.name : '',
       } as CalendarEvent)
   )
 })

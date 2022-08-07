@@ -187,6 +187,59 @@ export type ModelAppointmentFilterInput = {
   not?: ModelAppointmentFilterInput | null,
 };
 
+export type ModelSubscriptionPlaceFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  name?: ModelSubscriptionStringInput | null,
+  description?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionPlaceFilterInput | null > | null,
+  or?: Array< ModelSubscriptionPlaceFilterInput | null > | null,
+};
+
+export type ModelSubscriptionIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  in?: Array< string | null > | null,
+  notIn?: Array< string | null > | null,
+};
+
+export type ModelSubscriptionStringInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  in?: Array< string | null > | null,
+  notIn?: Array< string | null > | null,
+};
+
+export type ModelSubscriptionAppointmentFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  approved?: ModelSubscriptionBooleanInput | null,
+  datetime?: ModelSubscriptionStringInput | null,
+  users?: ModelSubscriptionStringInput | null,
+  placeID?: ModelSubscriptionIDInput | null,
+  and?: Array< ModelSubscriptionAppointmentFilterInput | null > | null,
+  or?: Array< ModelSubscriptionAppointmentFilterInput | null > | null,
+};
+
+export type ModelSubscriptionBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
+};
+
 export type CreatePlaceMutationVariables = {
   input: CreatePlaceInput,
   condition?: ModelPlaceConditionInput | null,
@@ -619,6 +672,10 @@ export type SyncAppointmentsQuery = {
   } | null,
 };
 
+export type OnCreatePlaceSubscriptionVariables = {
+  filter?: ModelSubscriptionPlaceFilterInput | null,
+};
+
 export type OnCreatePlaceSubscription = {
   onCreatePlace?:  {
     __typename: "Place",
@@ -649,6 +706,10 @@ export type OnCreatePlaceSubscription = {
     _deleted?: boolean | null,
     _lastChangedAt: number,
   } | null,
+};
+
+export type OnUpdatePlaceSubscriptionVariables = {
+  filter?: ModelSubscriptionPlaceFilterInput | null,
 };
 
 export type OnUpdatePlaceSubscription = {
@@ -683,6 +744,10 @@ export type OnUpdatePlaceSubscription = {
   } | null,
 };
 
+export type OnDeletePlaceSubscriptionVariables = {
+  filter?: ModelSubscriptionPlaceFilterInput | null,
+};
+
 export type OnDeletePlaceSubscription = {
   onDeletePlace?:  {
     __typename: "Place",
@@ -713,6 +778,10 @@ export type OnDeletePlaceSubscription = {
     _deleted?: boolean | null,
     _lastChangedAt: number,
   } | null,
+};
+
+export type OnCreateAppointmentSubscriptionVariables = {
+  filter?: ModelSubscriptionAppointmentFilterInput | null,
 };
 
 export type OnCreateAppointmentSubscription = {
@@ -747,6 +816,10 @@ export type OnCreateAppointmentSubscription = {
   } | null,
 };
 
+export type OnUpdateAppointmentSubscriptionVariables = {
+  filter?: ModelSubscriptionAppointmentFilterInput | null,
+};
+
 export type OnUpdateAppointmentSubscription = {
   onUpdateAppointment?:  {
     __typename: "Appointment",
@@ -777,6 +850,10 @@ export type OnUpdateAppointmentSubscription = {
     _deleted?: boolean | null,
     _lastChangedAt: number,
   } | null,
+};
+
+export type OnDeleteAppointmentSubscriptionVariables = {
+  filter?: ModelSubscriptionAppointmentFilterInput | null,
 };
 
 export type OnDeleteAppointmentSubscription = {
