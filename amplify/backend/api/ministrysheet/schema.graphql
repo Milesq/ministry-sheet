@@ -17,12 +17,12 @@ type Appointment
   @model
   @auth(
     rules: [
-      { allow: private, operations: [read, create] }
+      { allow: private, operations: [read, create, update] }
       { allow: groups, groups: ["admins"] }
     ]
   ) {
   id: ID!
-  approved: Boolean! @auth(rules: [{ allow: private, operations: [read] }])
+  approved: Boolean!
   datetime: AWSDateTime!
 
   users: [String]
