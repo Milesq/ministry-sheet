@@ -1,14 +1,13 @@
 import { defineStore } from 'pinia'
 import dayjs, { type Dayjs } from 'dayjs'
 import { DataStore } from '@aws-amplify/datastore'
-import { Appointment, Place, User, UserAppointment } from '@/models'
-import { getAppointmentUsers, type AppointmentWithUsers } from '@/common'
+import { Appointment, Place } from '@/models'
 import Errors from '@/errors'
 
 import useUser from './user'
 
 interface AppointmentsState {
-  appointments: AppointmentWithUsers[]
+  appointments: Appointment[]
   places: Place[]
 }
 
@@ -30,17 +29,9 @@ const useAppointments = defineStore('appointments', {
 
       DataStore.observeQuery(Appointment, c =>
         c.approved('eq', true)
-      ).subscribe(async appointments => {
-        this.appointments = await this.fillUsers(appointments.items)
+      ).subscribe(({ items }) => {
+        this.appointments = items
       })
-    },
-    async fillUsers(appointments: Appointment[]) {
-      const appointmentsWithUsers = appointments.map(async appointment => ({
-        appointment,
-        users: await getAppointmentUsers(appointment.id),
-      }))
-
-      return Promise.all(appointmentsWithUsers)
     },
     async loadEvents(after: string, before: string) {
       const appointments = await DataStore.query(Appointment, c =>
@@ -49,7 +40,7 @@ const useAppointments = defineStore('appointments', {
         )
       )
 
-      this.appointments = await this.fillUsers(appointments)
+      this.appointments = appointments
     },
     async add(date: Dayjs, place: Place) {
       const userStore = useUser()
@@ -58,28 +49,18 @@ const useAppointments = defineStore('appointments', {
         throw new Error('User is not logged in')
       }
 
-      const termAlreadyOccupied = (await DataStore.query(UserAppointment)).some(
-        ua => {
-          const isTheSameUser = ua.user.name === userStore.user
-          if (!isTheSameUser) {
-            return false
-          }
-
-          return dayjs(ua.appointment.datetime).isSame(date, 'hour')
+      const termAlreadyOccupied = this.appointments.some(app => {
+        const isTheSameUser = app.users?.includes(userStore.user)
+        if (!isTheSameUser) {
+          return false
         }
-      )
+
+        return dayjs(app.datetime).isSame(date, 'hour')
+      })
 
       if (termAlreadyOccupied) {
         throw new Error(Errors.TermAlreadyOccupied)
       }
-
-      const [user] = await DataStore.query(
-        User,
-        c => c.name('eq', userStore.user!),
-        {
-          limit: 1,
-        }
-      )
 
       const oldAppointment = (
         await DataStore.query(Appointment, c =>
@@ -87,23 +68,24 @@ const useAppointments = defineStore('appointments', {
         )
       ).find(c => c.place.id === place.id)
 
-      const newAppointment = () =>
-        DataStore.save(
-          new Appointment({
-            place,
-            approved: false,
-            datetime: date.toISOString(),
-          })
-        )
-
-      const appointment = oldAppointment || (await newAppointment())
-
-      await DataStore.save(
-        new UserAppointment({
-          user,
-          appointment,
+      const makeNewAppointment = () =>
+        new Appointment({
+          place,
+          approved: false,
+          datetime: date.toISOString(),
+          users: [userStore.user],
         })
-      )
+
+      const updateAppointment = () =>
+        Appointment.copyOf(oldAppointment!, updated => {
+          updated.users?.push(userStore.user)
+        })
+
+      const appointment = oldAppointment
+        ? updateAppointment()
+        : makeNewAppointment()
+
+      await DataStore.save(appointment)
     },
   },
 })
