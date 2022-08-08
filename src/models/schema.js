@@ -38,6 +38,20 @@ export const schema = {
                         "associatedWith": "place"
                     }
                 },
+                "PendingAppointments": {
+                    "name": "PendingAppointments",
+                    "isArray": true,
+                    "type": {
+                        "model": "PendingAppointment"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "place"
+                    }
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -98,13 +112,6 @@ export const schema = {
                     "name": "id",
                     "isArray": false,
                     "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "approved": {
-                    "name": "approved",
-                    "isArray": false,
-                    "type": "Boolean",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -176,9 +183,118 @@ export const schema = {
                             {
                                 "allow": "private",
                                 "operations": [
-                                    "read",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "groupClaim": "cognito:groups",
+                                "provider": "userPools",
+                                "allow": "groups",
+                                "groups": [
+                                    "admins"
+                                ],
+                                "operations": [
                                     "create",
-                                    "update"
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "PendingAppointment": {
+            "name": "PendingAppointment",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "datetime": {
+                    "name": "datetime",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "owner": {
+                    "name": "owner",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "place": {
+                    "name": "place",
+                    "isArray": false,
+                    "type": {
+                        "model": "Place"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "placeID"
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "PendingAppointments",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byPlace",
+                        "fields": [
+                            "placeID"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "create"
+                                ]
+                            },
+                            {
+                                "provider": "userPools",
+                                "ownerField": "owner",
+                                "allow": "owner",
+                                "identityClaim": "cognito:username",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
                                 ]
                             },
                             {
@@ -203,5 +319,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "878979c8aad02c9a61e0f1fcedb06dc9"
+    "version": "81551e20d348e88c33a770e96ca1b9ad"
 };

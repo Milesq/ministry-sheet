@@ -14,9 +14,23 @@ export const createPlace = /* GraphQL */ `
       Appointments {
         items {
           id
-          approved
           datetime
           users
+          placeID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      PendingAppointments {
+        items {
+          id
+          datetime
+          owner
           placeID
           createdAt
           updatedAt
@@ -47,9 +61,23 @@ export const updatePlace = /* GraphQL */ `
       Appointments {
         items {
           id
-          approved
           datetime
           users
+          placeID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      PendingAppointments {
+        items {
+          id
+          datetime
+          owner
           placeID
           createdAt
           updatedAt
@@ -80,9 +108,23 @@ export const deletePlace = /* GraphQL */ `
       Appointments {
         items {
           id
-          approved
           datetime
           users
+          placeID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      PendingAppointments {
+        items {
+          id
+          datetime
+          owner
           placeID
           createdAt
           updatedAt
@@ -108,7 +150,6 @@ export const createAppointment = /* GraphQL */ `
   ) {
     createAppointment(input: $input, condition: $condition) {
       id
-      approved
       datetime
       users
       placeID
@@ -117,6 +158,10 @@ export const createAppointment = /* GraphQL */ `
         name
         description
         Appointments {
+          nextToken
+          startedAt
+        }
+        PendingAppointments {
           nextToken
           startedAt
         }
@@ -141,7 +186,6 @@ export const updateAppointment = /* GraphQL */ `
   ) {
     updateAppointment(input: $input, condition: $condition) {
       id
-      approved
       datetime
       users
       placeID
@@ -150,6 +194,10 @@ export const updateAppointment = /* GraphQL */ `
         name
         description
         Appointments {
+          nextToken
+          startedAt
+        }
+        PendingAppointments {
           nextToken
           startedAt
         }
@@ -174,7 +222,6 @@ export const deleteAppointment = /* GraphQL */ `
   ) {
     deleteAppointment(input: $input, condition: $condition) {
       id
-      approved
       datetime
       users
       placeID
@@ -183,6 +230,118 @@ export const deleteAppointment = /* GraphQL */ `
         name
         description
         Appointments {
+          nextToken
+          startedAt
+        }
+        PendingAppointments {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createPendingAppointment = /* GraphQL */ `
+  mutation CreatePendingAppointment(
+    $input: CreatePendingAppointmentInput!
+    $condition: ModelPendingAppointmentConditionInput
+  ) {
+    createPendingAppointment(input: $input, condition: $condition) {
+      id
+      datetime
+      owner
+      placeID
+      place {
+        id
+        name
+        description
+        Appointments {
+          nextToken
+          startedAt
+        }
+        PendingAppointments {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updatePendingAppointment = /* GraphQL */ `
+  mutation UpdatePendingAppointment(
+    $input: UpdatePendingAppointmentInput!
+    $condition: ModelPendingAppointmentConditionInput
+  ) {
+    updatePendingAppointment(input: $input, condition: $condition) {
+      id
+      datetime
+      owner
+      placeID
+      place {
+        id
+        name
+        description
+        Appointments {
+          nextToken
+          startedAt
+        }
+        PendingAppointments {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deletePendingAppointment = /* GraphQL */ `
+  mutation DeletePendingAppointment(
+    $input: DeletePendingAppointmentInput!
+    $condition: ModelPendingAppointmentConditionInput
+  ) {
+    deletePendingAppointment(input: $input, condition: $condition) {
+      id
+      datetime
+      owner
+      placeID
+      place {
+        id
+        name
+        description
+        Appointments {
+          nextToken
+          startedAt
+        }
+        PendingAppointments {
           nextToken
           startedAt
         }
