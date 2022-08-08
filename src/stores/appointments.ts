@@ -1,21 +1,30 @@
 import { defineStore } from 'pinia'
 import dayjs, { type Dayjs } from 'dayjs'
 import { DataStore } from '@aws-amplify/datastore'
-import { Appointment, Place } from '@/models'
+import { PendingAppointment, Appointment, Place } from '@/models'
 import Errors from '@/errors'
 
 import useUser from './user'
 
 interface AppointmentsState {
   appointments: Appointment[]
+  pendingAppointments: PendingAppointment[]
   places: Place[]
 }
 
 const useAppointments = defineStore('appointments', {
   state: (): AppointmentsState => ({
     appointments: [],
+    pendingAppointments: [],
     places: [],
   }),
+  getters: {
+    myPendings(state) {
+      const { user } = useUser()
+
+      return state.pendingAppointments.filter(({ owner }) => owner === user)
+    },
+  },
   actions: {
     async init() {
       const monday = dayjs().weekday(0).subtract(1, 'day').toISOString()
@@ -27,17 +36,17 @@ const useAppointments = defineStore('appointments', {
 
       await this.loadEvents(monday, sunday)
 
-      DataStore.observeQuery(Appointment, c =>
-        c.approved('eq', true)
-      ).subscribe(({ items }) => {
+      DataStore.observeQuery(Appointment).subscribe(({ items }) => {
         this.appointments = items
+      })
+
+      DataStore.observeQuery(PendingAppointment).subscribe(({ items }) => {
+        this.pendingAppointments = items
       })
     },
     async loadEvents(after: string, before: string) {
       const appointments = await DataStore.query(Appointment, c =>
-        c.and(c =>
-          c.approved('eq', true).datetime('gt', after).datetime('lt', before)
-        )
+        c.and(c => c.datetime('gt', after).datetime('lt', before))
       )
 
       this.appointments = appointments
@@ -62,30 +71,13 @@ const useAppointments = defineStore('appointments', {
         throw new Error(Errors.TermAlreadyOccupied)
       }
 
-      const oldAppointment = (
-        await DataStore.query(Appointment, c =>
-          c.datetime('eq', date.toISOString())
-        )
-      ).find(c => c.place.id === place.id)
-
-      const makeNewAppointment = () =>
-        new Appointment({
+      await DataStore.save(
+        new PendingAppointment({
           place,
-          approved: false,
           datetime: date.toISOString(),
-          users: [userStore.user],
+          owner: userStore.user,
         })
-
-      const updateAppointment = () =>
-        Appointment.copyOf(oldAppointment!, updated => {
-          updated.users?.push(userStore.user)
-        })
-
-      const appointment = oldAppointment
-        ? updateAppointment()
-        : makeNewAppointment()
-
-      await DataStore.save(appointment)
+      )
     },
   },
 })
