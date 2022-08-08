@@ -11,9 +11,23 @@ export const getPlace = /* GraphQL */ `
       Appointments {
         items {
           id
-          approved
           datetime
           users
+          placeID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      PendingAppointments {
+        items {
+          id
+          datetime
+          owner
           placeID
           createdAt
           updatedAt
@@ -44,6 +58,10 @@ export const listPlaces = /* GraphQL */ `
         name
         description
         Appointments {
+          nextToken
+          startedAt
+        }
+        PendingAppointments {
           nextToken
           startedAt
         }
@@ -79,6 +97,10 @@ export const syncPlaces = /* GraphQL */ `
           nextToken
           startedAt
         }
+        PendingAppointments {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -94,7 +116,6 @@ export const getAppointment = /* GraphQL */ `
   query GetAppointment($id: ID!) {
     getAppointment(id: $id) {
       id
-      approved
       datetime
       users
       placeID
@@ -103,6 +124,10 @@ export const getAppointment = /* GraphQL */ `
         name
         description
         Appointments {
+          nextToken
+          startedAt
+        }
+        PendingAppointments {
           nextToken
           startedAt
         }
@@ -129,7 +154,6 @@ export const listAppointments = /* GraphQL */ `
     listAppointments(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        approved
         datetime
         users
         placeID
@@ -169,9 +193,117 @@ export const syncAppointments = /* GraphQL */ `
     ) {
       items {
         id
-        approved
         datetime
         users
+        placeID
+        place {
+          id
+          name
+          description
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getPendingAppointment = /* GraphQL */ `
+  query GetPendingAppointment($id: ID!) {
+    getPendingAppointment(id: $id) {
+      id
+      datetime
+      owner
+      placeID
+      place {
+        id
+        name
+        description
+        Appointments {
+          nextToken
+          startedAt
+        }
+        PendingAppointments {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listPendingAppointments = /* GraphQL */ `
+  query ListPendingAppointments(
+    $filter: ModelPendingAppointmentFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPendingAppointments(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        datetime
+        owner
+        placeID
+        place {
+          id
+          name
+          description
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncPendingAppointments = /* GraphQL */ `
+  query SyncPendingAppointments(
+    $filter: ModelPendingAppointmentFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncPendingAppointments(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        datetime
+        owner
         placeID
         place {
           id

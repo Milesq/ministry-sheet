@@ -11,21 +11,38 @@ type Place
   description: String!
 
   Appointments: [Appointment] @hasMany(indexName: "byPlace", fields: ["id"])
+  PendingAppointments: [PendingAppointment] @hasMany(indexName: "byPlace", fields: ["id"])
 }
 
 type Appointment
   @model
   @auth(
     rules: [
-      { allow: private, operations: [read, create, update] }
+      { allow: private, operations: [read] }
       { allow: groups, groups: ["admins"] }
     ]
   ) {
   id: ID!
-  approved: Boolean!
   datetime: AWSDateTime!
 
   users: [String]
+  placeID: ID! @index(name: "byPlace")
+  place: Place! @belongsTo(fields: ["placeID"])
+}
+
+type PendingAppointment
+  @model
+  @auth(
+    rules: [
+      { allow: private, operations: [create] },
+      { allow: owner },
+      { allow: groups, groups: ["admins"] }
+    ]
+  ) {
+  id: ID!
+  datetime: AWSDateTime!
+
+  owner: String
   placeID: ID! @index(name: "byPlace")
   place: Place! @belongsTo(fields: ["placeID"])
 }
