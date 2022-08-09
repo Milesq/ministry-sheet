@@ -6,6 +6,7 @@ withDefaults(
     content: string[]
     length?: number
     title?: string
+    approved?: boolean
   }>(),
   {
     length: 1,
@@ -14,7 +15,7 @@ withDefaults(
 </script>
 
 <template>
-  <div class="event">
+  <div class="event" :class="approved !== false ? 'bg-primary' : 'bg-gray-400'">
     <span v-if="title" class="additional-info">
       {{ title }}
     </span>
@@ -33,7 +34,7 @@ withDefaults(
     top: 0;
   }
 
-  @apply bg-primary flex flex-col justify-around items-center;
+  @apply flex flex-col justify-around items-center;
   border-radius: 5px;
   padding: 5px;
 
