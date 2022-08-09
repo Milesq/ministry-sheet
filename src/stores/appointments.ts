@@ -20,7 +20,9 @@ const useAppointments = defineStore('appointments', {
   }),
   getters: {
     myPendings(state) {
-      const { user } = useUser()
+      const { user, isAdmin } = useUser()
+
+      if (!isAdmin) return state.pendingAppointments
 
       return state.pendingAppointments.filter(({ owner }) => owner === user)
     },
