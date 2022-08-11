@@ -4,12 +4,13 @@ import dayjs, { type Dayjs } from 'dayjs'
 import { useI18n } from 'vue-i18n'
 import { Swal } from '@/common'
 import useAppointments from '@/stores/appointments'
-import type { Place, Appointment } from '@/models'
+import type { Place, Appointment, PendingAppointment } from '@/models'
 import type { CalendarEvent } from '@/common'
 import Errors from '@/errors'
 
 const props = defineProps<{
   appointments: Appointment[]
+  pendingAppointments: PendingAppointment[]
   place?: Place
 }>()
 

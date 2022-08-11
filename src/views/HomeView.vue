@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-import type { Appointment, Place } from '@/models'
+import type { Appointment, PendingAppointment, Place } from '@/models'
 import useAppointments from '@/stores/appointments'
 
 const appointments = useAppointments()
@@ -13,6 +13,12 @@ onMounted(() => {
 
 function getAppointments({ id }: Place): Appointment[] {
   return appointments.appointments?.filter(({ place }) => place.id === id)
+}
+
+function getPendings({ id }: Place): PendingAppointment[] {
+  return appointments.pendingAppointments?.filter(
+    ({ place }) => place.id === id
+  )
 }
 </script>
 
@@ -27,6 +33,7 @@ function getAppointments({ id }: Place): Appointment[] {
         <ShowAppointments
           v-if="activePlace === 'my-calendar'"
           :appointments="appointments.appointments"
+          :pending-appointments="appointments.myPendings"
         />
       </el-tab-pane>
 
@@ -39,6 +46,7 @@ function getAppointments({ id }: Place): Appointment[] {
         <ShowAppointments
           v-if="activePlace === place.name"
           :appointments="getAppointments(place)"
+          :pending-appointments="getPendings(place)"
           :place="place"
         />
       </el-tab-pane>
