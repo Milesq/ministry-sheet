@@ -19,9 +19,7 @@ withDefaults(
     <span v-if="title" class="additional-info">
       {{ title }}
     </span>
-    <div v-for="row in content" :key="row">
-      {{ row }}
-    </div>
+    <div v-for="row in content" :key="row" v-html="row"></div>
   </div>
 </template>
 
