@@ -16,9 +16,7 @@ function getAppointments({ id }: Place): Appointment[] {
 }
 
 function getPendings({ id }: Place): PendingAppointment[] {
-  return appointments.pendingAppointments?.filter(
-    ({ place }) => place.id === id
-  )
+  return appointments.myPendings?.filter(({ place }) => place.id === id)
 }
 </script>
 
