@@ -6,7 +6,7 @@ withDefaults(
     content: string[]
     length?: number
     title?: string
-    approved?: boolean
+    pending?: boolean
   }>(),
   {
     length: 1,
@@ -15,7 +15,7 @@ withDefaults(
 </script>
 
 <template>
-  <div class="event" :class="approved !== false ? 'bg-primary' : 'bg-gray-400'">
+  <div class="event" :class="pending !== true ? 'bg-primary' : 'bg-gray-400'">
     <span v-if="title" class="additional-info">
       {{ title }}
     </span>
@@ -30,7 +30,7 @@ withDefaults(
   position: relative;
   .additional-info {
     position: absolute;
-    left: 0;
+    left: 5px;
     top: 0;
   }
 

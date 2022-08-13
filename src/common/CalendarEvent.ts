@@ -5,5 +5,5 @@ export default interface CalendarEvent {
   content: string[]
   datetime: Dayjs
   title?: string
-  approved?: boolean
+  pending?: boolean
 }
