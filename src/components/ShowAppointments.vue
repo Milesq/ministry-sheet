@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import dayjs, { type Dayjs } from 'dayjs'
 import { useI18n } from 'vue-i18n'
+import groupBy from 'lodash.groupby'
 import { Swal } from '@/common'
 import useAppointments from '@/stores/appointments'
 import type { Place, Appointment, PendingAppointment } from '@/models'
@@ -18,16 +19,40 @@ const { t } = useI18n()
 
 const appointments = useAppointments()
 
+function mergeAppointmentsWithPendings(
+  arg: Array<Appointment & PendingAppointment>
+) {
+  return arg.reduce((acc: string[], curr) => {
+    const newElements = (curr.owner ? [curr.owner] : curr.users) as string[]
+
+    return [...acc, ...newElements]
+  }, [])
+}
+
+function isAppPending(a: Appointment | PendingAppointment): boolean {
+  return !!(a as PendingAppointment).owner
+}
+
 const events = computed<CalendarEvent[]>(() => {
-  return props.appointments.map(
-    appointment =>
-      ({
-        id: appointment.id,
-        content: appointment.users || [],
-        datetime: dayjs(appointment.datetime),
-        title: !props.place ? appointment.place.name : '',
-      } as CalendarEvent)
+  console.log('\n\n\n\n')
+  const grouped = groupBy(
+    [...props.appointments, ...props.pendingAppointments],
+    e => e.place.id + e.datetime
   )
+
+  return Object.values(grouped).map(appointments => {
+    const [appointment] = appointments
+    const isPending = appointments.some(a => isAppPending(a))
+    const users = mergeAppointmentsWithPendings(appointments)
+
+    return {
+      id: appointment.id,
+      content: users,
+      datetime: dayjs(appointment.datetime),
+      title: !props.place ? appointment.place.name : '',
+      pending: isPending,
+    } as CalendarEvent
+  })
 })
 
 async function missingPlaceSwal() {
