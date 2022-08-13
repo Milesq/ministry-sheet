@@ -98,7 +98,11 @@
               "userPoolId": "authministrysheetbe198505be198505"
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ]
         }
       }
     }
