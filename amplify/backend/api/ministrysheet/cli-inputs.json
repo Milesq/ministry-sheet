@@ -3,7 +3,6 @@
   "serviceConfiguration": {
     "apiName": "ministrysheet",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "C:\\Users\\wmilo\\Desktop\\ministry-sheet\\amplify\\backend\\api\\ministrysheet\\schema.graphql",
     "defaultAuthType": {
       "mode": "AMAZON_COGNITO_USER_POOLS",
       "cognitoUserPoolId": "authministrysheetbe198505be198505"
@@ -12,6 +11,11 @@
       "defaultResolutionStrategy": {
         "type": "AUTOMERGE"
       }
-    }
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AWS_IAM"
+      }
+    ]
   }
 }
