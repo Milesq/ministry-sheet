@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed } from 'vue'
 import dayjs, { type Dayjs } from 'dayjs'
 import { useI18n } from 'vue-i18n'
 import groupBy from 'lodash.groupby'
@@ -19,11 +19,15 @@ const { t } = useI18n()
 
 const appointments = useAppointments()
 
+function u(text: string) {
+  return `<u>${text}</u>`
+}
+
 function mergeAppointmentsWithPendings(
   arg: Array<Appointment & PendingAppointment>
 ) {
   return arg.reduce((acc: string[], curr) => {
-    const newElements = (curr.owner ? [curr.owner] : curr.users) as string[]
+    const newElements = (curr.owner ? [u(curr.owner)] : curr.users) as string[]
 
     return [...acc, ...newElements]
   }, [])
@@ -34,7 +38,6 @@ function isAppPending(a: Appointment | PendingAppointment): boolean {
 }
 
 const events = computed<CalendarEvent[]>(() => {
-  console.log('\n\n\n\n')
   const grouped = groupBy(
     [...props.appointments, ...props.pendingAppointments],
     e => e.place.id + e.datetime
