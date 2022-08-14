@@ -10,6 +10,7 @@ interface AppointmentsState {
   appointments: Appointment[]
   pendingAppointments: PendingAppointment[]
   places: Place[]
+  initialized: boolean
 }
 
 const useAppointments = defineStore('appointments', {
@@ -17,6 +18,7 @@ const useAppointments = defineStore('appointments', {
     appointments: [],
     pendingAppointments: [],
     places: [],
+    initialized: false,
   }),
   getters: {
     myPendings(state) {
@@ -29,6 +31,9 @@ const useAppointments = defineStore('appointments', {
   },
   actions: {
     async init() {
+      if (this.initialized) return
+      this.initialized = true
+
       const monday = dayjs().weekday(0).subtract(1, 'day').toISOString()
       const sunday = dayjs().weekday(6).add(1, 'day').toISOString()
 
