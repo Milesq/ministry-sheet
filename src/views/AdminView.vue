@@ -42,11 +42,7 @@ function getPendings({ id }: Place): PendingAppointment[] {
 
 <template>
   <section class="px-10">
-    <el-tabs
-      v-if="appointments.places?.length"
-      v-model="activePlace"
-      class="demo-tabs"
-    >
+    <el-tabs v-if="appointments.places?.length" v-model="activePlace">
       <el-tab-pane
         v-for="place in appointments.places"
         :key="place.id"
