@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref, watchEffect } from 'vue'
+import type { Dayjs } from 'dayjs'
 import type { Appointment, PendingAppointment, Place } from '@/models'
 import useAppointments from '@/stores/appointments'
 import { makeCalEvents } from '@/common'
@@ -38,6 +39,10 @@ function getPendings({ id }: Place): PendingAppointment[] {
     ({ place }) => place.id === id
   )
 }
+
+function confirmEvent(date: Dayjs) {
+
+}
 </script>
 
 <template>
@@ -49,7 +54,11 @@ function getPendings({ id }: Place): PendingAppointment[] {
         :label="place.name"
         :name="place.name"
       >
-        <AppCalendar v-if="activePlace === place.name" :events="events" />
+        <AppCalendar
+          v-if="activePlace === place.name"
+          @onEventClick="confirmEvent"
+          :events="events"
+        />
       </el-tab-pane>
     </el-tabs>
   </section>

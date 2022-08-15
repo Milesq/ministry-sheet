@@ -11,7 +11,7 @@ import AppCalendarCurrentTime from './AppCalendarCurrentTime.vue'
 
 defineEmits<{
   onDateChange(date: dayjs.Dayjs): void
-  onEventAdd(date: dayjs.Dayjs): void
+  onEventClick(date: dayjs.Dayjs): void
 }>()
 
 const props = defineProps({
@@ -108,7 +108,7 @@ function makeDate(day: number, hour: number) {
       <div
         v-for="[x, y] in eventMatrix"
         :key="x + '-' + y"
-        @click="$emit('onEventAdd', makeDate(x, y))"
+        @click="$emit('onEventClick', makeDate(x, y))"
         class="z-99"
         :class="{ 'cursor-pointer': props.addEvents }"
         :style="{ gridRow: y + 2, gridColumn: x + 3 }"
