@@ -22,7 +22,11 @@
     "alreadyFilled": "You already stay in this place at this time",
     "incorrectLogin": "Incorrect login or password",
     "forceChangePassword": "You have to change your password",
-    "stillNotAccepted": "You still have not been accepted. Please, wait or contact with the administrator"
+    "stillNotAccepted": "You still have not been accepted. Please, wait or contact with the administrator",
+    "selectUser": {
+      "title": "Nothing changed",
+      "text": "Choose user to approve/deny"
+    }
   },
   "confirmDate": {
     "question": "Are you sure you want stay here?",

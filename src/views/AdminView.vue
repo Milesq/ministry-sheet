@@ -1,12 +1,15 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref, watchEffect } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { Dayjs } from 'dayjs'
 import type { Appointment, PendingAppointment, Place } from '@/models'
 import useAppointments from '@/stores/appointments'
-import { makeCalEvents } from '@/common'
+import { makeCalEvents, Swal } from '@/common'
 
 const activePlace = ref('my-calendar')
 const appointments = useAppointments()
+
+const { t } = useI18n()
 
 onMounted(() => {
   appointments.init()
@@ -40,8 +43,49 @@ function getPendings({ id }: Place): PendingAppointment[] {
   )
 }
 
-function confirmEvent(date: Dayjs) {
+async function onEventClick(place: Place, date: Dayjs) {
+  const unapprovedUsers = appointments.pendingAppointments.filter(app => {
+    return app.place.id === place.id && date.isSame(app.datetime)
+  })
 
+  if (!unapprovedUsers.length) {
+    return
+  }
+
+  const {
+    isConfirmed,
+    isDenied,
+    isDismissed,
+    value: pendingID,
+  } = await Swal.fire({
+    title: t('selectUser'),
+    input: 'select',
+    inputOptions: Object.fromEntries(
+      unapprovedUsers.map(req => [req.id, req.owner])
+    ),
+    inputPlaceholder: '-',
+    showDenyButton: true,
+    showCancelButton: true,
+    reverseButtons: true,
+    returnInputValueOnDeny: true,
+    confirmButtonText: t('confirm[2]'),
+    cancelButtonText: t('cancel'),
+    denyButtonText: t('deny'),
+  })
+
+  if (!isDismissed && !pendingID) {
+    return Swal.fire(
+      t('error.selectUser.title'),
+      t('error.selectUser.text'),
+      'warning'
+    )
+  }
+
+  if (isConfirmed) {
+    appointments.confirm(pendingID)
+  } else if (isDenied) {
+    appointments.deny(pendingID)
+  }
 }
 </script>
 
@@ -54,11 +98,13 @@ function confirmEvent(date: Dayjs) {
         :label="place.name"
         :name="place.name"
       >
-        <AppCalendar
-          v-if="activePlace === place.name"
-          @onEventClick="confirmEvent"
-          :events="events"
-        />
+        <div class="flex justify-center">
+          <AppCalendar
+            v-if="activePlace === place.name"
+            @onEventClick="onEventClick(place, $event)"
+            :events="events"
+          />
+        </div>
       </el-tab-pane>
     </el-tabs>
   </section>

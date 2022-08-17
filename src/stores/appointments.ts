@@ -86,6 +86,12 @@ const useAppointments = defineStore('appointments', {
         })
       )
     },
+    confirm(id: string) {
+      console.log(id, 'approve')
+    },
+    deny(id: string) {
+      console.log(id, 'deny')
+    },
   },
 })
 
