@@ -5,13 +5,11 @@
 export type CreatePlaceInput = {
   id?: string | null,
   name: string,
-  description: string,
   _version?: number | null,
 };
 
 export type ModelPlaceConditionInput = {
   name?: ModelStringInput | null,
-  description?: ModelStringInput | null,
   and?: Array< ModelPlaceConditionInput | null > | null,
   or?: Array< ModelPlaceConditionInput | null > | null,
   not?: ModelPlaceConditionInput | null,
@@ -61,7 +59,6 @@ export type Place = {
   __typename: "Place",
   id: string,
   name: string,
-  description: string,
   Appointments?: ModelAppointmentConnection | null,
   PendingAppointments?: ModelPendingAppointmentConnection | null,
   createdAt: string,
@@ -116,7 +113,6 @@ export type PendingAppointment = {
 export type UpdatePlaceInput = {
   id: string,
   name?: string | null,
-  description?: string | null,
   _version?: number | null,
 };
 
@@ -204,7 +200,6 @@ export type DeletePendingAppointmentInput = {
 export type ModelPlaceFilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
-  description?: ModelStringInput | null,
   and?: Array< ModelPlaceFilterInput | null > | null,
   or?: Array< ModelPlaceFilterInput | null > | null,
   not?: ModelPlaceFilterInput | null,
@@ -237,61 +232,6 @@ export type ModelPendingAppointmentFilterInput = {
   not?: ModelPendingAppointmentFilterInput | null,
 };
 
-export type ModelSubscriptionPlaceFilterInput = {
-  id?: ModelSubscriptionIDInput | null,
-  name?: ModelSubscriptionStringInput | null,
-  description?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionPlaceFilterInput | null > | null,
-  or?: Array< ModelSubscriptionPlaceFilterInput | null > | null,
-};
-
-export type ModelSubscriptionIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  in?: Array< string | null > | null,
-  notIn?: Array< string | null > | null,
-};
-
-export type ModelSubscriptionStringInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  in?: Array< string | null > | null,
-  notIn?: Array< string | null > | null,
-};
-
-export type ModelSubscriptionAppointmentFilterInput = {
-  id?: ModelSubscriptionIDInput | null,
-  datetime?: ModelSubscriptionStringInput | null,
-  users?: ModelSubscriptionStringInput | null,
-  placeID?: ModelSubscriptionIDInput | null,
-  and?: Array< ModelSubscriptionAppointmentFilterInput | null > | null,
-  or?: Array< ModelSubscriptionAppointmentFilterInput | null > | null,
-};
-
-export type ModelSubscriptionPendingAppointmentFilterInput = {
-  id?: ModelSubscriptionIDInput | null,
-  datetime?: ModelSubscriptionStringInput | null,
-  placeID?: ModelSubscriptionIDInput | null,
-  and?: Array< ModelSubscriptionPendingAppointmentFilterInput | null > | null,
-  or?: Array< ModelSubscriptionPendingAppointmentFilterInput | null > | null,
-};
-
 export type CreatePlaceMutationVariables = {
   input: CreatePlaceInput,
   condition?: ModelPlaceConditionInput | null,
@@ -302,7 +242,6 @@ export type CreatePlaceMutation = {
     __typename: "Place",
     id: string,
     name: string,
-    description: string,
     Appointments?:  {
       __typename: "ModelAppointmentConnection",
       items:  Array< {
@@ -355,7 +294,6 @@ export type UpdatePlaceMutation = {
     __typename: "Place",
     id: string,
     name: string,
-    description: string,
     Appointments?:  {
       __typename: "ModelAppointmentConnection",
       items:  Array< {
@@ -408,7 +346,6 @@ export type DeletePlaceMutation = {
     __typename: "Place",
     id: string,
     name: string,
-    description: string,
     Appointments?:  {
       __typename: "ModelAppointmentConnection",
       items:  Array< {
@@ -467,7 +404,6 @@ export type CreateAppointmentMutation = {
       __typename: "Place",
       id: string,
       name: string,
-      description: string,
       Appointments?:  {
         __typename: "ModelAppointmentConnection",
         nextToken?: string | null,
@@ -508,7 +444,6 @@ export type UpdateAppointmentMutation = {
       __typename: "Place",
       id: string,
       name: string,
-      description: string,
       Appointments?:  {
         __typename: "ModelAppointmentConnection",
         nextToken?: string | null,
@@ -549,7 +484,6 @@ export type DeleteAppointmentMutation = {
       __typename: "Place",
       id: string,
       name: string,
-      description: string,
       Appointments?:  {
         __typename: "ModelAppointmentConnection",
         nextToken?: string | null,
@@ -590,7 +524,6 @@ export type CreatePendingAppointmentMutation = {
       __typename: "Place",
       id: string,
       name: string,
-      description: string,
       Appointments?:  {
         __typename: "ModelAppointmentConnection",
         nextToken?: string | null,
@@ -631,7 +564,6 @@ export type UpdatePendingAppointmentMutation = {
       __typename: "Place",
       id: string,
       name: string,
-      description: string,
       Appointments?:  {
         __typename: "ModelAppointmentConnection",
         nextToken?: string | null,
@@ -672,7 +604,6 @@ export type DeletePendingAppointmentMutation = {
       __typename: "Place",
       id: string,
       name: string,
-      description: string,
       Appointments?:  {
         __typename: "ModelAppointmentConnection",
         nextToken?: string | null,
@@ -706,7 +637,6 @@ export type GetPlaceQuery = {
     __typename: "Place",
     id: string,
     name: string,
-    description: string,
     Appointments?:  {
       __typename: "ModelAppointmentConnection",
       items:  Array< {
@@ -762,7 +692,6 @@ export type ListPlacesQuery = {
       __typename: "Place",
       id: string,
       name: string,
-      description: string,
       Appointments?:  {
         __typename: "ModelAppointmentConnection",
         nextToken?: string | null,
@@ -798,7 +727,6 @@ export type SyncPlacesQuery = {
       __typename: "Place",
       id: string,
       name: string,
-      description: string,
       Appointments?:  {
         __typename: "ModelAppointmentConnection",
         nextToken?: string | null,
@@ -835,7 +763,6 @@ export type GetAppointmentQuery = {
       __typename: "Place",
       id: string,
       name: string,
-      description: string,
       Appointments?:  {
         __typename: "ModelAppointmentConnection",
         nextToken?: string | null,
@@ -879,7 +806,6 @@ export type ListAppointmentsQuery = {
         __typename: "Place",
         id: string,
         name: string,
-        description: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -917,7 +843,6 @@ export type SyncAppointmentsQuery = {
         __typename: "Place",
         id: string,
         name: string,
-        description: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -950,7 +875,6 @@ export type GetPendingAppointmentQuery = {
       __typename: "Place",
       id: string,
       name: string,
-      description: string,
       Appointments?:  {
         __typename: "ModelAppointmentConnection",
         nextToken?: string | null,
@@ -994,7 +918,6 @@ export type ListPendingAppointmentsQuery = {
         __typename: "Place",
         id: string,
         name: string,
-        description: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -1032,7 +955,6 @@ export type SyncPendingAppointmentsQuery = {
         __typename: "Place",
         id: string,
         name: string,
-        description: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -1050,16 +972,11 @@ export type SyncPendingAppointmentsQuery = {
   } | null,
 };
 
-export type OnCreatePlaceSubscriptionVariables = {
-  filter?: ModelSubscriptionPlaceFilterInput | null,
-};
-
 export type OnCreatePlaceSubscription = {
   onCreatePlace?:  {
     __typename: "Place",
     id: string,
     name: string,
-    description: string,
     Appointments?:  {
       __typename: "ModelAppointmentConnection",
       items:  Array< {
@@ -1100,10 +1017,6 @@ export type OnCreatePlaceSubscription = {
     _deleted?: boolean | null,
     _lastChangedAt: number,
   } | null,
-};
-
-export type OnUpdatePlaceSubscriptionVariables = {
-  filter?: ModelSubscriptionPlaceFilterInput | null,
 };
 
 export type OnUpdatePlaceSubscription = {
@@ -1111,7 +1024,6 @@ export type OnUpdatePlaceSubscription = {
     __typename: "Place",
     id: string,
     name: string,
-    description: string,
     Appointments?:  {
       __typename: "ModelAppointmentConnection",
       items:  Array< {
@@ -1152,10 +1064,6 @@ export type OnUpdatePlaceSubscription = {
     _deleted?: boolean | null,
     _lastChangedAt: number,
   } | null,
-};
-
-export type OnDeletePlaceSubscriptionVariables = {
-  filter?: ModelSubscriptionPlaceFilterInput | null,
 };
 
 export type OnDeletePlaceSubscription = {
@@ -1163,7 +1071,6 @@ export type OnDeletePlaceSubscription = {
     __typename: "Place",
     id: string,
     name: string,
-    description: string,
     Appointments?:  {
       __typename: "ModelAppointmentConnection",
       items:  Array< {
@@ -1204,10 +1111,6 @@ export type OnDeletePlaceSubscription = {
     _deleted?: boolean | null,
     _lastChangedAt: number,
   } | null,
-};
-
-export type OnCreateAppointmentSubscriptionVariables = {
-  filter?: ModelSubscriptionAppointmentFilterInput | null,
 };
 
 export type OnCreateAppointmentSubscription = {
@@ -1221,7 +1124,6 @@ export type OnCreateAppointmentSubscription = {
       __typename: "Place",
       id: string,
       name: string,
-      description: string,
       Appointments?:  {
         __typename: "ModelAppointmentConnection",
         nextToken?: string | null,
@@ -1244,10 +1146,6 @@ export type OnCreateAppointmentSubscription = {
     _deleted?: boolean | null,
     _lastChangedAt: number,
   } | null,
-};
-
-export type OnUpdateAppointmentSubscriptionVariables = {
-  filter?: ModelSubscriptionAppointmentFilterInput | null,
 };
 
 export type OnUpdateAppointmentSubscription = {
@@ -1261,7 +1159,6 @@ export type OnUpdateAppointmentSubscription = {
       __typename: "Place",
       id: string,
       name: string,
-      description: string,
       Appointments?:  {
         __typename: "ModelAppointmentConnection",
         nextToken?: string | null,
@@ -1286,10 +1183,6 @@ export type OnUpdateAppointmentSubscription = {
   } | null,
 };
 
-export type OnDeleteAppointmentSubscriptionVariables = {
-  filter?: ModelSubscriptionAppointmentFilterInput | null,
-};
-
 export type OnDeleteAppointmentSubscription = {
   onDeleteAppointment?:  {
     __typename: "Appointment",
@@ -1301,7 +1194,6 @@ export type OnDeleteAppointmentSubscription = {
       __typename: "Place",
       id: string,
       name: string,
-      description: string,
       Appointments?:  {
         __typename: "ModelAppointmentConnection",
         nextToken?: string | null,
@@ -1327,7 +1219,6 @@ export type OnDeleteAppointmentSubscription = {
 };
 
 export type OnCreatePendingAppointmentSubscriptionVariables = {
-  filter?: ModelSubscriptionPendingAppointmentFilterInput | null,
   owner?: string | null,
 };
 
@@ -1342,7 +1233,6 @@ export type OnCreatePendingAppointmentSubscription = {
       __typename: "Place",
       id: string,
       name: string,
-      description: string,
       Appointments?:  {
         __typename: "ModelAppointmentConnection",
         nextToken?: string | null,
@@ -1368,7 +1258,6 @@ export type OnCreatePendingAppointmentSubscription = {
 };
 
 export type OnUpdatePendingAppointmentSubscriptionVariables = {
-  filter?: ModelSubscriptionPendingAppointmentFilterInput | null,
   owner?: string | null,
 };
 
@@ -1383,7 +1272,6 @@ export type OnUpdatePendingAppointmentSubscription = {
       __typename: "Place",
       id: string,
       name: string,
-      description: string,
       Appointments?:  {
         __typename: "ModelAppointmentConnection",
         nextToken?: string | null,
@@ -1409,7 +1297,6 @@ export type OnUpdatePendingAppointmentSubscription = {
 };
 
 export type OnDeletePendingAppointmentSubscriptionVariables = {
-  filter?: ModelSubscriptionPendingAppointmentFilterInput | null,
   owner?: string | null,
 };
 
@@ -1424,7 +1311,6 @@ export type OnDeletePendingAppointmentSubscription = {
       __typename: "Place",
       id: string,
       name: string,
-      description: string,
       Appointments?:  {
         __typename: "ModelAppointmentConnection",
         nextToken?: string | null,

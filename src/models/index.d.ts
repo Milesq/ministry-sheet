@@ -19,7 +19,6 @@ type PendingAppointmentMetaData = {
 export declare class Place {
   readonly id: string;
   readonly name: string;
-  readonly description: string;
   readonly Appointments?: (Appointment | null)[] | null;
   readonly PendingAppointments?: (PendingAppointment | null)[] | null;
   readonly createdAt?: string | null;

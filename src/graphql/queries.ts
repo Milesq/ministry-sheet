@@ -7,7 +7,6 @@ export const getPlace = /* GraphQL */ `
     getPlace(id: $id) {
       id
       name
-      description
       Appointments {
         items {
           id
@@ -56,7 +55,6 @@ export const listPlaces = /* GraphQL */ `
       items {
         id
         name
-        description
         Appointments {
           nextToken
           startedAt
@@ -92,7 +90,6 @@ export const syncPlaces = /* GraphQL */ `
       items {
         id
         name
-        description
         Appointments {
           nextToken
           startedAt
@@ -122,7 +119,6 @@ export const getAppointment = /* GraphQL */ `
       place {
         id
         name
-        description
         Appointments {
           nextToken
           startedAt
@@ -160,7 +156,6 @@ export const listAppointments = /* GraphQL */ `
         place {
           id
           name
-          description
           createdAt
           updatedAt
           _version
@@ -199,7 +194,6 @@ export const syncAppointments = /* GraphQL */ `
         place {
           id
           name
-          description
           createdAt
           updatedAt
           _version
@@ -227,7 +221,6 @@ export const getPendingAppointment = /* GraphQL */ `
       place {
         id
         name
-        description
         Appointments {
           nextToken
           startedAt
@@ -269,7 +262,6 @@ export const listPendingAppointments = /* GraphQL */ `
         place {
           id
           name
-          description
           createdAt
           updatedAt
           _version
@@ -308,7 +300,6 @@ export const syncPendingAppointments = /* GraphQL */ `
         place {
           id
           name
-          description
           createdAt
           updatedAt
           _version
