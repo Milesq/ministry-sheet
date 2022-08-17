@@ -73,7 +73,7 @@ async function addEvent(date: Dayjs) {
   }
 
   try {
-    await appointments.add(date, props.place)
+    await appointments.addPending(date, props.place)
     Swal.fire(t('success'), t('waitForApprove'), 'success')
   } catch (err: unknown) {
     if (!(err instanceof Error) || err.message !== Errors.TermAlreadyOccupied) {

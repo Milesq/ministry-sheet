@@ -58,7 +58,7 @@ const useAppointments = defineStore('appointments', {
 
       this.appointments = appointments
     },
-    async add(date: Dayjs, place: Place) {
+    async addPending(date: Dayjs, place: Place) {
       const userStore = useUser()
 
       if (!userStore.isLoggedIn) {
