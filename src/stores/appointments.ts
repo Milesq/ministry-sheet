@@ -74,7 +74,16 @@ const useAppointments = defineStore('appointments', {
         return dayjs(app.datetime).isSame(date, 'hour')
       })
 
-      if (termAlreadyOccupiedByThisUser) {
+      const termAlreadyReserved = this.pendingAppointments.some(app => {
+        const isTheSameUser = app.owner === userStore.user
+        if (!isTheSameUser) {
+          return false
+        }
+
+        return dayjs(app.datetime).isSame(date, 'hour')
+      })
+
+      if (termAlreadyOccupiedByThisUser || termAlreadyReserved) {
         throw new Error(Errors.TermAlreadyOccupied)
       }
 
