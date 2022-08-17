@@ -65,7 +65,7 @@ const useAppointments = defineStore('appointments', {
         throw new Error('User is not logged in')
       }
 
-      const termAlreadyOccupied = this.appointments.some(app => {
+      const termAlreadyOccupiedByThisUser = this.appointments.some(app => {
         const isTheSameUser = app.users?.includes(userStore.user)
         if (!isTheSameUser) {
           return false
@@ -74,7 +74,7 @@ const useAppointments = defineStore('appointments', {
         return dayjs(app.datetime).isSame(date, 'hour')
       })
 
-      if (termAlreadyOccupied) {
+      if (termAlreadyOccupiedByThisUser) {
         throw new Error(Errors.TermAlreadyOccupied)
       }
 
