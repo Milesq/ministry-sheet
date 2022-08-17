@@ -89,8 +89,14 @@ const useAppointments = defineStore('appointments', {
     confirm(id: string) {
       console.log(id, 'approve')
     },
-    deny(id: string) {
-      console.log(id, 'deny')
+    async deny(id: string) {
+      const pa = await DataStore.query(PendingAppointment, id)
+
+      if (!pa) {
+        throw new Error(Errors.PendingAppointmentNotFound)
+      }
+
+      await DataStore.delete(pa)
     },
   },
 })
