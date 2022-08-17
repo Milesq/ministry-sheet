@@ -86,8 +86,36 @@ const useAppointments = defineStore('appointments', {
         })
       )
     },
-    confirm(id: string) {
-      console.log(id, 'approve')
+    async confirm(id: string) {
+      const pa = await DataStore.query(PendingAppointment, id)
+
+      if (!pa) {
+        throw new Error(Errors.PendingAppointmentNotFound)
+      }
+
+      const { datetime, place, owner } = pa
+
+      const oldAppointment = (
+        await DataStore.query(Appointment, c => c.datetime('eq', datetime))
+      ).find(c => c.place.id === place.id)
+
+      if (oldAppointment) {
+        await DataStore.save(
+          Appointment.copyOf(oldAppointment, updated => {
+            updated.users?.push(owner!)
+          })
+        )
+      } else {
+        await DataStore.save(
+          new Appointment({
+            place,
+            datetime,
+            users: [owner!],
+          })
+        )
+      }
+
+      await DataStore.delete(pa)
     },
     async deny(id: string) {
       const pa = await DataStore.query(PendingAppointment, id)
