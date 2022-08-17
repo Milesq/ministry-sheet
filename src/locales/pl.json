@@ -22,7 +22,11 @@
     "alreadyFilled": "Nie udało się zapisać, już stoisz w tym miejscu",
     "incorrectLogin": "Błędna nazwa użytkownika lub hasło",
     "forceChangePassword": "Musisz zmienić hasło",
-    "stillNotAccepted": "Nadal nie masz dostępu do grafiku. Poczekaj lub skontaktuj się z administratorem"
+    "stillNotAccepted": "Nadal nie masz dostępu do grafiku. Poczekaj lub skontaktuj się z administratorem",
+    "selectUser": {
+      "title": "Nie podjęto akcji",
+      "text": "Wybierz użytkownika na którym chcesz wykonać akcję"
+    }
   },
   "confirmDate": {
     "question": "Czy chcesz się zapisać?",
