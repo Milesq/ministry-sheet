@@ -42,13 +42,17 @@ const useUser = defineStore('user', {
         transformUserName(username),
         pass
       )) as CognitoUser
-
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if ((user as any).challengeName === 'NEW_PASSWORD_REQUIRED') {
+      const aUser = user as any
+
+      if (aUser.challengeName === 'NEW_PASSWORD_REQUIRED') {
         await Auth.completeNewPassword(user, await newPasswordCb())
       }
 
       this.user = user.getUsername()
+
+      const { name } = aUser.attributes as { name: string }
+      this.name = name
 
       await this.checkIfAdmin()
     },
