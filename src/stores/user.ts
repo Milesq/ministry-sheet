@@ -4,6 +4,7 @@ import { defineStore } from 'pinia'
 
 interface UserState {
   user: string | null
+  name: string | null
   isAdmin: boolean
 }
 
@@ -16,6 +17,7 @@ function transformUserName(name: string): string {
 const useUser = defineStore('user', {
   state: (): UserState => ({
     user: null,
+    name: null,
     isAdmin: false,
   }),
   getters: {
@@ -26,6 +28,9 @@ const useUser = defineStore('user', {
       await Auth.signUp({
         username: transformUserName(username),
         password: DEFAULT_PASS,
+        attributes: {
+          name: username,
+        },
       })
     },
     async login(
