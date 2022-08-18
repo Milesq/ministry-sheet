@@ -37,8 +37,8 @@ const useAppointments = defineStore('appointments', {
       const monday = dayjs().weekday(0).subtract(1, 'day').toISOString()
       const sunday = dayjs().weekday(6).add(1, 'day').toISOString()
 
-      DataStore.query(Place).then(places => {
-        this.places = places
+      DataStore.observeQuery(Place).subscribe(({ items }) => {
+        this.places = items
       })
 
       await this.loadEvents(monday, sunday)
