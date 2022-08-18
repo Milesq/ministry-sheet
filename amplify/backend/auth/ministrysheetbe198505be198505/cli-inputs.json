@@ -24,13 +24,13 @@
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
-      "email"
+      "name"
     ],
     "userpoolClientReadAttributes": [
-      "email"
+      "name"
     ],
     "userpoolClientLambdaRole": "ministbe198505_userpoolclient_lambda_role",
-    "userpoolClientSetAttributes": false,
+    "userpoolClientSetAttributes": true,
     "sharedId": "be198505",
     "resourceName": "ministrysheetbe198505be198505",
     "authSelections": "identityPoolAndUserPool",
