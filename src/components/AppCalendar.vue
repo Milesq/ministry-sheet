@@ -157,8 +157,9 @@ function makeDate(day: number, hour: number) {
   font-size: 80%;
   position: relative;
   bottom: -1ex;
-  color: #70757a;
   padding-right: 2px;
+
+  @apply text-[#70757a] dark:text-light-600;
 }
 
 .col {
