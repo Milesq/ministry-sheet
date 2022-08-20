@@ -8,6 +8,7 @@ const emit = defineEmits(['prev', 'next', 'update:modelValue'])
 const props = withDefaults(
   defineProps<{
     modelValue: Dayjs
+    daysInWeek: number
     now?: Dayjs
     blockGoingToPast?: boolean
   }>(),
@@ -35,7 +36,7 @@ function change(dir: ChangeDirection) {
 
   emit(dir === ChangeDirection.Prev ? 'prev' : 'next')
 
-  emit('update:modelValue', props.modelValue.add(dir, 'week'))
+  emit('update:modelValue', props.modelValue.add(dir * props.daysInWeek, 'day'))
 }
 
 function format(day: Dayjs): string {

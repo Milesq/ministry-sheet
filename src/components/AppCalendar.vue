@@ -40,14 +40,14 @@ const hoursRangeLength = computed(() => hoursRange.value.length)
 const currentWeek = ref(dayjs())
 const isCurrentWeekDisplayed = ref(true)
 
+const daysInWeek = ref(7)
+
 const currentWeekEvents = computed(() => {
   const week = currentWeek.value
   const events = props.events
 
   return events.filter(event => event.datetime.isSame(week, 'week'))
 })
-
-const daysInWeek = ref(1)
 
 const eventMatrix = computed(() => {
   const {
@@ -74,6 +74,7 @@ function makeDate(day: number, hour: number) {
     <AppCalendarDateController
       v-model="currentWeek"
       :block-going-to-past="true"
+      :days-in-week="daysInWeek"
     />
     <AppCalendarDays
       :current-week="currentWeek"
