@@ -142,6 +142,7 @@ function makeDate(day: number, hour: number) {
 
 .container {
   font-family: 'Google Sans', 'Segoe UI', Arial, sans-serif;
+  --days-in-week: v-bind(daysInWeek);
 
   width: 100%;
   display: grid;
