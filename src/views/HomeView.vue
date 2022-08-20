@@ -1,9 +1,11 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import type { Appointment, PendingAppointment, Place } from '@/models'
 import useAppointments from '@/stores/appointments'
+import useUser from '@/stores/user'
 
 const appointments = useAppointments()
+const { name: username } = useUser()
 
 const activePlace = ref('my-calendar')
 
@@ -18,6 +20,12 @@ function getAppointments({ id }: Place): Appointment[] {
 function getPendings({ id }: Place): PendingAppointment[] {
   return appointments.myPendings?.filter(({ place }) => place.id === id)
 }
+
+const myAppointments = computed(() => {
+  return appointments.appointments.filter(({ users }) => {
+    return users?.includes(username)
+  })
+})
 </script>
 
 <template>
@@ -26,7 +34,7 @@ function getPendings({ id }: Place): PendingAppointment[] {
       <el-tab-pane :label="$t('myCalendar')" name="my-calendar">
         <ShowAppointments
           v-if="activePlace === 'my-calendar'"
-          :appointments="appointments.appointments"
+          :appointments="myAppointments"
           :pending-appointments="appointments.myPendings"
         />
       </el-tab-pane>
