@@ -20,7 +20,7 @@
     "err": "Błąd",
     "missingPlace": "Najpierw wybierz miejsce w którym chcesz stanąć",
     "dateInThePast": "Nie możesz stanąć w przeszłości",
-    "alreadyFilled": "Nie udało się zapisać, już stoisz w tym miejscu",
+    "alreadyFilled": "Nie udało się zapisać, już stoisz o tej godzinie",
     "incorrectLogin": "Błędna nazwa użytkownika lub hasło",
     "forceChangePassword": "Musisz zmienić hasło",
     "stillNotAccepted": "Nadal nie masz dostępu do grafiku. Poczekaj lub skontaktuj się z administratorem",
