@@ -38,6 +38,7 @@ const useUser = defineStore('user', {
       pass: string = DEFAULT_PASS,
       newPasswordCb: () => Promise<string> = unimplemented
     ) {
+      DataStore.clear()
       const user = (await Auth.signIn(
         transformUserName(username),
         pass
