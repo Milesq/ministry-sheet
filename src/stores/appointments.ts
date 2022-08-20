@@ -4,7 +4,7 @@ import { DataStore } from '@aws-amplify/datastore'
 import { PendingAppointment, Appointment, Place } from '@/models'
 import Errors from '@/errors'
 
-import useUser from './user'
+import useUser, { transformUserName } from './user'
 
 interface AppointmentsState {
   appointments: Appointment[]
@@ -66,7 +66,9 @@ const useAppointments = defineStore('appointments', {
       }
 
       const termAlreadyOccupiedByThisUser = this.appointments.some(app => {
-        const isTheSameUser = app.users?.includes(userStore.user)
+        const isTheSameUser = app.users?.some(
+          user => transformUserName(user || '') === userStore.user
+        )
         if (!isTheSameUser) {
           return false
         }
@@ -75,7 +77,8 @@ const useAppointments = defineStore('appointments', {
       })
 
       const termAlreadyReserved = this.pendingAppointments.some(app => {
-        const isTheSameUser = app.owner === userStore.user
+        const isTheSameUser =
+          transformUserName(app.owner || '') === userStore.user
         if (!isTheSameUser) {
           return false
         }
@@ -91,7 +94,7 @@ const useAppointments = defineStore('appointments', {
         new PendingAppointment({
           place,
           datetime: date.toISOString(),
-          owner: userStore.user,
+          owner: userStore.name,
         })
       )
     },

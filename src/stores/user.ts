@@ -1,5 +1,6 @@
 import { unimplemented } from '@/common'
 import { Auth, type CognitoUser } from '@aws-amplify/auth'
+import { DataStore } from '@aws-amplify/datastore'
 import { defineStore } from 'pinia'
 
 interface UserState {
@@ -10,7 +11,7 @@ interface UserState {
 
 const DEFAULT_PASS = 'zaq1@WSX'
 
-function transformUserName(name: string): string {
+export function transformUserName(name: string): string {
   return name.toLowerCase().replaceAll(/\s/g, '')
 }
 
