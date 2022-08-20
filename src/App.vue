@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { DataStore } from '@aws-amplify/datastore'
 import Home from '~icons/mdi/Home'
 import LogoutVariant from '~icons/mdi/LogoutVariant'
 import Brightness from '~icons/mdi/brightness'
+import Refresh from '~icons/mdi/refresh'
 import WeatherNight from '~icons/mdi/WeatherNight'
 import useUser from '@/stores/user'
 
@@ -11,6 +13,11 @@ import theme from './composables/theme'
 
 const router = useRouter()
 const user = useUser()
+
+function refresh() {
+  DataStore.clear()
+  location.reload()
+}
 
 function logout() {
   user.logout()
@@ -47,6 +54,12 @@ function logout() {
           @click="theme.toggle()"
           :tooltip="$t('changeTheme')"
           :icon="theme.isDark ? WeatherNight : Brightness"
+        />
+        <MenuItem
+          @click="refresh"
+          v-if="user.isLoggedIn"
+          :tooltip="$t('refresh')"
+          :icon="Refresh"
         />
         <MenuItem
           @click="logout"
