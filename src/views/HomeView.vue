@@ -29,7 +29,7 @@ const myAppointments = computed(() => {
 </script>
 
 <template>
-  <section class="px-10">
+  <section class="sm:px-10">
     <el-tabs v-if="appointments.places?.length" v-model="activePlace">
       <el-tab-pane :label="$t('myCalendar')" name="my-calendar">
         <ShowAppointments

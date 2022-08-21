@@ -54,7 +54,7 @@ function format(day: Dayjs): string {
 
 <template>
   <div
-    class="flex justify-center items-center text-[22px] text-[rgba(0,0,0,.54)] dark:text-light-600 font-normal"
+    class="flex justify-center items-center text-[20px] sm:text-[22px] text-[rgba(0,0,0,.54)] dark:text-light-600 font-normal"
   >
     <ChevronLeft
       @click="change(ChangeDirection.Prev)"
