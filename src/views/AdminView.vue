@@ -90,7 +90,7 @@ async function onEventClick(place: Place, date: Dayjs) {
 </script>
 
 <template>
-  <section class="px-10">
+  <section class="sm:px-10">
     <el-tabs v-if="appointments.places?.length" v-model="activePlace">
       <el-tab-pane
         v-for="place in appointments.places"
