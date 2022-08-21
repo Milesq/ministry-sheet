@@ -45,13 +45,13 @@ enum CalendarDisplay {
   Week = 7,
 }
 
-const daysInWeek = ref(CalendarDisplay.Day)
+const displayMode = ref(CalendarDisplay.Day)
 
 const currentPeriodEvents = computed(() => {
   return props.events.filter(event =>
     event.datetime.isSame(
       currentPeriod.value,
-      daysInWeek.value === CalendarDisplay.Day ? 'day' : 'week'
+      displayMode.value === CalendarDisplay.Day ? 'day' : 'week'
     )
   )
 })
@@ -61,7 +61,7 @@ const eventMatrix = computed(() => {
     hours: [start, stop],
   } = props
 
-  return range(0, daysInWeek.value - 1)
+  return range(0, displayMode.value - 1)
     .map(x => range(0, stop - start - 1).map((_, y) => [x, y]))
     .flat()
 })
@@ -79,14 +79,14 @@ function makeDate(day: number, hour: number) {
 <template>
   <div class="container">
     <AppCalendarDateController
+      :days-in-week="displayMode"
       v-model="currentPeriod"
       :block-going-to-past="true"
-      :days-in-week="daysInWeek"
     />
     <AppCalendarDays
       :current-week="currentPeriod"
       @update-is-the-same-week="isCurrentPeriodDisplayed = $event"
-      :days-in-week="daysInWeek"
+      :days-in-week="displayMode"
     />
 
     <div class="content">
@@ -104,7 +104,7 @@ function makeDate(day: number, hour: number) {
       <div class="filler-col"></div>
 
       <div
-        v-for="n in range(1, daysInWeek)"
+        v-for="n in range(1, displayMode)"
         :key="n"
         class="col"
         :style="{ gridColumn: n + 2 }"
@@ -129,7 +129,9 @@ function makeDate(day: number, hour: number) {
       <AppCalendarEvent
         v-for="event in currentPeriodEvents"
         :key="event.id"
-        :day="event.datetime.weekday() + 1"
+        :day="
+          displayMode === CalendarDisplay.Day ? 1 : event.datetime.weekday() + 1
+        "
         :start-hour="event.datetime.hour() - hours[0] + 2"
         :content="event.content"
         :title="event.title"
@@ -140,6 +142,7 @@ function makeDate(day: number, hour: number) {
         v-if="isCurrentPeriodDisplayed"
         :start-hour="hours[0]"
         :end-hour="hours[1]"
+        :calculate-day="displayMode === CalendarDisplay.Week"
       />
     </div>
   </div>
@@ -150,7 +153,7 @@ function makeDate(day: number, hour: number) {
 
 .container {
   font-family: 'Google Sans', 'Segoe UI', Arial, sans-serif;
-  --days-in-week: v-bind(daysInWeek);
+  --days-in-week: v-bind(displayMode);
 
   width: 100%;
   display: grid;
