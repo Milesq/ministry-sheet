@@ -63,10 +63,13 @@ function format(day: Dayjs): string {
       text="25px"
     />
 
-    <span px="4">
+    <span v-if="daysInWeek > 1" px="4">
       {{ format(weekBeg) }}
       -
       {{ format(weekBeg.add(6, 'days')) }}
+    </span>
+    <span>
+      {{ format(modelValue) }}
     </span>
 
     <ChevronRight
