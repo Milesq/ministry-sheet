@@ -37,16 +37,23 @@ const hoursRange = computed(() => {
 })
 
 const hoursRangeLength = computed(() => hoursRange.value.length)
-const currentWeek = ref(dayjs())
-const isCurrentWeekDisplayed = ref(true)
+const currentPeriod = ref(dayjs())
+const isCurrentPeriodDisplayed = ref(true)
 
-const daysInWeek = ref(7)
+enum CalendarDisplay {
+  Day = 1,
+  Week = 7,
+}
 
-const currentWeekEvents = computed(() => {
-  const week = currentWeek.value
-  const events = props.events
+const daysInWeek = ref(CalendarDisplay.Day)
 
-  return events.filter(event => event.datetime.isSame(week, 'week'))
+const currentPeriodEvents = computed(() => {
+  return props.events.filter(event =>
+    event.datetime.isSame(
+      currentPeriod.value,
+      daysInWeek.value === CalendarDisplay.Day ? 'day' : 'week'
+    )
+  )
 })
 
 const eventMatrix = computed(() => {
@@ -60,7 +67,7 @@ const eventMatrix = computed(() => {
 })
 
 function makeDate(day: number, hour: number) {
-  return currentWeek.value
+  return currentPeriod.value
     .weekday(day)
     .hour(hour + props.hours[0])
     .minute(0)
@@ -72,13 +79,13 @@ function makeDate(day: number, hour: number) {
 <template>
   <div class="container">
     <AppCalendarDateController
-      v-model="currentWeek"
+      v-model="currentPeriod"
       :block-going-to-past="true"
       :days-in-week="daysInWeek"
     />
     <AppCalendarDays
-      :current-week="currentWeek"
-      @update-is-the-same-week="isCurrentWeekDisplayed = $event"
+      :current-week="currentPeriod"
+      @update-is-the-same-week="isCurrentPeriodDisplayed = $event"
       :days-in-week="daysInWeek"
     />
 
@@ -120,7 +127,7 @@ function makeDate(day: number, hour: number) {
       ></div>
 
       <AppCalendarEvent
-        v-for="event in currentWeekEvents"
+        v-for="event in currentPeriodEvents"
         :key="event.id"
         :day="event.datetime.weekday() + 1"
         :start-hour="event.datetime.hour() - hours[0] + 2"
@@ -130,7 +137,7 @@ function makeDate(day: number, hour: number) {
       />
 
       <AppCalendarCurrentTime
-        v-if="isCurrentWeekDisplayed"
+        v-if="isCurrentPeriodDisplayed"
         :start-hour="hours[0]"
         :end-hour="hours[1]"
       />
