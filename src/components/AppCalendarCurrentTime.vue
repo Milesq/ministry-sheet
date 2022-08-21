@@ -8,15 +8,17 @@ const props = withDefaults(
     startHour: number
     endHour: number
     reactive?: boolean
+    calculateDay?: boolean
   }>(),
   {
     now: () => dayjs(),
     reactive: true,
+    calculateDay: true,
   }
 )
 
 const currTime = ref<Dayjs>(props.now)
-const day = computed(() => currTime.value.weekday())
+const day = computed(() => (props.calculateDay ? currTime.value.weekday() : 0))
 const hourCol = computed(() => currTime.value.hour() - props.startHour + 2)
 const hourPercent = computed(() => currTime.value.minute() / 60)
 
