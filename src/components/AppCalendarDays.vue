@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import dayjs, { type Dayjs } from 'dayjs'
 import { computed, watch } from 'vue'
+import dayjs, { type Dayjs } from 'dayjs'
 
 const emit = defineEmits<{
   (e: 'updateIsTheSameWeek', value: boolean): void
@@ -34,7 +34,7 @@ function isToday(dayInWeek: number): boolean {
 </script>
 
 <template>
-  <div class="days">
+  <div class="days" :class="{ 'day-mode': daysInWeek === 1 }">
     <!-- fillers for hours & space -->
     <div></div>
     <div></div>
@@ -66,17 +66,20 @@ function isToday(dayInWeek: number): boolean {
   display: grid;
   place-content: center;
   text-align: center;
-  grid-template-columns: $calendar-template;
+
+  &:not(.day-mode) {
+    grid-template-columns: $calendar-template;
+    & > .day {
+      border-left: 1px solid $grid-color;
+    }
+  }
+
   position: sticky;
   top: $title-height;
   border-bottom: 1px solid $grid-color;
 
   transform: translateX(-1px);
   // other borders are right-only so this is needed to make them in exactly the same line
-}
-
-.day {
-  border-left: 1px solid $grid-color;
 }
 
 .date-box {
