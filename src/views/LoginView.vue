@@ -60,7 +60,7 @@ onBeforeMount(() => {
     <el-col :sm="16" :md="8">
       <el-card>
         <template #header>
-          <span font="medium" text="xl" v-t="'fulfillForm'"></span>
+          <span font="medium" text="xl" v-t="'fulfillForm[1]'"></span>
         </template>
         <el-form flex="~ col" @submit.prevent="login">
           <el-form-item>

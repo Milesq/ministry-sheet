@@ -24,39 +24,58 @@ const events = computed(() =>
   })
 )
 
-async function missingPlaceSwal() {
-  const dontShowAgainKey = 'dont-show-missing-place-again'
-  const shouldNotShowMissingPlace = localStorage.getItem(dontShowAgainKey)
-  if (shouldNotShowMissingPlace) return
+async function missingPlaceSwal(): Promise<Place> {
+  const inputOptions = Object.fromEntries(
+    appointments.places.map(({ id, name }) => [id, name])
+  )
 
-  const { value } = await Swal.fire({
+  const { isConfirmed, value: selectedPlace } = await Swal.fire({
     title: t('error.err'),
-    text: t('error.missingPlace'),
-    icon: 'error',
-    input: 'checkbox',
-    inputPlaceholder: t('dontShowAgain'),
+    text: t('choosePlace'),
+    input: 'select',
+    inputOptions,
+    inputPlaceholder: '-',
+    showCancelButton: true,
+    reverseButtons: true,
+    confirmButtonText: t('confirm[2]'),
+    cancelButtonText: t('cancel'),
+    preConfirm(val) {
+      if (!val) {
+        Swal.showValidationMessage(t('fulfillForm[0]'))
+      }
+    },
   })
 
-  if (value) {
-    localStorage.setItem(dontShowAgainKey, 'true')
+  if (!isConfirmed || !selectedPlace) {
+    throw new Error(Errors.Cancelled)
   }
+
+  return appointments.places.find(({ id }) => id === selectedPlace)!
 }
 
 async function addEvent(date: Dayjs) {
-  if (!props.place) {
-    await missingPlaceSwal()
-
-    return
-  }
+  let { place } = props
 
   if (date.isBefore(dayjs())) {
     Swal.fire(t('error.dateInThePast'), '', 'error')
     return
   }
 
+  if (!place) {
+    try {
+      place = await missingPlaceSwal()
+    } catch {
+      return
+    }
+  }
+
   const day = date.format('D MMMM')
   const hour = date.format('H:mm')
-  const formattedDate = t('confirmDate.dateFormat', { day, hour })
+  const formattedDate = t('confirmDate.dateFormat', {
+    day,
+    hour,
+    place: place.name,
+  })
 
   const { isConfirmed } = await Swal.fire({
     title: t('confirmDate.question'),
@@ -73,7 +92,7 @@ async function addEvent(date: Dayjs) {
   }
 
   try {
-    await appointments.addPending(date, props.place)
+    await appointments.addPending(date, place)
     Swal.fire(t('success'), t('waitForApprove'), 'success')
   } catch (err: unknown) {
     if (!(err instanceof Error) || err.message !== Errors.TermAlreadyOccupied) {

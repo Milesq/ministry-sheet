@@ -10,15 +10,14 @@
   "confirm": ["Potwierdź", "Tak, potwierdź", "Zatwierdź"],
   "cancel": "Anuluj",
   "deny": "Odrzuć",
-  "fulfillForm": "Podaj imię i Nazwisko",
-  "dontShowAgain": "Nie pokazuj ponownie",
+  "fulfillForm": ["Uzupełnij dane", "Podaj imię i Nazwisko"],
   "success": "Sukces",
   "waitForApprove": "Poczekaj na zatwierdzenie",
   "waitForUserAccept": "Nie korzystałeś jeszcze z tablicy lub masz literówkę w nazwie użytkownika.\nTwoja prośba o dostęp została wysłana",
   "selectUser": "Wybierz użytkownika",
+  "choosePlace": "Najpierw wybierz miejsce w którym chcesz stanąć",
   "error": {
     "err": "Błąd",
-    "missingPlace": "Najpierw wybierz miejsce w którym chcesz stanąć",
     "dateInThePast": "Nie możesz stanąć w przeszłości",
     "alreadyFilled": "Nie udało się zapisać, już stoisz o tej godzinie",
     "incorrectLogin": "Błędna nazwa użytkownika lub hasło",
@@ -31,6 +30,6 @@
   },
   "confirmDate": {
     "question": "Czy chcesz się zapisać?",
-    "dateFormat": "{day} o godzinie {hour}"
+    "dateFormat": "{day} o godzinie {hour} przy {place}"
   }
 }

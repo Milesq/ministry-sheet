@@ -10,15 +10,14 @@
   "confirm": ["OK", "Confirm", "Approve"],
   "cancel": "Cancel",
   "deny": "Deny",
-  "fulfillForm": "Type name and surname",
-  "dontShowAgain": "Don't show again",
+  "fulfillForm": ["Fill Form", "Type name and surname"],
   "success": "Success",
   "waitForApprove": "Wait for approve",
   "waitForUserAccept": "You didn't use the table yet or you have a letter in your username.\nYour request for access has been sent",
   "selectUser": "Select user",
+  "choosePlace": "Firstfully select the place",
   "error": {
     "err": "Error",
-    "missingPlace": "Firstfully select the place",
     "dateInThePast": "Selected date is in the past",
     "alreadyFilled": "You already stay in this place at this time",
     "incorrectLogin": "Incorrect login or password",
@@ -31,6 +30,6 @@
   },
   "confirmDate": {
     "question": "Are you sure you want stay here?",
-    "dateFormat": "{day} at {hour}"
+    "dateFormat": "{day} at {hour} at {place}"
   }
 }
