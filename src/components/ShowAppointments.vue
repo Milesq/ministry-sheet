@@ -5,6 +5,7 @@ import { useI18n } from 'vue-i18n'
 import type { Place, Appointment, PendingAppointment } from '@/models'
 import { Swal, makeCalEvents } from '@/common'
 import useAppointments from '@/stores/appointments'
+import useUser from '@/stores/user'
 import Errors from '@/errors'
 
 const props = defineProps<{
@@ -16,6 +17,7 @@ const props = defineProps<{
 const { t } = useI18n()
 
 const appointments = useAppointments()
+const user = useUser()
 const events = computed(() =>
   makeCalEvents({
     appointments: props.appointments,
@@ -53,6 +55,10 @@ async function missingPlaceSwal(): Promise<Place> {
   return appointments.places.find(({ id }) => id === selectedPlace)!
 }
 
+async function addBlockedEvent(date: Dayjs, place: Place) {
+  await appointments.addConfirmed(date, place)
+}
+
 async function addEvent(date: Dayjs) {
   let { place } = props
 
@@ -67,6 +73,10 @@ async function addEvent(date: Dayjs) {
     } catch {
       return
     }
+  }
+
+  if (user.user === 'blocked') {
+    return addBlockedEvent(date, place)
   }
 
   const day = date.format('D MMMM')

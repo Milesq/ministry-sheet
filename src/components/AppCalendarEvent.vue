@@ -22,6 +22,10 @@ const bg = computed(() => {
     return 'bg-gray-400'
   }
 
+  if (content.includes('Zablokowane')) {
+    return 'bg-red-500'
+  }
+
   if (content.length === 1) {
     return 'bg-yellow-400'
   }
