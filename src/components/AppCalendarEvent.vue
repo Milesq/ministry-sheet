@@ -1,5 +1,7 @@
 <script setup lang="ts">
-withDefaults(
+import { computed } from 'vue'
+
+const props = withDefaults(
   defineProps<{
     day: number
     startHour: number
@@ -12,10 +14,24 @@ withDefaults(
     length: 1,
   }
 )
+
+const bg = computed(() => {
+  const { pending, content } = props
+
+  if (pending) {
+    return 'bg-gray-400'
+  }
+
+  if (content.length === 1) {
+    return 'bg-yellow-400'
+  }
+
+  return 'bg-primary'
+})
 </script>
 
 <template>
-  <div class="event" :class="pending !== true ? 'bg-primary' : 'bg-gray-400'">
+  <div class="event" :class="bg">
     <span v-if="title" class="additional-info">
       {{ title }}
     </span>
