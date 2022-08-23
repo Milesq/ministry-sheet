@@ -71,7 +71,10 @@ function makeDate(day: number, hour: number) {
 
 <template>
   <div class="container">
-    <AppCalendarDateController v-model="currentWeek" />
+    <AppCalendarDateController
+      v-model="currentWeek"
+      :block-going-to-past="true"
+    />
     <AppCalendarDays
       :current-week="currentWeek"
       @update-is-the-same-week="isCurrentWeekDisplayed = $event"

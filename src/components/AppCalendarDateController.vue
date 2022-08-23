@@ -1,13 +1,21 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { Dayjs } from 'dayjs'
+import dayjs, { type Dayjs } from 'dayjs'
 import ChevronLeft from '~icons/mdi/ChevronLeft'
 import ChevronRight from '~icons/mdi/ChevronRight'
 
 const emit = defineEmits(['prev', 'next', 'update:modelValue'])
-const props = defineProps<{
-  modelValue: Dayjs
-}>()
+const props = withDefaults(
+  defineProps<{
+    modelValue: Dayjs
+    now?: Dayjs
+    blockGoingToPast?: boolean
+  }>(),
+  {
+    now: () => dayjs(),
+    blockGoingToPast: false,
+  }
+)
 
 const weekBeg = computed(() => props.modelValue.weekday(0))
 
@@ -16,7 +24,15 @@ enum ChangeDirection {
   Next = 1,
 }
 
+const isCurrentWeek = computed(
+  () => props.blockGoingToPast && props.modelValue.isSame(props.now, 'week')
+)
+
 function change(dir: ChangeDirection) {
+  if (dir === ChangeDirection.Prev && isCurrentWeek.value) {
+    return
+  }
+
   emit(dir === ChangeDirection.Prev ? 'prev' : 'next')
 
   emit('update:modelValue', props.modelValue.add(dir, 'week'))
@@ -42,6 +58,7 @@ function format(day: Dayjs): string {
     <ChevronLeft
       @click="change(ChangeDirection.Prev)"
       class="arrow"
+      :class="{ disabled: isCurrentWeek }"
       text="25px"
     />
 
@@ -60,7 +77,7 @@ function format(day: Dayjs): string {
 </template>
 
 <style scoped lang="scss">
-.arrow {
+.arrow:not(.disabled) {
   @apply cursor-pointer transition hover:text-primary;
 }
 </style>
