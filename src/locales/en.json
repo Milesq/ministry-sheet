@@ -26,7 +26,8 @@
     "selectUser": {
       "title": "Nothing changed",
       "text": "Choose user to approve/deny"
-    }
+    },
+    "missingContent": "Missing Content"
   },
   "confirmDate": {
     "question": "Are you sure you want stay here?",

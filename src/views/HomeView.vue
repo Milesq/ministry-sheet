@@ -53,5 +53,6 @@ const myAppointments = computed(() => {
         />
       </el-tab-pane>
     </el-tabs>
+    <h1 v-else v-t="'error.missingContent'"></h1>
   </section>
 </template>

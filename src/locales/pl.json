@@ -26,7 +26,8 @@
     "selectUser": {
       "title": "Nie podjęto akcji",
       "text": "Wybierz użytkownika na którym chcesz wykonać akcję"
-    }
+    },
+    "missingContent": "Brak treści"
   },
   "confirmDate": {
     "question": "Czy chcesz się zapisać?",
