@@ -7,11 +7,13 @@ import Brightness from '~icons/mdi/brightness'
 import Refresh from '~icons/mdi/refresh'
 import WeatherNight from '~icons/mdi/WeatherNight'
 import useUser from '@/stores/user'
+import useAppointments from '@/stores/appointments'
 
 import MenuItem from './components/MenuItem.vue'
 import theme from './composables/theme'
 
 const router = useRouter()
+const appointments = useAppointments()
 const user = useUser()
 
 function refresh() {
@@ -21,8 +23,8 @@ function refresh() {
 
 function logout() {
   user.logout()
-  router.push({
-    name: 'login',
+  DataStore.clear().then(() => {
+    location.reload()
   })
 }
 </script>

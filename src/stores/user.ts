@@ -1,6 +1,5 @@
 import { unimplemented } from '@/common'
 import { Auth, type CognitoUser } from '@aws-amplify/auth'
-import { DataStore } from '@aws-amplify/datastore'
 import { defineStore } from 'pinia'
 
 interface UserState {
@@ -39,7 +38,6 @@ const useUser = defineStore('user', {
       pass: string = DEFAULT_PASS,
       newPasswordCb: () => Promise<string> = unimplemented
     ) {
-      DataStore.clear()
       const user = (await Auth.signIn(
         transformUserName(username),
         pass
