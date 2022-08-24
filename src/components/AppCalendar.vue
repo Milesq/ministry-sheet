@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import dayjs from 'dayjs'
+import type { Dayjs } from 'dayjs'
 import { range } from '@/utils'
 import type { CalendarEvent } from '@/common'
+import currentPeriod from '@/composables/currentPeriod'
 
 import AppCalendarDays from './AppCalendarDays.vue'
 import AppCalendarDateController from './AppCalendarDateController.vue'
@@ -10,8 +11,8 @@ import AppCalendarEvent from './AppCalendarEvent.vue'
 import AppCalendarCurrentTime from './AppCalendarCurrentTime.vue'
 
 defineEmits<{
-  onDateChange(date: dayjs.Dayjs): void
-  onEventClick(date: dayjs.Dayjs): void
+  onDateChange(date: Dayjs): void
+  onEventClick(date: Dayjs): void
 }>()
 
 const props = defineProps({
@@ -37,7 +38,6 @@ const hoursRange = computed(() => {
 })
 
 const hoursRangeLength = computed(() => hoursRange.value.length)
-const currentPeriod = ref(dayjs())
 const isCurrentPeriodDisplayed = ref(true)
 
 enum CalendarDisplay {
