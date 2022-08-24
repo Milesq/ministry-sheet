@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import type { Dayjs } from 'dayjs'
+import { useMediaQuery } from '@vueuse/core'
 import { range } from '@/utils'
 import type { CalendarEvent } from '@/common'
 import currentPeriod from '@/composables/currentPeriod'
@@ -45,7 +46,11 @@ enum CalendarDisplay {
   Week = 7,
 }
 
-const displayMode = ref(CalendarDisplay.Week)
+const isLargeScreen = useMediaQuery('(min-width: 1280px)')
+
+const displayMode = computed(() =>
+  isLargeScreen.value ? CalendarDisplay.Week : CalendarDisplay.Day
+)
 
 const currentPeriodEvents = computed(() => {
   return props.events.filter(event =>
