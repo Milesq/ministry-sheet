@@ -20,9 +20,13 @@ const props = withDefaults(
 const monday = computed(() => props.currentWeek.weekday(0))
 
 // cannot use isSame(..., 'week') because they starts week at the sunday
-const isTheSameWeek = computed(() =>
-  monday.value.isSame(props.today.weekday(0), 'day')
-)
+const isTheSameWeek = computed(() => {
+  if (props.daysInWeek === 1) {
+    return props.currentWeek.isSame(props.today, 'day')
+  } else {
+    return monday.value.isSame(props.today.weekday(0), 'day')
+  }
+})
 
 watch([isTheSameWeek], () => {
   emit('updateIsTheSameWeek', isTheSameWeek.value)
@@ -47,12 +51,20 @@ function isToday(dayInWeek: number): boolean {
       class="day"
     >
       <div :class="isToday(n) && 'text-primary'" class="text-xs uppercase">
-        {{ monday.add(n, 'day').format('ddd') }}
+        <span v-if="daysInWeek === 1">
+          {{ currentWeek.format('ddd') }}
+        </span>
+
+        <span v-else>
+          {{ monday.add(n, 'day').format('ddd') }}
+        </span>
       </div>
 
       <div class="pt-2 flex justify-center">
         <span :class="{ 'date-box--active': isToday(n) }" class="date-box">
-          {{ monday.add(n, 'day').date() }}
+          <span v-if="daysInWeek !== 1">
+            {{ monday.add(n, 'day').date() }}
+          </span>
         </span>
       </div>
     </span>

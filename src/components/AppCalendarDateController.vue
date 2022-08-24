@@ -26,7 +26,7 @@ enum ChangeDirection {
 }
 
 const isCurrentWeek = computed(
-  () => props.blockGoingToPast && props.modelValue.isSame(props.now, 'week')
+  () => props.blockGoingToPast && props.modelValue.isSame(props.now, 'day')
 )
 
 function change(dir: ChangeDirection) {
@@ -68,7 +68,7 @@ function format(day: Dayjs): string {
       -
       {{ format(weekBeg.add(6, 'days')) }}
     </span>
-    <span>
+    <span v-else>
       {{ format(modelValue) }}
     </span>
 
