@@ -45,7 +45,7 @@ enum CalendarDisplay {
   Week = 7,
 }
 
-const displayMode = ref(CalendarDisplay.Day)
+const displayMode = ref(CalendarDisplay.Week)
 
 const currentPeriodEvents = computed(() => {
   return props.events.filter(event =>
