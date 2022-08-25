@@ -48,5 +48,30 @@
         }
       }
     }
+  },
+  "ukr": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ministrysheet-ukr-161855-authRole",
+      "UnauthRoleArn": "arn:aws:iam::730527792625:role/amplify-ministrysheet-ukr-161855-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::730527792625:role/amplify-ministrysheet-ukr-161855-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-ministrysheet-ukr-161855-deployment",
+      "UnauthRoleName": "amplify-ministrysheet-ukr-161855-unauthRole",
+      "StackName": "amplify-ministrysheet-ukr-161855",
+      "StackId": "arn:aws:cloudformation:eu-central-1:730527792625:stack/amplify-ministrysheet-ukr-161855/dabf3010-2480-11ed-9e8f-02e49968273c",
+      "AmplifyAppId": "dk9fitrad2n5v"
+    },
+    "categories": {
+      "auth": {
+        "userPoolGroups": {},
+        "ministrysheetbe198505be198505": {}
+      },
+      "function": {
+        "AdminQueriesbee25ea4": {
+          "deploymentBucketName": "amplify-ministrysheet-ukr-161855-deployment",
+          "s3Key": "amplify-builds/AdminQueriesbee25ea4-4576654d384c45304853-build.zip"
+        }
+      }
+    }
   }
 }
