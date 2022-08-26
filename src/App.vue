@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
 import { DataStore } from '@aws-amplify/datastore'
 import Home from '~icons/mdi/Home'
 import LogoutVariant from '~icons/mdi/LogoutVariant'
@@ -7,13 +6,10 @@ import Brightness from '~icons/mdi/brightness'
 import Refresh from '~icons/mdi/refresh'
 import WeatherNight from '~icons/mdi/WeatherNight'
 import useUser from '@/stores/user'
-import useAppointments from '@/stores/appointments'
 
 import MenuItem from './components/MenuItem.vue'
 import theme from './composables/theme'
 
-const router = useRouter()
-const appointments = useAppointments()
 const user = useUser()
 
 function refresh() {
