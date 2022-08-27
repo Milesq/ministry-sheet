@@ -22,8 +22,23 @@ async function deletePlace(id: string) {
 
   if (place) await DataStore.delete(place)
 }
+
+async function updatePlace(id: string, newPlaceName: string) {
+  const original = await DataStore.query(Place, id)
+
+  await DataStore.save(
+    Place.copyOf(original!, updated => {
+      updated.name = newPlaceName
+    })
+  )
+}
 </script>
 
 <template>
-  <EditableList :items="places" @add="addPlace" @delete="deletePlace" />
+  <EditableList
+    :items="places"
+    @add="addPlace"
+    @update="updatePlace"
+    @delete="deletePlace"
+  />
 </template>
