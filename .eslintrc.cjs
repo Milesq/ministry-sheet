@@ -29,5 +29,13 @@ module.exports = {
           ],
       },
     ],
-  }
+  },
+  "overrides": [
+    {
+      "files": ["src/views/**"],
+      "rules": {
+        "vue/multi-word-component-names": "off"
+      }
+    }
+  ],
 }
