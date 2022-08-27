@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue'
 import useAppointments from '@/stores/appointments'
+import { Routes } from '@/router'
 
 const appointments = useAppointments()
 
@@ -10,5 +11,11 @@ onMounted(() => {
 </script>
 
 <template>
+  <router-link :to="{ name: Routes.AdminAppointments }">
+    Appointments
+  </router-link>
+
+  <router-link :to="{ name: Routes.AdminPlaces }">Places</router-link>
+
   <router-view />
 </template>
