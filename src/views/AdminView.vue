@@ -10,5 +10,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <AdminAppointments />
+  <router-view />
 </template>

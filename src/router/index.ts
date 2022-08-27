@@ -31,6 +31,16 @@ const router = createRouter({
       name: Routes.Admin,
       component: () => import('../views/AdminView.vue'),
       meta: { adminOnly: true },
+      children: [
+        {
+          path: '',
+          component: () => import('../views/admin/Appointments.vue'),
+        },
+        {
+          path: 'places',
+          component: () => import('../views/admin/Places.vue'),
+        },
+      ],
     },
     {
       path: '/login',
