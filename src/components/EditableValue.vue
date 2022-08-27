@@ -1,14 +1,13 @@
 <script lang="ts" setup>
-import { onClickOutside, onKeyDown } from '@vueuse/core'
 import { ref, watch } from 'vue'
+import { onClickOutside } from '@vueuse/core'
+import { vOnKeyStroke } from '@vueuse/components'
 
 const props = defineProps<{
   value: string
 }>()
 
-defineEmits<{
-  update: (newVal: string) => void
-}>()
+const emit = defineEmits(['update'])
 
 const wrapper = ref(null)
 const editMode = ref(false)
@@ -22,13 +21,16 @@ watch(
   }
 )
 
-onKeyDown('Escape', () => {
+function disableEditMode() {
   editMode.value = false
-})
+}
 
-onClickOutside(wrapper, () => {
-  editMode.value = false
-})
+onClickOutside(wrapper, disableEditMode)
+
+function update() {
+  emit('update', newValue.value)
+  disableEditMode()
+}
 </script>
 
 <template>
@@ -36,6 +38,11 @@ onClickOutside(wrapper, () => {
     <div v-if="!editMode" @dblclick="editMode = true">
       {{ value }}
     </div>
-    <el-input v-else v-model="newValue" />
+    <el-input
+      v-else
+      v-model="newValue"
+      v-on-key-stroke:Enter="[update, { eventName: 'keydown' }]"
+      v-on-key-stroke:Escape="[disableEditMode, { eventName: 'keydown' }]"
+    />
   </div>
 </template>
