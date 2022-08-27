@@ -5,12 +5,13 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AdminAppointments: typeof import('./src/components/Admin/AdminAppointments.vue')['default']
     AppCalendar: typeof import('./src/components/AppCalendar.vue')['default']
     AppCalendarCurrentTime: typeof import('./src/components/AppCalendarCurrentTime.vue')['default']
     AppCalendarDateController: typeof import('./src/components/AppCalendarDateController.vue')['default']
     AppCalendarDays: typeof import('./src/components/AppCalendarDays.vue')['default']
     AppCalendarEvent: typeof import('./src/components/AppCalendarEvent.vue')['default']
-    EditableValue: typeof import('./src/components/EditableValue.vue')['default']
+    Appointments: typeof import('./src/components/Admin/Appointments.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
     ElCol: typeof import('element-plus/es')['ElCol']
