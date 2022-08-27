@@ -17,5 +17,5 @@ onMounted(() => {
 
   <router-link :to="{ name: Routes.AdminPlaces }">Places</router-link>
 
-  <router-view />
+  <router-view />ck going to the past for the admins)
 </template>

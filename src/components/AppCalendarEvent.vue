@@ -22,7 +22,7 @@ const bg = computed(() => {
     return 'bg-gray-400'
   }
 
-  if (content.includes('Zablokowane')) {
+  if (content.includes('zablokowany termin')) {
     return 'bg-red-500'
   }
 

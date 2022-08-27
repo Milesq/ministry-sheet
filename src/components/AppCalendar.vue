@@ -30,6 +30,10 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  blockGoingToPast: {
+    type: Boolean,
+    default: true,
+  },
 })
 
 const hoursRange = computed(() => {
@@ -89,7 +93,7 @@ function makeDate(day: number, hour: number) {
     <AppCalendarDateController
       :days-in-week="displayMode"
       v-model="currentPeriod"
-      :block-going-to-past="true"
+      :block-going-to-past="blockGoingToPast"
     />
     <AppCalendarDays
       :current-week="currentPeriod"
