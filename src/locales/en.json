@@ -23,6 +23,7 @@
     "incorrectLogin": "Incorrect login or password",
     "forceChangePassword": "You have to change your password",
     "stillNotAccepted": "You still have not been accepted. Please, wait or contact with the administrator",
+    "placeNameTooShort": "Place name must include at least {0} characters",
     "selectUser": {
       "title": "Nothing changed",
       "text": "Choose user to approve/deny"

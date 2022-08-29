@@ -23,6 +23,7 @@
     "incorrectLogin": "Błędna nazwa użytkownika lub hasło",
     "forceChangePassword": "Musisz zmienić hasło",
     "stillNotAccepted": "Nadal nie masz dostępu do grafiku. Poczekaj lub skontaktuj się z administratorem",
+    "placeNameTooShort": "Nazwa miejsca musi mieć minimalnie {0} znaki",
     "selectUser": {
       "title": "Nie podjęto akcji",
       "text": "Wybierz użytkownika na którym chcesz wykonać akcję"
