@@ -24,13 +24,19 @@ export default defineComponent({
   data: () => ({
     newItem: '',
   }),
+  methods: {
+    add() {
+      this.$emit('add', this.newItem)
+      this.newItem = ''
+    },
+  },
 })
 </script>
 
 <template>
   <div>
     <el-input v-model="newItem" placeholder="Please input" />
-    <el-button type="success" @click="$emit('add', newItem)">Ok</el-button>
+    <el-button type="success" @click="add">Ok</el-button>
 
     <div>
       <el-table :data="items">
