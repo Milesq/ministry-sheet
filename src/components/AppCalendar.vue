@@ -72,12 +72,15 @@ const eventMatrix = computed(() => {
 })
 
 function makeDate(day: number, hour: number) {
-  return currentPeriod.value
-    .weekday(day)
+  const normalizedDate = currentPeriod.value
     .hour(hour + props.hours[0])
     .minute(0)
     .second(0)
     .millisecond(0)
+
+  return displayMode.value === CalendarDisplay.Week
+    ? normalizedDate.weekday(day)
+    : normalizedDate
 }
 </script>
 
