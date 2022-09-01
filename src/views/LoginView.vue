@@ -60,7 +60,9 @@ onBeforeMount(() => {
     <el-col :sm="16" :md="8">
       <el-card>
         <template #header>
-          <span font="medium" text="xl" v-t="'fulfillForm[1]'"></span>
+          <span font="medium" text="xl">
+            {{ t('fulfillForm[1]') }}
+          </span>
         </template>
         <el-form flex="~ col" @submit.prevent="login">
           <el-form-item>
@@ -84,9 +86,10 @@ onBeforeMount(() => {
             @click="login"
             type="success"
             place="self-end"
-            v-t="'confirm[0]'"
             :disabled="!(userName && (!isAdminLogin || pass))"
-          ></el-button>
+          >
+            {{ t('confirm[0]') }}
+          </el-button>
         </el-form>
       </el-card>
     </el-col>
