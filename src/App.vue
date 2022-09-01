@@ -7,12 +7,19 @@ import Brightness from '~icons/mdi/brightness'
 import Refresh from '~icons/mdi/refresh'
 import WeatherNight from '~icons/mdi/WeatherNight'
 import useUser from '@/stores/user'
+import useLocale from '@/stores/locale'
+import { onBeforeMount } from 'vue'
 
 import MenuItem from './components/MenuItem.vue'
 import theme from './composables/theme'
 
 const { t } = useI18n()
+const locale = useLocale()
 const user = useUser()
+
+onBeforeMount(() => {
+  locale.sync()
+})
 
 function refresh() {
   DataStore.clear()
