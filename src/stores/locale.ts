@@ -1,8 +1,6 @@
 import { defineStore } from 'pinia'
 import dayjs from 'dayjs'
-import { useI18n } from 'vue-i18n'
-
-const i18n = useI18n()
+import i18n from '@/i18n'
 
 interface LocaleState {
   locale: string
@@ -10,7 +8,7 @@ interface LocaleState {
 
 const useLocale = defineStore('locale', {
   state: (): LocaleState => ({
-    locale: 'pl',
+    locale: navigator.language,
   }),
   actions: {
     setLocale(locale: string) {
@@ -18,11 +16,18 @@ const useLocale = defineStore('locale', {
       this.sync()
     },
     sync() {
-      i18n.locale.value = this.locale
+      const { t, locale } = i18n.global
+
+      locale.value = this.locale
       dayjs.locale(this.locale)
+      document.title = t('appName')
     },
   },
-  persist: true,
+  persist: {
+    afterRestore(ctx) {
+      ctx.store.sync()
+    },
+  },
 })
 
 export default useLocale
