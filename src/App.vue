@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { DataStore } from '@aws-amplify/datastore'
 import Home from '~icons/mdi/Home'
 import LogoutVariant from '~icons/mdi/LogoutVariant'
@@ -10,6 +11,7 @@ import useUser from '@/stores/user'
 import MenuItem from './components/MenuItem.vue'
 import theme from './composables/theme'
 
+const { t } = useI18n()
 const user = useUser()
 
 function refresh() {
@@ -33,12 +35,9 @@ function logout() {
         class="flex justify-between items-center text-[2rem]"
       >
         <div class="md:hidden">
-          <el-button
-            round
-            color="transparent"
-            class="uppercase !font-semibold"
-            v-t="'appName'"
-          ></el-button>
+          <el-button round color="transparent" class="uppercase !font-semibold">
+            {{ t('appName') }}
+          </el-button>
         </div>
         <div class="hidden md:block">
           <router-link to="/">
