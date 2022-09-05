@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n';
 
 const props = withDefaults(
   defineProps<{
@@ -22,7 +23,12 @@ const bg = computed(() => {
     return 'bg-gray-400'
   }
 
-  if (content.includes('zablokowany termin')) {
+  const blockedUserName = {
+    pl: 'Zablokowany',
+    ukr: 'Заблокований термін',
+  }[useI18n().locale.value]!
+
+  if (content.includes(blockedUserName)) {
     return 'bg-red-500'
   }
 
