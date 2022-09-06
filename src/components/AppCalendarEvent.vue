@@ -31,7 +31,7 @@ const bg = computed(() => {
   const blockedUserName = {
     pl: 'Zablokowany',
     ukr: 'Заблокований термін',
-  }[useI18n().locale.value]!
+  }['pl']
 
   if (content.includes(blockedUserName)) {
     return 'bg-red-500'
