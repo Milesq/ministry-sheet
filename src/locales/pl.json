@@ -33,5 +33,6 @@
   "confirmDate": {
     "question": "Czy chcesz się zapisać?",
     "dateFormat": "{day} o godzinie {hour} przy {place}"
-  }
+  },
+  "confirmDelete": "Czy na pewno chcesz usunąć termin?"
 }

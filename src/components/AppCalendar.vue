@@ -14,6 +14,7 @@ import AppCalendarCurrentTime from './AppCalendarCurrentTime.vue'
 defineEmits<{
   onDateChange(date: Dayjs): void
   onEventClick(date: Dayjs): void
+  onEventRemove(id: string): void
 }>()
 
 const props = defineProps({
@@ -33,6 +34,10 @@ const props = defineProps({
   blockGoingToPast: {
     type: Boolean,
     default: true,
+  },
+  eventsRemovable: {
+    type: Boolean,
+    default: false,
   },
 })
 
@@ -148,6 +153,8 @@ function makeDate(day: number, hour: number) {
         :content="event.content"
         :title="event.title"
         :pending="event.pending"
+        :delete-event-enabled="eventsRemovable && event.pending"
+        @remove="$emit('onEventRemove', event.id)"
       />
 
       <AppCalendarCurrentTime

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useI18n } from 'vue-i18n';
+import { useI18n } from 'vue-i18n'
+import DeleteIcon from '~icons/mdi/delete'
 
 const props = withDefaults(
   defineProps<{
@@ -10,11 +11,15 @@ const props = withDefaults(
     length?: number
     title?: string
     pending?: boolean
+    deleteEventEnabled: boolean
   }>(),
   {
     length: 1,
+    deleteEventEnabled: false,
   }
 )
+
+defineEmits(['remove'])
 
 const bg = computed(() => {
   const { pending, content } = props
@@ -46,6 +51,10 @@ const bg = computed(() => {
       {{ title }}
     </span>
     <div v-for="row in content" :key="row" v-html="row"></div>
+
+    <div v-if="deleteEventEnabled" class="remove-icon" @click="$emit('remove')">
+      <DeleteIcon />
+    </div>
   </div>
 </template>
 
@@ -75,5 +84,16 @@ const bg = computed(() => {
 
   grid-column: calc(v-bind(day) + 2);
   grid-row: v-bind(startHour) / span v-bind(length);
+}
+
+.remove-icon {
+  --size: 30px;
+
+  @apply bg-red-500 rounded-full p-2 center cursor-pointer z-1000;
+  position: absolute;
+  height: var(--size);
+  width: var(--size);
+  right: calc(var(--size) * -0.3);
+  top: calc(var(--size) * -0.3);
 }
 </style>

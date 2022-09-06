@@ -33,5 +33,6 @@
   "confirmDate": {
     "question": "Are you sure you want stay here?",
     "dateFormat": "{day} at {hour} at {place}"
-  }
+  },
+  "confirmDelete": "Do you really want to remove your pending?"
 }
