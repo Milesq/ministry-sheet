@@ -105,7 +105,36 @@ async function addEvent(date: Dayjs) {
 }
 
 async function removeEvent(id: string) {
-  console.log('removed', await DataStore.query(PendingAppointment, id))
+  const pa = await DataStore.query(PendingAppointment, id)
+
+  if (!pa) {
+    throw new Error('Pending appointment not found')
+  }
+
+  const date = dayjs(pa.datetime)
+
+  const day = date.format('D MMMM')
+  const hour = date.format('H:mm')
+
+  const formattedDate = t('confirmDate.dateFormat', {
+    day,
+    hour,
+    place: pa.place.name,
+  })
+
+  const { isConfirmed } = await Swal.fire({
+    title: t('confirmDelete'),
+    text: formattedDate,
+    icon: 'question',
+    showCancelButton: true,
+    reverseButtons: true,
+    confirmButtonText: t('confirm[1]'),
+    cancelButtonText: t('cancel'),
+  })
+
+  if (isConfirmed) {
+    await DataStore.delete(pa!)
+  }
 }
 </script>
 
