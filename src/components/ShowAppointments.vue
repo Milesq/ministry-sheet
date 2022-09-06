@@ -2,10 +2,11 @@
 import { computed } from 'vue'
 import dayjs, { type Dayjs } from 'dayjs'
 import { useI18n } from 'vue-i18n'
-import type { Place, Appointment, PendingAppointment } from '@/models'
+import { type Place, type Appointment, PendingAppointment } from '@/models'
 import { Swal, makeCalEvents } from '@/common'
 import useAppointments from '@/stores/appointments'
 import Errors from '@/errors'
+import { DataStore } from '@aws-amplify/datastore'
 
 const props = defineProps<{
   appointments: Appointment[]
@@ -102,6 +103,10 @@ async function addEvent(date: Dayjs) {
     Swal.fire(t('error.err'), t('error.alreadyFilled'), 'error')
   }
 }
+
+async function removeEvent(id: string) {
+  console.log('removed', await DataStore.query(PendingAppointment, id))
+}
 </script>
 
 <template>
@@ -110,6 +115,8 @@ async function addEvent(date: Dayjs) {
       :events="events"
       @onEventClick="addEvent"
       :addEvents="!!place"
+      :events-removable="true"
+      @onEventRemove="removeEvent"
     />
   </div>
 </template>
