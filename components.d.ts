@@ -3,6 +3,8 @@
 // Read more: https://github.com/vuejs/core/pull/3399
 import '@vue/runtime-core'
 
+export {}
+
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppCalendar: typeof import('./src/components/AppCalendar.vue')['default']
@@ -34,5 +36,3 @@ declare module '@vue/runtime-core' {
     ShowAppointments: typeof import('./src/components/ShowAppointments.vue')['default']
   }
 }
-
-export {}
