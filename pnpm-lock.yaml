@@ -12,6 +12,7 @@ specifiers:
   '@testing-library/vue': ^6.6.1
   '@types/jsdom': ^16.2.15
   '@types/lodash.groupby': ^4.6.7
+  '@types/lodash.inrange': ^3.3.7
   '@types/lodash.pick': ^4.4.7
   '@types/node': ^18.7.14
   '@types/testing-library__jest-dom': ^5.14.5
@@ -32,6 +33,7 @@ specifiers:
   ftp-deploy: ^2.4.3
   jsdom: ^19.0.0
   lodash.groupby: ^4.6.0
+  lodash.inrange: ^3.3.6
   lodash.pick: ^4.4.0
   npm-run-all: ^4.1.5
   pinia: ^2.0.21
@@ -62,6 +64,7 @@ dependencies:
   dayjs: 1.11.5
   element-plus: 2.2.16_vue@3.2.38
   lodash.groupby: 4.6.0
+  lodash.inrange: 3.3.6
   lodash.pick: 4.4.0
   pinia: 2.0.21_fl6vay66s5mfyioevoftbjhvcm
   pinia-plugin-persistedstate: 1.6.3_pinia@2.0.21
@@ -78,6 +81,7 @@ devDependencies:
   '@testing-library/vue': 6.6.1_lkq4ousnc7vzls4uafs2kgxwfm
   '@types/jsdom': 16.2.15
   '@types/lodash.groupby': 4.6.7
+  '@types/lodash.inrange': 3.3.7
   '@types/lodash.pick': 4.4.7
   '@types/node': 18.7.14
   '@types/testing-library__jest-dom': 5.14.5
@@ -1112,6 +1116,12 @@ packages:
 
   /@types/lodash.groupby/4.6.7:
     resolution: {integrity: sha512-dFUR1pqdMgjIBbgPJ/8axJX6M1C7zsL+HF4qdYMQeJ7XOp0Qbf37I3zh9gpXr/ks6tgEYPDRqyZRAnFYvewYHQ==}
+    dependencies:
+      '@types/lodash': 4.14.182
+    dev: true
+
+  /@types/lodash.inrange/3.3.7:
+    resolution: {integrity: sha512-P5T6gGPBIIwKvOQRLD+TWA28K/JXxqWqyZYIr4L9a2LIsRUC8WblTgNMOjFBfrUWFn83XIANj3pDd1uECJYtrA==}
     dependencies:
       '@types/lodash': 4.14.182
     dev: true
@@ -3279,6 +3289,10 @@ packages:
     resolution: {integrity: sha512-5dcWxm23+VAoz+awKmBaiBvzox8+RqMgFhi7UvX9DHZr2HdxHXM/Wrf8cfKpsW37RNrvtPn6hSwNqurSILbmJw==}
     dev: false
 
+  /lodash.inrange/3.3.6:
+    resolution: {integrity: sha512-NqOT/CVclLZKet0ALwg1joQ/XnfxePGf8L9WKvzOcTDAI0axG3Ej24qDGwLk0ejN4AVfFvs6vY5AWBB53o5piw==}
+    dev: false
+
   /lodash.merge/4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: true
@@ -4402,7 +4416,7 @@ packages:
       webpack:
         optional: true
     dependencies:
-      acorn: 8.7.1
+      acorn: 8.8.0
       chokidar: 3.5.3
       vite: 2.9.15_sass@1.54.8
       webpack-sources: 3.2.3
@@ -4426,7 +4440,7 @@ packages:
       webpack:
         optional: true
     dependencies:
-      acorn: 8.7.1
+      acorn: 8.8.0
       chokidar: 3.5.3
       vite: 2.9.15_sass@1.54.8
       webpack-sources: 3.2.3
