@@ -1,0 +1,38 @@
+{
+  "appName": "Графік служіння зі стендом",
+  "homePage": "Головна сторінка",
+  "changeTheme": "Змінити тло",
+  "refresh": "Оновити",
+  "logout": "Вийти",
+  "myCalendar": "Мій календар",
+  "userNamePlaceholder": "Ім'я і прізвище",
+  "passwordPlaceholder": "Пароль",
+  "confirm": ["Увійти", "Так, затвердити", "Затвердити"],
+  "cancel": "Відмінити",
+  "deny": "Odrzuć",
+  "fulfillForm": ["Внеси дані", "Впиши ім'я та прізвище"],
+  "success": "Дякуємо!",
+  "waitForApprove": "Будь ласка, почекай на підтвердження",
+  "waitForUserAccept": "Не зареєстровано під даним ім'ям або маєш помилку в написанні імені чи прізвища. Твоє прохання про доступ вислано",
+  "selectUser": "Wybierz użytkownika",
+  "choosePlace": "Спочатку вибери місце",
+  "error": {
+    "err": "Помилка",
+    "dateInThePast": "Не можеш записатися, цей термін вже минув",
+    "alreadyFilled": "Не можеш записатися, вже маєш запис в цій годині",
+    "incorrectLogin": "Błędna nazwa użytkownika lub hasło",
+    "forceChangePassword": "Musisz zmienić hasło",
+    "stillNotAccepted": "На даний момент не маєш доступу до графіку. Почекай або зв'яжися з адміністратором",
+    "placeNameTooShort": "Nazwa miejsca musi mieć minimalnie {0} znaki",
+    "selectUser": {
+      "title": "Nie podjęto akcji",
+      "text": "Wybierz użytkownika na którym chcesz wykonać akcję"
+    },
+    "missingContent": "Немає записів"
+  },
+  "confirmDate": {
+    "question": "Чи хочеш записатися?",
+    "dateFormat": "{day} о {hour} біля {place}"
+  },
+  "confirmDelete": "Чи ти хочеш видалити цей запис?"
+}
