@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
+import inRange from 'lodash.inRange'
 import dayjs, { type Dayjs } from 'dayjs'
 
 const props = withDefaults(
@@ -32,7 +33,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="current-time" v-if="now.hour() <= endHour">
+  <div class="current-time" v-if="inRange(now.hour(), startHour, endHour)">
     <div class="circle"></div>
   </div>
 </template>
