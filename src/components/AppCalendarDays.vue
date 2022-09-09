@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue'
 import dayjs, { type Dayjs } from 'dayjs'
+import { i18nFormat } from '@/common'
 
 const emit = defineEmits<{
   (e: 'updateIsTheSameWeek', value: boolean): void
@@ -52,11 +53,11 @@ function isToday(dayInWeek: number): boolean {
     >
       <div :class="isToday(n) && 'text-primary'" class="text-xs uppercase">
         <span v-if="daysInWeek === 1">
-          {{ currentWeek.format('ddd') }}
+          {{ i18nFormat(currentWeek, 'ddd') }}
         </span>
 
         <span v-else>
-          {{ monday.add(n, 'day').format('ddd') }}
+          {{ i18nFormat(monday.add(n, 'day'), 'ddd') }}
         </span>
       </div>
 
