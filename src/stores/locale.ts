@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import dayjs from 'dayjs'
 import i18n from '@/i18n'
 
 interface LocaleState {
@@ -19,7 +18,6 @@ const useLocale = defineStore('locale', {
       const { t, locale } = i18n.global
 
       locale.value = this.locale
-      dayjs.locale(this.locale)
       document.title = t('appName')
     },
   },
