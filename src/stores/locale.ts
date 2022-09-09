@@ -1,16 +1,18 @@
 import { defineStore } from 'pinia'
 import i18n from '@/i18n'
 
+type AppLocales = typeof i18n.global.locale.value
+
 interface LocaleState {
-  locale: string
+  locale: AppLocales
 }
 
 const useLocale = defineStore('locale', {
   state: (): LocaleState => ({
-    locale: navigator.language,
+    locale: navigator.language as AppLocales,
   }),
   actions: {
-    setLocale(locale: string) {
+    setLocale(locale: AppLocales) {
       this.locale = locale
       this.sync()
     },
