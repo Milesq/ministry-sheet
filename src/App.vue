@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onBeforeMount } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { DataStore } from '@aws-amplify/datastore'
 import Home from '~icons/mdi/Home'
@@ -9,7 +10,6 @@ import WeatherNight from '~icons/mdi/WeatherNight'
 import Translate from '~icons/mdi/translate'
 import useUser from '@/stores/user'
 import useLocale from '@/stores/locale'
-import { onBeforeMount } from 'vue'
 
 import MenuItem from './components/MenuItem.vue'
 import theme from './composables/theme'
