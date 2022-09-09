@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import inRange from 'lodash.inRange'
+import inRange from 'lodash.inrange'
 import dayjs, { type Dayjs } from 'dayjs'
 
 const props = withDefaults(
