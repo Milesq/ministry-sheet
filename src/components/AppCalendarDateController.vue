@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import dayjs, { type Dayjs } from 'dayjs'
 import ChevronLeft from '~icons/mdi/ChevronLeft'
 import ChevronRight from '~icons/mdi/ChevronRight'
+import { i18nFormat } from '@/common';
 
 const emit = defineEmits(['prev', 'next', 'update:modelValue'])
 const props = withDefaults(
@@ -40,7 +41,7 @@ function change(dir: ChangeDirection) {
 }
 
 function format(day: Dayjs): string {
-  const formattedStr = day.format('DD MMM')
+  const formattedStr = i18nFormat(day, 'DD MMM')
 
   const monthFirstLetter = formattedStr[3].toLocaleUpperCase()
 
