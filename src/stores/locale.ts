@@ -11,6 +11,15 @@ const useLocale = defineStore('locale', {
   state: (): LocaleState => ({
     locale: navigator.language as AppLocales,
   }),
+  getters: {
+    dayJsLocale({ locale }) {
+      const localesMap: Record<string, string> = {
+        ukr: 'uk',
+      }
+
+      return localesMap[locale] || locale
+    },
+  },
   actions: {
     setLocale(locale: AppLocales) {
       this.locale = locale
