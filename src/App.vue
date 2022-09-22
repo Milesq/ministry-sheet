@@ -42,8 +42,12 @@ function logout() {
         bg="primary"
         class="flex justify-between items-center text-[2rem]"
       >
-        <div class="md:hidden">
-          <el-button round color="transparent" class="uppercase !font-semibold">
+        <div class="md:hidden text-[1rem]">
+          <el-button
+            round
+            color="transparent"
+            class="wrapping-btn uppercase !font-semibold"
+          >
             {{ t('appName') }}
           </el-button>
         </div>
