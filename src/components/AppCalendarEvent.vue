@@ -36,13 +36,17 @@ const bg = computed(() => {
 </script>
 
 <template>
-  <div class="event" :class="bg">
+  <div
+    class="event"
+    :class="[bg, { 'z-1000 cursor-pointer': deleteEventEnabled }]"
+    @click="$emit('remove')"
+  >
     <span v-if="title" class="additional-info">
       {{ title }}
     </span>
     <div v-for="row in content" :key="row" v-html="row"></div>
 
-    <div v-if="deleteEventEnabled" class="remove-icon" @click="$emit('remove')">
+    <div v-if="deleteEventEnabled" class="remove-icon">
       <DeleteIcon />
     </div>
   </div>
