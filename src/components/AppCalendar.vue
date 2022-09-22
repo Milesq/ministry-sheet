@@ -20,7 +20,7 @@ defineEmits<{
 const props = defineProps({
   hours: {
     type: Array as () => number[],
-    default: () => [8, 18],
+    default: () => [7, 20],
     validator: (value: number[]) => value.length === 2,
   },
   events: {
