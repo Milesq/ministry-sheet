@@ -154,6 +154,29 @@ async function listUsers(Limit, PaginationToken) {
   }
 }
 
+async function listUnconfirmedUsers() {
+  const params = {
+    UserPoolId: userPoolId,
+    AttributesToGet: [],
+    Filter: 'cognito:user_status = "UNCONFIRMED"'
+  };
+
+  console.log('Attempting to list users');
+
+  try {
+    const result = await cognitoIdentityServiceProvider.listUsers(params).promise();
+
+    // Rename to NextToken for consistency with other Cognito APIs
+    result.NextToken = result.PaginationToken;
+    delete result.PaginationToken;
+
+    return result;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+}
+
 async function listGroups(Limit, PaginationToken) {
   const params = {
     UserPoolId: userPoolId,
@@ -252,6 +275,7 @@ module.exports = {
   enableUser,
   getUser,
   listUsers,
+  listUnconfirmedUsers,
   listGroups,
   listGroupsForUser,
   listUsersInGroup,

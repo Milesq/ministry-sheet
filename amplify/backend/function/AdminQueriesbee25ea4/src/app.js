@@ -23,6 +23,7 @@ const {
   enableUser,
   getUser,
   listUsers,
+  listUnconfirmedUsers,
   listGroups,
   listGroupsForUser,
   listUsersInGroup,
@@ -169,6 +170,22 @@ app.get('/listUsers', async (req, res, next) => {
       response = await listUsers((Limit = req.query.limit));
     } else {
       response = await listUsers();
+    }
+    res.status(200).json(response);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.get('/listUnconfirmedUsers', async (req, res, next) => {
+  try {
+    let response;
+    if (req.query.token) {
+      response = await listUnconfirmedUsers(req.query.limit || 25, req.query.token);
+    } else if (req.query.limit) {
+      response = await listUnconfirmedUsers((Limit = req.query.limit));
+    } else {
+      response = await listUnconfirmedUsers();
     }
     res.status(200).json(response);
   } catch (err) {
