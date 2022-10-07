@@ -157,7 +157,7 @@ async function listUsers(Limit, PaginationToken) {
 async function listUnconfirmedUsers() {
   const params = {
     UserPoolId: userPoolId,
-    AttributesToGet: [],
+    AttributesToGet: ['name'],
     Filter: 'cognito:user_status = "UNCONFIRMED"'
   };
 
