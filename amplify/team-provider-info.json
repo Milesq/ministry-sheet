@@ -44,8 +44,12 @@
       "function": {
         "AdminQueriesbee25ea4": {
           "deploymentBucketName": "amplify-ministrysheet-dev-104334-deployment",
-          "s3Key": "amplify-builds/AdminQueriesbee25ea4-4576654d384c45304853-build.zip"
+          "s3Key": "amplify-builds/AdminQueriesbee25ea4-555955717366375a6a47-build.zip"
         }
+      },
+      "api": {
+        "AdminQueries": {},
+        "ministrysheet": {}
       }
     }
   }

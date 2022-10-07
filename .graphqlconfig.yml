@@ -1,6 +1,6 @@
 projects:
   ministrysheet:
-    schemaPath: src/graphql/schema.json
+    schemaPath: amplify/backend/api/ministrysheet/build/schema.graphql
     includes:
       - src/graphql/**/*.ts
     excludes:
