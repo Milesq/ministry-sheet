@@ -4,7 +4,7 @@ function getUserLang(): string {
 
   const possibleLocaleSources = [
     storageLocale,
-    navigator.language,
+    navigator.language.split('-', 1)[0],
     defaultAppLocale,
   ]
 

@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import i18n from '@/i18n'
+import { getUserLang } from '@/common'
 
 type AppLocales = typeof i18n.global.locale.value
 
@@ -9,7 +10,7 @@ interface LocaleState {
 
 const useLocale = defineStore('locale', {
   state: (): LocaleState => ({
-    locale: navigator.language as AppLocales,
+    locale: getUserLang() as AppLocales,
   }),
   getters: {
     dayJsLocale({ locale }) {
