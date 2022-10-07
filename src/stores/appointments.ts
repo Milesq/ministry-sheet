@@ -43,7 +43,9 @@ const useAppointments = defineStore('appointments', {
 
       await this.loadEvents(monday, sunday)
 
-      DataStore.observeQuery(Appointment).subscribe(({ items }) => {
+      DataStore.observeQuery(Appointment, c =>
+        c.datetime('gt', monday)
+      ).subscribe(({ items }) => {
         this.appointments = items
       })
 
