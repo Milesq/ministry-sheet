@@ -17,6 +17,7 @@ export enum Routes {
   AdminLogin = 'adminLogin',
   AdminAppointments = 'adminAppointments',
   AdminPlaces = 'adminPlaces',
+  AdminUsers = 'adminUsers',
 }
 
 const router = createRouter({
@@ -43,6 +44,11 @@ const router = createRouter({
           path: 'places',
           name: Routes.AdminPlaces,
           component: () => import('../views/admin/Places.vue'),
+        },
+        {
+          path: 'users',
+          name: Routes.AdminUsers,
+          component: () => import('../views/admin/Users.vue'),
         },
       ],
     },
