@@ -8,6 +8,7 @@ specifiers:
   '@iconify-json/mdi': ^1.1.31
   '@intlify/vite-plugin-vue-i18n': ^5.0.1
   '@rushstack/eslint-patch': ^1.1.4
+  '@sweetalert2/theme-dark': ^5.0.12
   '@testing-library/jest-dom': ^5.16.5
   '@testing-library/vue': ^6.6.1
   '@types/jsdom': ^20.0.0
@@ -59,6 +60,7 @@ dependencies:
   '@aws-amplify/auth': 4.6.5
   '@aws-amplify/core': 4.7.3
   '@aws-amplify/datastore': 3.12.9
+  '@sweetalert2/theme-dark': 5.0.12
   '@vueuse/components': 9.2.0_vue@3.2.38
   '@vueuse/core': 9.2.0_vue@3.2.38
   dayjs: 1.11.5
@@ -1038,6 +1040,10 @@ packages:
   /@rushstack/eslint-patch/1.1.4:
     resolution: {integrity: sha512-LwzQKA4vzIct1zNZzBmRKI9QuNpLgTQMEjsQLf3BXuGYb3QPTP4Yjf6mkdX+X1mYttZ808QpOwAzZjv28kq7DA==}
     dev: true
+
+  /@sweetalert2/theme-dark/5.0.12:
+    resolution: {integrity: sha512-F0DxJJhVUixKD1Tk3gXwAy1goONgkP7BIDTZfTN7aZQdY9edLmiSp4d3LNPK49m0ORIG38eDAwJFodgQ5uuEZw==}
+    dev: false
 
   /@sxzz/popperjs-es/2.11.7:
     resolution: {integrity: sha512-Ccy0NlLkzr0Ex2FKvh2X+OyERHXJ88XJ1MXtsI9y9fGexlaXaVTPzBCRBwIxFkORuOb+uBqeu+RqnpgYTEZRUQ==}

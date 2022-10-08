@@ -21,6 +21,7 @@
     "@aws-amplify/auth": "^4.6.5",
     "@aws-amplify/core": "^4.7.3",
     "@aws-amplify/datastore": "^3.12.9",
+    "@sweetalert2/theme-dark": "^5.0.12",
     "@vueuse/components": "^9.2.0",
     "@vueuse/core": "^9.2.0",
     "dayjs": "^1.11.5",
