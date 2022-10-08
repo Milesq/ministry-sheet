@@ -14,6 +14,7 @@ declare module '@vue/runtime-core' {
     AppCalendarEvent: typeof import('./src/components/AppCalendarEvent.vue')['default']
     EditableList: typeof import('./src/components/EditableList.vue')['default']
     EditableValue: typeof import('./src/components/EditableValue.vue')['default']
+    ElBadge: typeof import('element-plus/es')['ElBadge']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
     ElCol: typeof import('element-plus/es')['ElCol']
