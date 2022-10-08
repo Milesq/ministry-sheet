@@ -5,6 +5,8 @@ import { Auth } from '@aws-amplify/auth'
 import CheckIcon from '~icons/mdi/check'
 import EditableList from '@/components/EditableList.vue'
 import type { Item } from '@/components/EditableList.vue'
+import { confirmUser } from '@/utils'
+import AppSwal from '@/common/AppSwal'
 
 interface UnconfirmedUser {
   Username: string
@@ -61,11 +63,44 @@ export default defineComponent({
         }
       })
     },
+    error(id: string) {
+      AppSwal.fire(
+        'Unexpected error',
+        `please, contact with administrator. Give him this code: ${id}`,
+        'error'
+      )
+    },
+    removeFromLocalList(username: string) {
+      const userIdx = this.users.findIndex(user => user.id === username)
+
+      if (userIdx === -1) {
+        this.error(atob('user index not found'))
+
+        throw new Error('User not found')
+      }
+
+      this.users.splice(userIdx, 1)
+    },
+    async removeUser(username: string) {
+
+    },
     approve(user: string) {
+      // this.removeFromLocalList(user)
+      confirmUser(user).catch(err => {
+        this.error(
+          atob('Cannot send approve request to db' + JSON.stringify(err))
+        )
+      })
       console.log(`Approved: ${user}`)
     },
     reject(user: string) {
+      this.removeFromLocalList(user)
       console.log(`Rejected: ${user}`)
+      this.removeUser(user).catch(err => {
+        this.error(
+          atob('Cannot send remove request to db' + JSON.stringify(err))
+        )
+      })
     },
   },
 })
