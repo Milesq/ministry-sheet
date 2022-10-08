@@ -19,6 +19,7 @@ const {
   addUserToGroup,
   removeUserFromGroup,
   confirmUserSignUp,
+  disableUser,
   deleteUser,
   enableUser,
   getUser,
