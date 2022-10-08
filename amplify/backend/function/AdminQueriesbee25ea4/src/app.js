@@ -19,7 +19,7 @@ const {
   addUserToGroup,
   removeUserFromGroup,
   confirmUserSignUp,
-  disableUser,
+  deleteUser,
   enableUser,
   getUser,
   listUsers,
@@ -125,6 +125,21 @@ app.post('/disableUser', async (req, res, next) => {
 
   try {
     const response = await disableUser(req.body.username);
+    res.status(200).json(response);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/deleteUser', async (req, res, next) => {
+  if (!req.body.username) {
+    const err = new Error('username is required');
+    err.statusCode = 400;
+    return next(err);
+  }
+
+  try {
+    const response = await deleteUser(req.body.username);
     res.status(200).json(response);
   } catch (err) {
     next(err);

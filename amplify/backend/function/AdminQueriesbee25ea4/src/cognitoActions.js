@@ -96,6 +96,24 @@ async function disableUser(username) {
   }
 }
 
+async function deleteUser(username) {
+  const params = {
+    UserPoolId: userPoolId,
+    Username: username,
+  };
+
+  try {
+    const result = await cognitoIdentityServiceProvider.adminDeleteUser(params).promise();
+    console.log(`Removed ${username}`);
+    return {
+      message: `Removed ${username}`,
+    };
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+}
+
 async function enableUser(username) {
   const params = {
     UserPoolId: userPoolId,
@@ -272,6 +290,7 @@ module.exports = {
   removeUserFromGroup,
   confirmUserSignUp,
   disableUser,
+  deleteUser,
   enableUser,
   getUser,
   listUsers,
