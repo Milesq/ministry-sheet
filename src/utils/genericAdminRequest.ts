@@ -1,12 +1,10 @@
 import { Auth } from '@aws-amplify/auth'
 import API from '@aws-amplify/api-rest'
 
-async function confirmUser(username: string) {
-  const command = '/confirmUserSignUp'
+async function genericAdminRequest(api: string, body: Record<string, unknown>) {
+  const command = `/${api}`
   const config = {
-    body: {
-      username,
-    },
+    body,
     headers: {
       'Content-Type': 'application/json',
       Authorization: (await Auth.currentSession())
@@ -18,4 +16,7 @@ async function confirmUser(username: string) {
   return API.post('AdminQueries', command, config)
 }
 
-export default confirmUser
+export default genericAdminRequest
+
+export const confirmUser = (username: string) =>
+  genericAdminRequest('confirmUserSignUp', { username })
