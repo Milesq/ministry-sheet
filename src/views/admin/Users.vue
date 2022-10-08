@@ -65,8 +65,8 @@ export default defineComponent({
     },
     error(id: string) {
       AppSwal.fire(
-        'Unexpected error',
-        `please, contact with administrator. Give him this code: ${id}`,
+        'Unexpected error, please, contact with administrator. Give him this code',
+        id,
         'error'
       )
     },
@@ -85,7 +85,9 @@ export default defineComponent({
       this.removeFromLocalList(user)
       confirmUser(user).catch(err => {
         this.error(
-          atob('Cannot send approve request to db' + JSON.stringify(err))
+          btoa(
+            'Cannot send approve request to db' + encodeURI(JSON.stringify(err))
+          )
         )
       })
       console.log(`Approved: ${user}`)
@@ -93,9 +95,14 @@ export default defineComponent({
     reject(user: string) {
       this.removeFromLocalList(user)
       console.log(`Rejected: ${user}`)
+
       removeUser(user).catch(err => {
+        console.error(err)
+
         this.error(
-          atob('Cannot send remove request to db' + JSON.stringify(err))
+          btoa(
+            'Cannot send remove request to db' + encodeURI(JSON.stringify(err))
+          )
         )
       })
     },
