@@ -20,3 +20,8 @@ export default genericAdminRequest
 
 export const confirmUser = (username: string) =>
   genericAdminRequest('confirmUserSignUp', { username })
+
+export const removeUser = async (username: string) => {
+  await genericAdminRequest('disableUser', { username })
+  await genericAdminRequest('deleteUser', { username })
+}
