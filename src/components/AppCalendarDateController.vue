@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import dayjs, { type Dayjs } from 'dayjs'
 import ChevronLeft from '~icons/mdi/ChevronLeft'
 import ChevronRight from '~icons/mdi/ChevronRight'
-import { i18nFormat } from '@/common';
+import { i18nFormat } from '@/common'
 
 const emit = defineEmits(['prev', 'next', 'update:modelValue'])
 const props = withDefaults(
