@@ -31,7 +31,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Run linter 👀
-        run: pnpm run-p lint test:run
+        run: pnpm lint
 
       - name: Run tests 🧪
         run: pnpm test:run
