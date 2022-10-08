@@ -1,7 +1,7 @@
 import vue from '@vitejs/plugin-vue'
 import Icons from 'unplugin-icons/vite'
 import WindiCSS from 'vite-plugin-windicss'
-import { vueI18n } from '@intlify/vite-plugin-vue-i18n'
+import vueI18n from '@intlify/vite-plugin-vue-i18n'
 import { resolve, dirname } from 'node:path'
 import AutoImport from 'unplugin-auto-import/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'

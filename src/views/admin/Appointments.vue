@@ -86,14 +86,19 @@ async function onEventClick(place: Place, date: Dayjs) {
 </script>
 
 <template>
-  <section class="sm:px-10">
+  <section class="sm:px-10 view-wrapper">
     <el-tabs v-if="appointments.places?.length" v-model="activePlace">
       <el-tab-pane
         v-for="place in appointments.places"
         :key="place.id"
-        :label="place.name"
         :name="place.name"
+        class="asd"
       >
+        <template #label>
+          <el-badge :value="appointments.byPlaces[place.name].length">
+            {{ place.name }}
+          </el-badge>
+        </template>
         <div class="flex justify-center">
           <AppCalendar
             v-if="activePlace === place.name"
@@ -106,3 +111,15 @@ async function onEventClick(place: Place, date: Dayjs) {
     </el-tabs>
   </section>
 </template>
+
+<style lang="scss">
+.view-wrapper {
+  .el-badge__content--danger {
+    --el-color-danger: var(--color-primary);
+  }
+
+  .el-tabs__item {
+    margin-top: 8px;
+  }
+}
+</style>

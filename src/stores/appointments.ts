@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import dayjs, { type Dayjs } from 'dayjs'
 import { DataStore } from '@aws-amplify/datastore'
+import groupBy from 'lodash.groupby'
 import { PendingAppointment, Appointment, Place } from '@/models'
 import Errors from '@/errors'
 
@@ -27,6 +28,9 @@ const useAppointments = defineStore('appointments', {
       if (!isAdmin) return state.pendingAppointments
 
       return state.pendingAppointments.filter(({ owner }) => owner === name)
+    },
+    byPlaces(state): Record<string, PendingAppointment[]> {
+      return groupBy(state.pendingAppointments, 'place.name')
     },
   },
   actions: {
