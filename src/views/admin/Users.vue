@@ -2,6 +2,9 @@
 import { defineComponent } from 'vue'
 import { RestAPI } from '@aws-amplify/api-rest'
 import { Auth } from '@aws-amplify/auth'
+import CheckIcon from '~icons/mdi/check'
+import EditableList from '@/components/EditableList.vue'
+import type { Item } from '@/components/EditableList.vue'
 
 interface UnconfirmedUser {
   Username: string
@@ -18,14 +21,18 @@ interface ListUnconfirmedUsersResp {
 }
 
 export default defineComponent({
+  components: {
+    EditableList,
+    CheckIcon,
+  },
   data: () => ({
-    users: [] as string[],
+    users: [] as Item[],
   }),
   async mounted() {
     this.users = await this.listUnconfirmedUsers()
   },
   methods: {
-    async listUnconfirmedUsers(): Promise<string[]> {
+    async listUnconfirmedUsers(): Promise<Item[]> {
       const apiName = 'AdminQueries'
       const path = '/listUnconfirmedUsers'
       const options = {
@@ -43,16 +50,40 @@ export default defineComponent({
         options
       )
 
-      return users.map(
-        user =>
-          user.Attributes.find(attr => attr.Name === 'name')?.Value ||
-          user.Username
-      )
+      return users.map(user => {
+        let name = user.Attributes.find(attr => attr.Name === 'name')?.Value
+
+        name ||= user.Username
+
+        return {
+          id: user.Username,
+          name,
+        }
+      })
+    },
+    approve(user: string) {
+      console.log(`Approved: ${user}`)
+    },
+    reject(user: string) {
+      console.log(`Rejected: ${user}`)
     },
   },
 })
 </script>
 
 <template>
-  <div>ok</div>
+  <div>
+    <EditableList
+      :items="users"
+      :creatable="false"
+      :editable="false"
+      @delete="reject"
+    >
+      <template #actions="{ id }">
+        <el-button @click="approve(id)" type="success" circle>
+          <CheckIcon />
+        </el-button>
+      </template>
+    </EditableList>
+  </div>
 </template>
