@@ -15,9 +15,9 @@ onMounted(() => {
     Appointments
   </router-link>
 
-  <router-link :to="{ name: Routes.AdminPlaces }">Places</router-link>
+  <router-link :to="{ name: Routes.AdminPlaces }"> Places </router-link>
 
-  <router-link :to="{ name: Routes.AdminUsers }">New Users</router-link>
+  <router-link :to="{ name: Routes.AdminUsers }"> New Users </router-link>
 
   <router-view />
 </template>

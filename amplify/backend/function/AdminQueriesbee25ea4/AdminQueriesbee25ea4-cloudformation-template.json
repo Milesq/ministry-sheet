@@ -167,6 +167,7 @@
                 "cognito-idp:AdminUserGlobalSignOut",
                 "cognito-idp:AdminEnableUser",
                 "cognito-idp:AdminDisableUser",
+                "cognito-idp:AdminDeleteUser",
                 "cognito-idp:AdminRemoveUserFromGroup",
                 "cognito-idp:AdminAddUserToGroup",
                 "cognito-idp:AdminListGroupsForUser",
