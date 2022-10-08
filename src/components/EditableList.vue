@@ -20,6 +20,14 @@ export default defineComponent({
       type: Array as () => Item[],
       required: true,
     },
+    editable: {
+      type: Boolean,
+      default: true,
+    },
+    creatable: {
+      type: Boolean,
+      default: true,
+    },
   },
   data: () => ({
     newItem: '',
@@ -35,24 +43,36 @@ export default defineComponent({
 
 <template>
   <div>
-    <el-input v-model="newItem" placeholder="Please input" />
-    <el-button type="success" @click="add">Ok</el-button>
+    <template v-if="creatable">
+      <el-input v-model="newItem" placeholder="Please input" />
+      <el-button type="success" @click="add">Ok</el-button>
+    </template>
 
     <div>
       <el-table :data="items">
         <el-table-column label="Name">
           <template v-slot="scope">
-            <EditableValue
-              :value="scope.row.name"
-              @update="$emit('update', scope.row.id, $event)"
-            />
+            <template v-if="editable">
+              <EditableValue
+                :value="scope.row.name"
+                @update="$emit('update', scope.row.id, $event)"
+              />
+            </template>
+
+            <span v-else>{{ scope.row.name }}</span>
           </template>
         </el-table-column>
 
         <el-table-column label="Operations">
           <template v-slot="scope">
-            <div @click="$emit('delete', scope.row.id)">
-              <el-button type="danger" circle>
+            <div>
+              <slot name="actions" :id="scope.row.id" />
+
+              <el-button
+                @click="$emit('delete', scope.row.id)"
+                type="danger"
+                circle
+              >
                 <DeleteIcon />
               </el-button>
             </div>
