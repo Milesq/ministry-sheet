@@ -27,6 +27,15 @@ const bg = computed(() => {
     return 'bg-gray-400'
   }
 
+  const blockedUserName = {
+    pl: 'Zablokowany',
+    ukr: 'Заблокований термін',
+  }[import.meta.env.VITE_APP_LANG as string]!
+
+  if (content.includes(blockedUserName)) {
+    return 'bg-red-500'
+  }
+
   if (content.length === 1) {
     return 'bg-yellow-400'
   }

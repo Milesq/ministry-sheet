@@ -56,6 +56,10 @@ async function missingPlaceSwal(): Promise<Place> {
   return appointments.places.find(({ id }) => id === selectedPlace) as Place
 }
 
+async function addBlockedEvent(date: Dayjs, place: Place) {
+  await appointments.addConfirmed(date, place)
+}
+
 async function addEvent(date: Dayjs) {
   let { place } = props
 
@@ -70,6 +74,10 @@ async function addEvent(date: Dayjs) {
     } catch {
       return
     }
+  }
+
+  if (user.user === 'blocked') {
+    return addBlockedEvent(date, place)
   }
 
   const day = i18nFormat(date, 'D MMMM')

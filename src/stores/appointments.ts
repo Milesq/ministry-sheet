@@ -98,12 +98,54 @@ const useAppointments = defineStore('appointments', {
         throw new Error(Errors.TermAlreadyOccupied)
       }
 
-      await DataStore.save(
+      return await DataStore.save(
         new PendingAppointment({
           place,
           datetime: date.toISOString(),
           owner: userStore.user,
           ownerName: userStore.name,
+        })
+      )
+    },
+    async addConfirmed(date: Dayjs, place: Place) {
+      const userStore = useUser()
+
+      if (!userStore.isLoggedIn) {
+        throw new Error('User is not logged in')
+      }
+
+      // eslint-disable-next-line sonarjs/no-identical-functions
+      const termAlreadyOccupiedByThisUser = this.appointments.some(app => {
+        const isTheSameUser = app.users?.some(
+          user => transformUserName(user || '') === userStore.user
+        )
+        if (!isTheSameUser) {
+          return false
+        }
+
+        return dayjs(app.datetime).isSame(date, 'hour')
+      })
+
+      // eslint-disable-next-line sonarjs/no-identical-functions
+      const termAlreadyReserved = this.pendingAppointments.some(app => {
+        const isTheSameUser =
+          transformUserName(app.owner || '') === userStore.user
+        if (!isTheSameUser) {
+          return false
+        }
+
+        return dayjs(app.datetime).isSame(date, 'hour')
+      })
+
+      if (termAlreadyOccupiedByThisUser || termAlreadyReserved) {
+        throw new Error(Errors.TermAlreadyOccupied)
+      }
+
+      return await DataStore.save(
+        new Appointment({
+          place,
+          datetime: date.toISOString(),
+          users: [userStore.name],
         })
       )
     },
