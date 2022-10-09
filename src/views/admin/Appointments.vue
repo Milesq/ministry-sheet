@@ -95,7 +95,7 @@ async function onEventClick(place: Place, date: Dayjs) {
         class="asd"
       >
         <template #label>
-          <el-badge :value="appointments.byPlaces[place.name].length">
+          <el-badge :value="appointments.byPlaces[place.name]?.length">
             {{ place.name }}
           </el-badge>
         </template>
