@@ -16,3 +16,11 @@ declare module 'aws-exports.d.ts' {
   declare const awsmobile: {}
   export default awsmobile
 }
+
+interface ImportMetaEnv {
+  readonly VITE_APP_LANG: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
