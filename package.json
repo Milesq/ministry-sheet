@@ -29,7 +29,7 @@
     "lodash.groupby": "^4.6.0",
     "lodash.inrange": "^3.3.6",
     "lodash.pick": "^4.4.0",
-    "pinia": "^2.0.22",
+    "pinia": "^2.0.23",
     "pinia-plugin-persistedstate": "^2.2.0",
     "sweetalert2": "^11.4.38",
     "vue": "^3.2.40",
@@ -70,7 +70,7 @@
     "vite": "^3.1.6",
     "vite-plugin-windicss": "^1.8.8",
     "vitest": "^0.24.0",
-    "vue-tsc": "^1.0.0",
+    "vue-tsc": "^1.0.1",
     "windicss": "^3.5.6"
   }
 }
