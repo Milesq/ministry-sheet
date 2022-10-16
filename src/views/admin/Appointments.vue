@@ -26,6 +26,7 @@ const events = computed(() => {
   return makeCalEvents({
     appointments: getAppointments(place),
     pendingAppointments: getPendings(place),
+    place,
   })
 })
 
