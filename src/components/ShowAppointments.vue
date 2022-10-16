@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import dayjs, { type Dayjs } from 'dayjs'
 import { useI18n } from 'vue-i18n'
 import { type Place, type Appointment, PendingAppointment } from '@/models'
-import { Swal, makeCalEvents } from '@/common'
+import { Swal, makeCalEvents, i18nFormat } from '@/common'
 import useAppointments from '@/stores/appointments'
 import Errors from '@/errors'
 import { DataStore } from '@aws-amplify/datastore'
@@ -70,7 +70,7 @@ async function addEvent(date: Dayjs) {
     }
   }
 
-  const day = date.format('D MMMM')
+  const day = i18nFormat(date, 'D MMMM')
   const hour = date.format('H:mm')
   const formattedDate = t('confirmDate.dateFormat', {
     day,
