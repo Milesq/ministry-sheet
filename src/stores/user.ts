@@ -1,6 +1,7 @@
 import { unimplemented } from '@/common'
 import { Auth, type CognitoUser } from '@aws-amplify/auth'
 import { defineStore } from 'pinia'
+import wait from 'waait'
 
 interface UserState {
   user: string | null
@@ -38,20 +39,27 @@ const useUser = defineStore('user', {
       pass: string = DEFAULT_PASS,
       newPasswordCb: () => Promise<string> = unimplemented
     ) {
-      const user = (await Auth.signIn(
-        transformUserName(username),
-        pass
-      )) as CognitoUser
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const aUser = user as any
+      const signIn = async (paramPass?: string) =>
+        (await Auth.signIn(
+          transformUserName(username),
+          paramPass || pass
+        )) as CognitoUser
+      let user = await signIn()
 
-      if (aUser.challengeName === 'NEW_PASSWORD_REQUIRED') {
-        await Auth.completeNewPassword(user, await newPasswordCb())
+      if (user.challengeName === 'NEW_PASSWORD_REQUIRED') {
+        const newPass = await newPasswordCb()
+
+        await Auth.completeNewPassword(user, newPass)
+
+        user = await signIn(newPass)
       }
 
       this.user = user.getUsername()
 
-      const { name } = aUser.attributes as { name: string }
+      await wait(2000)
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { name } = (user as any).attributes as { name: string }
       this.name = name
 
       await this.checkIfAdmin()
