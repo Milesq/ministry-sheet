@@ -20,6 +20,7 @@ const user = useUser()
 
 onBeforeMount(() => {
   locale.sync()
+  user.credentialsGuard()
 })
 
 function refresh() {

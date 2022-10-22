@@ -83,6 +83,17 @@ const useUser = defineStore('user', {
 
       await Auth.signOut()
     },
+    async credentialsGuard() {
+      if (!this.isLoggedIn) {
+        return
+      }
+
+      try {
+        await Auth.currentAuthenticatedUser()
+      } catch {
+        await this.logout()
+      }
+    },
   },
   persist: true,
 })
