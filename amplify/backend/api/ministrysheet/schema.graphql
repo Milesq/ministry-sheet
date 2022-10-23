@@ -17,7 +17,7 @@ type Appointment
   @model
   @auth(
     rules: [
-      { allow: private, operations: [read] }
+      { allow: private, operations: [read, update, delete] }
       { allow: groups, groups: ["admins"] }
     ]
   ) {

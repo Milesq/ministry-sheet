@@ -2,11 +2,12 @@
 import { computed } from 'vue'
 import dayjs, { type Dayjs } from 'dayjs'
 import { useI18n } from 'vue-i18n'
-import { type Place, type Appointment, PendingAppointment } from '@/models'
-import { Swal, makeCalEvents, i18nFormat } from '@/common'
-import useAppointments from '@/stores/appointments'
-import Errors from '@/errors'
+import { type Place, Appointment, PendingAppointment } from '@/models'
 import { DataStore } from '@aws-amplify/datastore'
+import { Swal, makeCalEvents, i18nFormat, type CalendarEvent } from '@/common'
+import useAppointments from '@/stores/appointments'
+import useUser from '@/stores/user'
+import Errors from '@/errors'
 
 const props = defineProps<{
   appointments: Appointment[]
@@ -15,6 +16,7 @@ const props = defineProps<{
 }>()
 
 const { t } = useI18n()
+const user = useUser()
 
 const appointments = useAppointments()
 const events = computed(() =>
@@ -104,14 +106,18 @@ async function addEvent(date: Dayjs) {
   }
 }
 
-async function removeEvent(id: string) {
-  const pa = await DataStore.query(PendingAppointment, id)
+async function removeEvent({
+  id,
+  pending,
+}: Pick<CalendarEvent, 'id' | 'pending'>) {
+  const model = pending ? PendingAppointment : Appointment
+  const app = await DataStore.query(model, id)
 
-  if (!pa) {
+  if (!app) {
     throw new Error('Pending appointment not found')
   }
 
-  const date = dayjs(pa.datetime)
+  const date = dayjs(app.datetime)
 
   const day = date.format('D MMMM')
   const hour = date.format('H:mm')
@@ -119,7 +125,7 @@ async function removeEvent(id: string) {
   const formattedDate = t('confirmDate.dateFormat', {
     day,
     hour,
-    place: pa.place.name,
+    place: app.place.name,
   })
 
   const { isConfirmed } = await Swal.fire({
@@ -132,9 +138,34 @@ async function removeEvent(id: string) {
     cancelButtonText: t('cancel'),
   })
 
-  if (isConfirmed) {
-    await DataStore.delete(pa!)
+  if (!isConfirmed) {
+    return
   }
+
+  if (pending) {
+    await DataStore.delete(app!)
+
+    return
+  }
+
+  await Swal.fire({
+    text: t('alreadyApprovedWarning'),
+    icon: 'warning',
+  })
+
+  if ((app as Appointment).users?.length === 1) {
+    await DataStore.delete(app!)
+
+    return
+  }
+
+  await DataStore.save(
+    Appointment.copyOf(app as Appointment, updated => {
+      updated.users = updated.users?.filter(
+        appUserName => appUserName !== user.name
+      )
+    })
+  )
 }
 </script>
 
@@ -144,8 +175,8 @@ async function removeEvent(id: string) {
       :events="events"
       :addEvents="!!place"
       :events-removable="true"
-      @onEventClick="addEvent"
-      @onEventRemove="removeEvent"
+      @event-click="addEvent"
+      @event-remove="removeEvent"
     />
   </div>
 </template>

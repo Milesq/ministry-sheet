@@ -34,5 +34,6 @@
     "question": "Czy chcesz się zapisać?",
     "dateFormat": "{day} o godzinie {hour} przy {place}"
   },
-  "confirmDelete": "Czy na pewno chcesz usunąć termin?"
+  "confirmDelete": "Czy na pewno chcesz usunąć termin?",
+  "alreadyApprovedWarning": "Zostałeś już zatwierdzony, powinieneś poszukać zastępstwa"
 }

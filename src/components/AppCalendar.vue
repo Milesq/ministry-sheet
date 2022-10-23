@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import type { Dayjs } from 'dayjs'
 import { useMediaQuery } from '@vueuse/core'
+import pick from 'lodash.pick'
 import { range } from '@/utils'
 import type { CalendarEvent } from '@/common'
 import currentPeriod from '@/composables/currentPeriod'
@@ -12,9 +13,9 @@ import AppCalendarEvent from './AppCalendarEvent.vue'
 import AppCalendarCurrentTime from './AppCalendarCurrentTime.vue'
 
 defineEmits<{
-  onDateChange(date: Dayjs): void
-  onEventClick(date: Dayjs): void
-  onEventRemove(id: string): void
+  (e: 'dateChange', date: Dayjs): void
+  (e: 'eventClick', date: Dayjs): void
+  (e: 'eventRemove', options: Pick<CalendarEvent, 'id' | 'pending'>): void
 }>()
 
 const props = defineProps({
@@ -137,7 +138,7 @@ function makeDate(day: number, hour: number) {
       <div
         v-for="[x, y] in eventMatrix"
         :key="x + '-' + y"
-        @click="$emit('onEventClick', makeDate(x, y))"
+        @click="$emit('eventClick', makeDate(x, y))"
         class="z-99"
         :class="{ 'cursor-pointer': props.addEvents }"
         :style="{ gridRow: y + 2, gridColumn: x + 3 }"
@@ -154,7 +155,7 @@ function makeDate(day: number, hour: number) {
         :title="event.title"
         :pending="event.pending"
         :delete-event-enabled="eventsRemovable && event.removable"
-        @remove="$emit('onEventRemove', event.id)"
+        @remove="$emit('eventRemove', pick(event, ['id', 'pending']))"
       />
 
       <AppCalendarCurrentTime

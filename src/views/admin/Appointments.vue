@@ -103,7 +103,7 @@ async function onEventClick(place: Place, date: Dayjs) {
         <div class="flex justify-center">
           <AppCalendar
             v-if="activePlace === place.name"
-            @onEventClick="onEventClick(place, $event)"
+            @event-click="onEventClick(place, $event)"
             :events="events"
             :blockGoingToPast="false"
           />
