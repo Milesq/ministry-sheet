@@ -142,9 +142,9 @@ async function removeEvent(id: string) {
   <div class="flex justify-center">
     <AppCalendar
       :events="events"
-      @onEventClick="addEvent"
       :addEvents="!!place"
       :events-removable="true"
+      @onEventClick="addEvent"
       @onEventRemove="removeEvent"
     />
   </div>
