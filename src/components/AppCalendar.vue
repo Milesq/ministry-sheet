@@ -153,7 +153,7 @@ function makeDate(day: number, hour: number) {
         :content="event.content"
         :title="event.title"
         :pending="event.pending"
-        :delete-event-enabled="eventsRemovable && event.pending"
+        :delete-event-enabled="eventsRemovable && event.removable"
         @remove="$emit('onEventRemove', event.id)"
       />
 

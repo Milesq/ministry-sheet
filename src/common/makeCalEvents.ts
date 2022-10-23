@@ -2,12 +2,13 @@ import groupBy from 'lodash.groupby'
 import type { Appointment, PendingAppointment, Place } from '@/models'
 import type { CalendarEvent } from '@/common'
 import dayjs from 'dayjs'
+import useUser from '@/stores/user'
 
 function u(text: string) {
   return `<u>${text}</u>`
 }
 
-function mergeAppointmentsWithPendings(
+function getUsersFromAppAndPendings(
   arg: Array<Appointment & PendingAppointment>
 ) {
   return arg.reduce((acc: string[], curr) => {
@@ -33,7 +34,8 @@ function makeCalEvents({
   appointments,
   pendingAppointments,
   place,
-}: CalEventsArgs) {
+}: CalEventsArgs): CalendarEvent[] {
+  const user = useUser()
   const grouped = groupBy(
     [...appointments, ...pendingAppointments],
     e => e.place.id + e.datetime
@@ -42,7 +44,10 @@ function makeCalEvents({
   return Object.values(grouped).map(appointments => {
     const [appointment] = appointments
     const isPending = appointments.some(a => isAppPending(a))
-    const users = mergeAppointmentsWithPendings(appointments)
+    const users = getUsersFromAppAndPendings(appointments)
+    const isMyAppointment = (appointments as Appointment[]).some(a =>
+      a.users?.includes?.(user.name)
+    )
 
     return {
       id: appointment.id,
@@ -50,6 +55,7 @@ function makeCalEvents({
       datetime: dayjs(appointment.datetime),
       title: !place ? appointment.place.name : '',
       pending: isPending,
+      removable: isPending || isMyAppointment,
     } as CalendarEvent
   })
 }

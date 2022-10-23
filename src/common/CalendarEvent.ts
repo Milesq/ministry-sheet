@@ -6,4 +6,5 @@ export default interface CalendarEvent {
   datetime: Dayjs
   title?: string
   pending?: boolean
+  removable?: boolean
 }
