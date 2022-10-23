@@ -40,13 +40,40 @@ function getPendings({ id }: Place): PendingAppointment[] {
   )
 }
 
+async function deleteApprovedAppointment(place: Place, date: Dayjs) {
+  const isoDate = date.toISOString()
+
+  const app = appointments.appointments.find(
+    a => a.place.id === place.id && a.datetime === isoDate
+  )
+
+  if (!app) return
+
+  const { isDenied, value: userToRemove } = await Swal.fire({
+    title: t('selectUser'),
+    input: 'select',
+    inputOptions: Object.fromEntries(app.users!.map(x => [x, x])),
+    showCancelButton: true,
+    reverseButtons: true,
+    showConfirmButton: false,
+    showDenyButton: true,
+    returnInputValueOnDeny: true,
+    cancelButtonText: t('cancel'),
+    denyButtonText: t('deny'),
+  })
+
+  if (isDenied) {
+    appointments.remove(app.id, userToRemove)
+  }
+}
+
 async function onEventClick(place: Place, date: Dayjs) {
   const unapprovedUsers = appointments.pendingAppointments.filter(app => {
     return app.place.id === place.id && date.isSame(app.datetime)
   })
 
   if (!unapprovedUsers.length) {
-    return
+    return deleteApprovedAppointment(place, date)
   }
 
   const {
