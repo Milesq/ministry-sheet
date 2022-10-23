@@ -29,9 +29,11 @@ export default defineComponent({
   },
   data: () => ({
     users: [] as Item[],
+    loading: true,
   }),
   async mounted() {
     this.users = await this.listUnconfirmedUsers()
+    this.loading = false
   },
   methods: {
     async listUnconfirmedUsers(): Promise<Item[]> {
@@ -111,7 +113,11 @@ export default defineComponent({
 </script>
 
 <template>
-  <div>
+  <div v-if="loading" class="flex place-content-center">
+    <CssLoader />
+  </div>
+
+  <div v-else>
     <EditableList
       :items="users"
       :creatable="false"
