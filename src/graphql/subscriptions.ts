@@ -27,13 +27,13 @@ export const onCreatePlace = /* GraphQL */ `
           id
           datetime
           ownerName
+          owner
           placeID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -71,13 +71,13 @@ export const onUpdatePlace = /* GraphQL */ `
           id
           datetime
           ownerName
+          owner
           placeID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -115,13 +115,13 @@ export const onDeletePlace = /* GraphQL */ `
           id
           datetime
           ownerName
+          owner
           placeID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -245,6 +245,7 @@ export const onCreatePendingAppointment = /* GraphQL */ `
       id
       datetime
       ownerName
+      owner
       placeID
       place {
         id
@@ -268,7 +269,6 @@ export const onCreatePendingAppointment = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -281,6 +281,7 @@ export const onUpdatePendingAppointment = /* GraphQL */ `
       id
       datetime
       ownerName
+      owner
       placeID
       place {
         id
@@ -304,7 +305,6 @@ export const onUpdatePendingAppointment = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -317,6 +317,7 @@ export const onDeletePendingAppointment = /* GraphQL */ `
       id
       datetime
       ownerName
+      owner
       placeID
       place {
         id
@@ -340,7 +341,6 @@ export const onDeletePendingAppointment = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;

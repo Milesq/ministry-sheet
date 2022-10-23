@@ -66,6 +66,7 @@ type EagerPendingAppointment = {
   readonly id: string;
   readonly datetime: string;
   readonly ownerName?: string | null;
+  readonly owner?: string | null;
   readonly place: Place;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
@@ -75,6 +76,7 @@ type LazyPendingAppointment = {
   readonly id: string;
   readonly datetime: string;
   readonly ownerName?: string | null;
+  readonly owner?: string | null;
   readonly place: AsyncItem<Place>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;

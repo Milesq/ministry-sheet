@@ -101,6 +101,7 @@ export type PendingAppointment = {
   id: string,
   datetime: string,
   ownerName?: string | null,
+  owner?: string | null,
   placeID: string,
   place: Place,
   createdAt: string,
@@ -108,7 +109,6 @@ export type PendingAppointment = {
   _version: number,
   _deleted?: boolean | null,
   _lastChangedAt: number,
-  owner?: string | null,
 };
 
 export type UpdatePlaceInput = {
@@ -172,6 +172,7 @@ export type CreatePendingAppointmentInput = {
   id?: string | null,
   datetime: string,
   ownerName?: string | null,
+  owner?: string | null,
   placeID: string,
   _version?: number | null,
 };
@@ -179,6 +180,7 @@ export type CreatePendingAppointmentInput = {
 export type ModelPendingAppointmentConditionInput = {
   datetime?: ModelStringInput | null,
   ownerName?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   placeID?: ModelIDInput | null,
   and?: Array< ModelPendingAppointmentConditionInput | null > | null,
   or?: Array< ModelPendingAppointmentConditionInput | null > | null,
@@ -189,6 +191,7 @@ export type UpdatePendingAppointmentInput = {
   id: string,
   datetime?: string | null,
   ownerName?: string | null,
+  owner?: string | null,
   placeID?: string | null,
   _version?: number | null,
 };
@@ -227,6 +230,7 @@ export type ModelPendingAppointmentFilterInput = {
   id?: ModelIDInput | null,
   datetime?: ModelStringInput | null,
   ownerName?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   placeID?: ModelIDInput | null,
   and?: Array< ModelPendingAppointmentFilterInput | null > | null,
   or?: Array< ModelPendingAppointmentFilterInput | null > | null,
@@ -322,13 +326,13 @@ export type CreatePlaceMutation = {
         id: string,
         datetime: string,
         ownerName?: string | null,
+        owner?: string | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
-        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -375,13 +379,13 @@ export type UpdatePlaceMutation = {
         id: string,
         datetime: string,
         ownerName?: string | null,
+        owner?: string | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
-        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -428,13 +432,13 @@ export type DeletePlaceMutation = {
         id: string,
         datetime: string,
         ownerName?: string | null,
+        owner?: string | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
-        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -578,6 +582,7 @@ export type CreatePendingAppointmentMutation = {
     id: string,
     datetime: string,
     ownerName?: string | null,
+    owner?: string | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -604,7 +609,6 @@ export type CreatePendingAppointmentMutation = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
-    owner?: string | null,
   } | null,
 };
 
@@ -619,6 +623,7 @@ export type UpdatePendingAppointmentMutation = {
     id: string,
     datetime: string,
     ownerName?: string | null,
+    owner?: string | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -645,7 +650,6 @@ export type UpdatePendingAppointmentMutation = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
-    owner?: string | null,
   } | null,
 };
 
@@ -660,6 +664,7 @@ export type DeletePendingAppointmentMutation = {
     id: string,
     datetime: string,
     ownerName?: string | null,
+    owner?: string | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -686,7 +691,6 @@ export type DeletePendingAppointmentMutation = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
-    owner?: string | null,
   } | null,
 };
 
@@ -723,13 +727,13 @@ export type GetPlaceQuery = {
         id: string,
         datetime: string,
         ownerName?: string | null,
+        owner?: string | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
-        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -933,6 +937,7 @@ export type GetPendingAppointmentQuery = {
     id: string,
     datetime: string,
     ownerName?: string | null,
+    owner?: string | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -959,7 +964,6 @@ export type GetPendingAppointmentQuery = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
-    owner?: string | null,
   } | null,
 };
 
@@ -977,6 +981,7 @@ export type ListPendingAppointmentsQuery = {
       id: string,
       datetime: string,
       ownerName?: string | null,
+      owner?: string | null,
       placeID: string,
       place:  {
         __typename: "Place",
@@ -993,7 +998,6 @@ export type ListPendingAppointmentsQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
-      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -1015,6 +1019,7 @@ export type SyncPendingAppointmentsQuery = {
       id: string,
       datetime: string,
       ownerName?: string | null,
+      owner?: string | null,
       placeID: string,
       place:  {
         __typename: "Place",
@@ -1031,7 +1036,6 @@ export type SyncPendingAppointmentsQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
-      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -1071,13 +1075,13 @@ export type OnCreatePlaceSubscription = {
         id: string,
         datetime: string,
         ownerName?: string | null,
+        owner?: string | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
-        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1123,13 +1127,13 @@ export type OnUpdatePlaceSubscription = {
         id: string,
         datetime: string,
         ownerName?: string | null,
+        owner?: string | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
-        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1175,13 +1179,13 @@ export type OnDeletePlaceSubscription = {
         id: string,
         datetime: string,
         ownerName?: string | null,
+        owner?: string | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
-        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1322,6 +1326,7 @@ export type OnCreatePendingAppointmentSubscription = {
     id: string,
     datetime: string,
     ownerName?: string | null,
+    owner?: string | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -1348,7 +1353,6 @@ export type OnCreatePendingAppointmentSubscription = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
-    owner?: string | null,
   } | null,
 };
 
@@ -1363,6 +1367,7 @@ export type OnUpdatePendingAppointmentSubscription = {
     id: string,
     datetime: string,
     ownerName?: string | null,
+    owner?: string | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -1389,7 +1394,6 @@ export type OnUpdatePendingAppointmentSubscription = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
-    owner?: string | null,
   } | null,
 };
 
@@ -1404,6 +1408,7 @@ export type OnDeletePendingAppointmentSubscription = {
     id: string,
     datetime: string,
     ownerName?: string | null,
+    owner?: string | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -1430,6 +1435,5 @@ export type OnDeletePendingAppointmentSubscription = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
-    owner?: string | null,
   } | null,
 };

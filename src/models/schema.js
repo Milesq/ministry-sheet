@@ -222,6 +222,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "owner": {
+                    "name": "owner",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "place": {
                     "name": "place",
                     "isArray": false,
@@ -313,5 +320,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.2.0",
-    "version": "1bd2904016923cdbc027291500c9e6a4"
+    "version": "7da869604fd4cb5971c605af1f318813"
 };

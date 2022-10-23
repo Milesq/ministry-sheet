@@ -42,6 +42,7 @@ type PendingAppointment
   datetime: AWSDateTime!
 
   ownerName: String
+  owner: String
   placeID: ID! @index(name: "byPlace")
   place: Place! @belongsTo(fields: ["placeID"])
 }

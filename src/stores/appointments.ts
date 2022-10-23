@@ -102,6 +102,7 @@ const useAppointments = defineStore('appointments', {
         new PendingAppointment({
           place,
           datetime: date.toISOString(),
+          owner: userStore.user,
           ownerName: userStore.name,
         })
       )
