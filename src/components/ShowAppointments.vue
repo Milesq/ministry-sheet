@@ -153,19 +153,7 @@ async function removeEvent({
     icon: 'warning',
   })
 
-  if ((app as Appointment).users?.length === 1) {
-    await DataStore.delete(app!)
-
-    return
-  }
-
-  await DataStore.save(
-    Appointment.copyOf(app as Appointment, updated => {
-      updated.users = updated.users?.filter(
-        appUserName => appUserName !== user.name
-      )
-    })
-  )
+  await appointments.remove(app.id)
 }
 </script>
 

@@ -147,6 +147,31 @@ const useAppointments = defineStore('appointments', {
 
       await DataStore.delete(pa)
     },
+    async remove(id: string, user?: string) {
+      const app = await DataStore.query(Appointment, id)
+
+      if (!app) {
+        throw new Error(Errors.PendingAppointmentNotFound)
+      }
+
+      if (app.users?.length === 1) {
+        await DataStore.delete(app!)
+
+        return
+      }
+
+      const currentUser = useUser()
+
+      const userToRemove = user || currentUser.name
+
+      await DataStore.save(
+        Appointment.copyOf(app as Appointment, updated => {
+          updated.users = updated.users?.filter(
+            appUserName => appUserName !== userToRemove
+          )
+        })
+      )
+    },
   },
 })
 
