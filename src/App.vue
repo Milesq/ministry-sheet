@@ -18,9 +18,12 @@ const { t, availableLocales } = useI18n()
 const locale = useLocale()
 const user = useUser()
 
-onBeforeMount(() => {
+onBeforeMount(async () => {
   locale.sync()
-  user.credentialsGuard()
+
+  if (!(await user.credentialsGuard())) {
+    refresh()
+  }
 })
 
 function refresh() {
