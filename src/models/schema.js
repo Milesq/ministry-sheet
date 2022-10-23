@@ -215,8 +215,8 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "owner": {
-                    "name": "owner",
+                "ownerName": {
+                    "name": "ownerName",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -312,5 +312,6 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "30b01dec05761ce212d8c156ddf35bbf"
+    "codegenVersion": "3.2.0",
+    "version": "1bd2904016923cdbc027291500c9e6a4"
 };

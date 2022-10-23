@@ -100,7 +100,7 @@ export type PendingAppointment = {
   __typename: "PendingAppointment",
   id: string,
   datetime: string,
-  owner?: string | null,
+  ownerName?: string | null,
   placeID: string,
   place: Place,
   createdAt: string,
@@ -108,6 +108,7 @@ export type PendingAppointment = {
   _version: number,
   _deleted?: boolean | null,
   _lastChangedAt: number,
+  owner?: string | null,
 };
 
 export type UpdatePlaceInput = {
@@ -170,14 +171,14 @@ export type DeleteAppointmentInput = {
 export type CreatePendingAppointmentInput = {
   id?: string | null,
   datetime: string,
-  owner?: string | null,
+  ownerName?: string | null,
   placeID: string,
   _version?: number | null,
 };
 
 export type ModelPendingAppointmentConditionInput = {
   datetime?: ModelStringInput | null,
-  owner?: ModelStringInput | null,
+  ownerName?: ModelStringInput | null,
   placeID?: ModelIDInput | null,
   and?: Array< ModelPendingAppointmentConditionInput | null > | null,
   or?: Array< ModelPendingAppointmentConditionInput | null > | null,
@@ -187,7 +188,7 @@ export type ModelPendingAppointmentConditionInput = {
 export type UpdatePendingAppointmentInput = {
   id: string,
   datetime?: string | null,
-  owner?: string | null,
+  ownerName?: string | null,
   placeID?: string | null,
   _version?: number | null,
 };
@@ -225,11 +226,66 @@ export type ModelAppointmentFilterInput = {
 export type ModelPendingAppointmentFilterInput = {
   id?: ModelIDInput | null,
   datetime?: ModelStringInput | null,
-  owner?: ModelStringInput | null,
+  ownerName?: ModelStringInput | null,
   placeID?: ModelIDInput | null,
   and?: Array< ModelPendingAppointmentFilterInput | null > | null,
   or?: Array< ModelPendingAppointmentFilterInput | null > | null,
   not?: ModelPendingAppointmentFilterInput | null,
+};
+
+export type ModelSubscriptionPlaceFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  name?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionPlaceFilterInput | null > | null,
+  or?: Array< ModelSubscriptionPlaceFilterInput | null > | null,
+};
+
+export type ModelSubscriptionIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  in?: Array< string | null > | null,
+  notIn?: Array< string | null > | null,
+};
+
+export type ModelSubscriptionStringInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  in?: Array< string | null > | null,
+  notIn?: Array< string | null > | null,
+};
+
+export type ModelSubscriptionAppointmentFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  datetime?: ModelSubscriptionStringInput | null,
+  users?: ModelSubscriptionStringInput | null,
+  placeID?: ModelSubscriptionIDInput | null,
+  and?: Array< ModelSubscriptionAppointmentFilterInput | null > | null,
+  or?: Array< ModelSubscriptionAppointmentFilterInput | null > | null,
+};
+
+export type ModelSubscriptionPendingAppointmentFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  datetime?: ModelSubscriptionStringInput | null,
+  ownerName?: ModelSubscriptionStringInput | null,
+  placeID?: ModelSubscriptionIDInput | null,
+  and?: Array< ModelSubscriptionPendingAppointmentFilterInput | null > | null,
+  or?: Array< ModelSubscriptionPendingAppointmentFilterInput | null > | null,
 };
 
 export type CreatePlaceMutationVariables = {
@@ -265,13 +321,14 @@ export type CreatePlaceMutation = {
         __typename: "PendingAppointment",
         id: string,
         datetime: string,
-        owner?: string | null,
+        ownerName?: string | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -317,13 +374,14 @@ export type UpdatePlaceMutation = {
         __typename: "PendingAppointment",
         id: string,
         datetime: string,
-        owner?: string | null,
+        ownerName?: string | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -369,13 +427,14 @@ export type DeletePlaceMutation = {
         __typename: "PendingAppointment",
         id: string,
         datetime: string,
-        owner?: string | null,
+        ownerName?: string | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -518,7 +577,7 @@ export type CreatePendingAppointmentMutation = {
     __typename: "PendingAppointment",
     id: string,
     datetime: string,
-    owner?: string | null,
+    ownerName?: string | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -545,6 +604,7 @@ export type CreatePendingAppointmentMutation = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -558,7 +618,7 @@ export type UpdatePendingAppointmentMutation = {
     __typename: "PendingAppointment",
     id: string,
     datetime: string,
-    owner?: string | null,
+    ownerName?: string | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -585,6 +645,7 @@ export type UpdatePendingAppointmentMutation = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -598,7 +659,7 @@ export type DeletePendingAppointmentMutation = {
     __typename: "PendingAppointment",
     id: string,
     datetime: string,
-    owner?: string | null,
+    ownerName?: string | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -625,6 +686,7 @@ export type DeletePendingAppointmentMutation = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -660,13 +722,14 @@ export type GetPlaceQuery = {
         __typename: "PendingAppointment",
         id: string,
         datetime: string,
-        owner?: string | null,
+        ownerName?: string | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -869,7 +932,7 @@ export type GetPendingAppointmentQuery = {
     __typename: "PendingAppointment",
     id: string,
     datetime: string,
-    owner?: string | null,
+    ownerName?: string | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -896,6 +959,7 @@ export type GetPendingAppointmentQuery = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
@@ -912,7 +976,7 @@ export type ListPendingAppointmentsQuery = {
       __typename: "PendingAppointment",
       id: string,
       datetime: string,
-      owner?: string | null,
+      ownerName?: string | null,
       placeID: string,
       place:  {
         __typename: "Place",
@@ -929,6 +993,7 @@ export type ListPendingAppointmentsQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -949,7 +1014,7 @@ export type SyncPendingAppointmentsQuery = {
       __typename: "PendingAppointment",
       id: string,
       datetime: string,
-      owner?: string | null,
+      ownerName?: string | null,
       placeID: string,
       place:  {
         __typename: "Place",
@@ -966,10 +1031,15 @@ export type SyncPendingAppointmentsQuery = {
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
   } | null,
+};
+
+export type OnCreatePlaceSubscriptionVariables = {
+  filter?: ModelSubscriptionPlaceFilterInput | null,
 };
 
 export type OnCreatePlaceSubscription = {
@@ -1000,13 +1070,14 @@ export type OnCreatePlaceSubscription = {
         __typename: "PendingAppointment",
         id: string,
         datetime: string,
-        owner?: string | null,
+        ownerName?: string | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1017,6 +1088,10 @@ export type OnCreatePlaceSubscription = {
     _deleted?: boolean | null,
     _lastChangedAt: number,
   } | null,
+};
+
+export type OnUpdatePlaceSubscriptionVariables = {
+  filter?: ModelSubscriptionPlaceFilterInput | null,
 };
 
 export type OnUpdatePlaceSubscription = {
@@ -1047,13 +1122,14 @@ export type OnUpdatePlaceSubscription = {
         __typename: "PendingAppointment",
         id: string,
         datetime: string,
-        owner?: string | null,
+        ownerName?: string | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1064,6 +1140,10 @@ export type OnUpdatePlaceSubscription = {
     _deleted?: boolean | null,
     _lastChangedAt: number,
   } | null,
+};
+
+export type OnDeletePlaceSubscriptionVariables = {
+  filter?: ModelSubscriptionPlaceFilterInput | null,
 };
 
 export type OnDeletePlaceSubscription = {
@@ -1094,13 +1174,14 @@ export type OnDeletePlaceSubscription = {
         __typename: "PendingAppointment",
         id: string,
         datetime: string,
-        owner?: string | null,
+        ownerName?: string | null,
         placeID: string,
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1111,6 +1192,10 @@ export type OnDeletePlaceSubscription = {
     _deleted?: boolean | null,
     _lastChangedAt: number,
   } | null,
+};
+
+export type OnCreateAppointmentSubscriptionVariables = {
+  filter?: ModelSubscriptionAppointmentFilterInput | null,
 };
 
 export type OnCreateAppointmentSubscription = {
@@ -1148,6 +1233,10 @@ export type OnCreateAppointmentSubscription = {
   } | null,
 };
 
+export type OnUpdateAppointmentSubscriptionVariables = {
+  filter?: ModelSubscriptionAppointmentFilterInput | null,
+};
+
 export type OnUpdateAppointmentSubscription = {
   onUpdateAppointment?:  {
     __typename: "Appointment",
@@ -1181,6 +1270,10 @@ export type OnUpdateAppointmentSubscription = {
     _deleted?: boolean | null,
     _lastChangedAt: number,
   } | null,
+};
+
+export type OnDeleteAppointmentSubscriptionVariables = {
+  filter?: ModelSubscriptionAppointmentFilterInput | null,
 };
 
 export type OnDeleteAppointmentSubscription = {
@@ -1219,6 +1312,7 @@ export type OnDeleteAppointmentSubscription = {
 };
 
 export type OnCreatePendingAppointmentSubscriptionVariables = {
+  filter?: ModelSubscriptionPendingAppointmentFilterInput | null,
   owner?: string | null,
 };
 
@@ -1227,7 +1321,7 @@ export type OnCreatePendingAppointmentSubscription = {
     __typename: "PendingAppointment",
     id: string,
     datetime: string,
-    owner?: string | null,
+    ownerName?: string | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -1254,10 +1348,12 @@ export type OnCreatePendingAppointmentSubscription = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdatePendingAppointmentSubscriptionVariables = {
+  filter?: ModelSubscriptionPendingAppointmentFilterInput | null,
   owner?: string | null,
 };
 
@@ -1266,7 +1362,7 @@ export type OnUpdatePendingAppointmentSubscription = {
     __typename: "PendingAppointment",
     id: string,
     datetime: string,
-    owner?: string | null,
+    ownerName?: string | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -1293,10 +1389,12 @@ export type OnUpdatePendingAppointmentSubscription = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeletePendingAppointmentSubscriptionVariables = {
+  filter?: ModelSubscriptionPendingAppointmentFilterInput | null,
   owner?: string | null,
 };
 
@@ -1305,7 +1403,7 @@ export type OnDeletePendingAppointmentSubscription = {
     __typename: "PendingAppointment",
     id: string,
     datetime: string,
-    owner?: string | null,
+    ownerName?: string | null,
     placeID: string,
     place:  {
       __typename: "Place",
@@ -1332,5 +1430,6 @@ export type OnDeletePendingAppointmentSubscription = {
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
+    owner?: string | null,
   } | null,
 };

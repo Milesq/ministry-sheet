@@ -3,8 +3,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreatePlace = /* GraphQL */ `
-  subscription OnCreatePlace {
-    onCreatePlace {
+  subscription OnCreatePlace($filter: ModelSubscriptionPlaceFilterInput) {
+    onCreatePlace(filter: $filter) {
       id
       name
       Appointments {
@@ -26,13 +26,14 @@ export const onCreatePlace = /* GraphQL */ `
         items {
           id
           datetime
-          owner
+          ownerName
           placeID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -46,8 +47,8 @@ export const onCreatePlace = /* GraphQL */ `
   }
 `;
 export const onUpdatePlace = /* GraphQL */ `
-  subscription OnUpdatePlace {
-    onUpdatePlace {
+  subscription OnUpdatePlace($filter: ModelSubscriptionPlaceFilterInput) {
+    onUpdatePlace(filter: $filter) {
       id
       name
       Appointments {
@@ -69,13 +70,14 @@ export const onUpdatePlace = /* GraphQL */ `
         items {
           id
           datetime
-          owner
+          ownerName
           placeID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -89,8 +91,8 @@ export const onUpdatePlace = /* GraphQL */ `
   }
 `;
 export const onDeletePlace = /* GraphQL */ `
-  subscription OnDeletePlace {
-    onDeletePlace {
+  subscription OnDeletePlace($filter: ModelSubscriptionPlaceFilterInput) {
+    onDeletePlace(filter: $filter) {
       id
       name
       Appointments {
@@ -112,13 +114,14 @@ export const onDeletePlace = /* GraphQL */ `
         items {
           id
           datetime
-          owner
+          ownerName
           placeID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -132,8 +135,10 @@ export const onDeletePlace = /* GraphQL */ `
   }
 `;
 export const onCreateAppointment = /* GraphQL */ `
-  subscription OnCreateAppointment {
-    onCreateAppointment {
+  subscription OnCreateAppointment(
+    $filter: ModelSubscriptionAppointmentFilterInput
+  ) {
+    onCreateAppointment(filter: $filter) {
       id
       datetime
       users
@@ -164,8 +169,10 @@ export const onCreateAppointment = /* GraphQL */ `
   }
 `;
 export const onUpdateAppointment = /* GraphQL */ `
-  subscription OnUpdateAppointment {
-    onUpdateAppointment {
+  subscription OnUpdateAppointment(
+    $filter: ModelSubscriptionAppointmentFilterInput
+  ) {
+    onUpdateAppointment(filter: $filter) {
       id
       datetime
       users
@@ -196,8 +203,10 @@ export const onUpdateAppointment = /* GraphQL */ `
   }
 `;
 export const onDeleteAppointment = /* GraphQL */ `
-  subscription OnDeleteAppointment {
-    onDeleteAppointment {
+  subscription OnDeleteAppointment(
+    $filter: ModelSubscriptionAppointmentFilterInput
+  ) {
+    onDeleteAppointment(filter: $filter) {
       id
       datetime
       users
@@ -228,11 +237,14 @@ export const onDeleteAppointment = /* GraphQL */ `
   }
 `;
 export const onCreatePendingAppointment = /* GraphQL */ `
-  subscription OnCreatePendingAppointment($owner: String) {
-    onCreatePendingAppointment(owner: $owner) {
+  subscription OnCreatePendingAppointment(
+    $filter: ModelSubscriptionPendingAppointmentFilterInput
+    $owner: String
+  ) {
+    onCreatePendingAppointment(filter: $filter, owner: $owner) {
       id
       datetime
-      owner
+      ownerName
       placeID
       place {
         id
@@ -256,15 +268,19 @@ export const onCreatePendingAppointment = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
 export const onUpdatePendingAppointment = /* GraphQL */ `
-  subscription OnUpdatePendingAppointment($owner: String) {
-    onUpdatePendingAppointment(owner: $owner) {
+  subscription OnUpdatePendingAppointment(
+    $filter: ModelSubscriptionPendingAppointmentFilterInput
+    $owner: String
+  ) {
+    onUpdatePendingAppointment(filter: $filter, owner: $owner) {
       id
       datetime
-      owner
+      ownerName
       placeID
       place {
         id
@@ -288,15 +304,19 @@ export const onUpdatePendingAppointment = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
 export const onDeletePendingAppointment = /* GraphQL */ `
-  subscription OnDeletePendingAppointment($owner: String) {
-    onDeletePendingAppointment(owner: $owner) {
+  subscription OnDeletePendingAppointment(
+    $filter: ModelSubscriptionPendingAppointmentFilterInput
+    $owner: String
+  ) {
+    onDeletePendingAppointment(filter: $filter, owner: $owner) {
       id
       datetime
-      owner
+      ownerName
       placeID
       place {
         id
@@ -320,6 +340,7 @@ export const onDeletePendingAppointment = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;

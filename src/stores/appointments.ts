@@ -27,7 +27,9 @@ const useAppointments = defineStore('appointments', {
 
       if (!isAdmin) return state.pendingAppointments
 
-      return state.pendingAppointments.filter(({ owner }) => owner === name)
+      return state.pendingAppointments.filter(
+        ({ ownerName }) => ownerName === name
+      )
     },
     byPlaces(state): Record<string, PendingAppointment[]> {
       return groupBy(state.pendingAppointments, 'place.name')
@@ -84,7 +86,7 @@ const useAppointments = defineStore('appointments', {
 
       const termAlreadyReserved = this.pendingAppointments.some(app => {
         const isTheSameUser =
-          transformUserName(app.owner || '') === userStore.user
+          transformUserName(app.ownerName || '') === userStore.user
         if (!isTheSameUser) {
           return false
         }
@@ -100,7 +102,7 @@ const useAppointments = defineStore('appointments', {
         new PendingAppointment({
           place,
           datetime: date.toISOString(),
-          owner: userStore.name,
+          ownerName: userStore.name,
         })
       )
     },
@@ -111,7 +113,7 @@ const useAppointments = defineStore('appointments', {
         throw new Error(Errors.PendingAppointmentNotFound)
       }
 
-      const { datetime, place, owner } = pa
+      const { datetime, place, ownerName } = pa
 
       const oldAppointment = (
         await DataStore.query(Appointment, c => c.datetime('eq', datetime))
@@ -120,7 +122,7 @@ const useAppointments = defineStore('appointments', {
       if (oldAppointment) {
         await DataStore.save(
           Appointment.copyOf(oldAppointment, updated => {
-            updated.users?.push(owner!)
+            updated.users?.push(ownerName!)
           })
         )
       } else {
@@ -128,7 +130,7 @@ const useAppointments = defineStore('appointments', {
           new Appointment({
             place,
             datetime,
-            users: [owner!],
+            users: [ownerName!],
           })
         )
       }

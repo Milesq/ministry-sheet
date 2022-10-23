@@ -26,13 +26,14 @@ export const getPlace = /* GraphQL */ `
         items {
           id
           datetime
-          owner
+          ownerName
           placeID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -216,7 +217,7 @@ export const getPendingAppointment = /* GraphQL */ `
     getPendingAppointment(id: $id) {
       id
       datetime
-      owner
+      ownerName
       placeID
       place {
         id
@@ -240,6 +241,7 @@ export const getPendingAppointment = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -257,7 +259,7 @@ export const listPendingAppointments = /* GraphQL */ `
       items {
         id
         datetime
-        owner
+        ownerName
         placeID
         place {
           id
@@ -273,6 +275,7 @@ export const listPendingAppointments = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       nextToken
       startedAt
@@ -295,7 +298,7 @@ export const syncPendingAppointments = /* GraphQL */ `
       items {
         id
         datetime
-        owner
+        ownerName
         placeID
         place {
           id
@@ -311,6 +314,7 @@ export const syncPendingAppointments = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       nextToken
       startedAt

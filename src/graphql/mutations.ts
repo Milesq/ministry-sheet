@@ -29,13 +29,14 @@ export const createPlace = /* GraphQL */ `
         items {
           id
           datetime
-          owner
+          ownerName
           placeID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -75,13 +76,14 @@ export const updatePlace = /* GraphQL */ `
         items {
           id
           datetime
-          owner
+          ownerName
           placeID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -121,13 +123,14 @@ export const deletePlace = /* GraphQL */ `
         items {
           id
           datetime
-          owner
+          ownerName
           placeID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -253,7 +256,7 @@ export const createPendingAppointment = /* GraphQL */ `
     createPendingAppointment(input: $input, condition: $condition) {
       id
       datetime
-      owner
+      ownerName
       placeID
       place {
         id
@@ -277,6 +280,7 @@ export const createPendingAppointment = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -288,7 +292,7 @@ export const updatePendingAppointment = /* GraphQL */ `
     updatePendingAppointment(input: $input, condition: $condition) {
       id
       datetime
-      owner
+      ownerName
       placeID
       place {
         id
@@ -312,6 +316,7 @@ export const updatePendingAppointment = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -323,7 +328,7 @@ export const deletePendingAppointment = /* GraphQL */ `
     deletePendingAppointment(input: $input, condition: $condition) {
       id
       datetime
-      owner
+      ownerName
       placeID
       place {
         id
@@ -347,6 +352,7 @@ export const deletePendingAppointment = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;

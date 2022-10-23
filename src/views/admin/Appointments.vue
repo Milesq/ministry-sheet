@@ -58,7 +58,7 @@ async function onEventClick(place: Place, date: Dayjs) {
     title: t('selectUser'),
     input: 'select',
     inputOptions: Object.fromEntries(
-      unapprovedUsers.map(req => [req.id, req.owner])
+      unapprovedUsers.map(req => [req.id, req.ownerName])
     ),
     inputPlaceholder: '-',
     showDenyButton: true,

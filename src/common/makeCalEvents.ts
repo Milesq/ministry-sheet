@@ -11,14 +11,16 @@ function mergeAppointmentsWithPendings(
   arg: Array<Appointment & PendingAppointment>
 ) {
   return arg.reduce((acc: string[], curr) => {
-    const newElements = (curr.owner ? [u(curr.owner)] : curr.users) as string[]
+    const newElements = (
+      curr.ownerName ? [u(curr.ownerName)] : curr.users
+    ) as string[]
 
     return [...acc, ...newElements]
   }, [])
 }
 
 function isAppPending(a: Appointment | PendingAppointment): boolean {
-  return !!(a as PendingAppointment).owner
+  return !!(a as PendingAppointment).ownerName
 }
 
 interface CalEventsArgs {

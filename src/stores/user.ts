@@ -85,12 +85,15 @@ const useUser = defineStore('user', {
     },
     async credentialsGuard() {
       if (!this.isLoggedIn) {
-        return
+        return true
       }
 
       try {
         await Auth.currentAuthenticatedUser()
-      } catch {
+
+        return true
+      } catch (err) {
+        console.log(err)
         await this.logout()
       }
     },
