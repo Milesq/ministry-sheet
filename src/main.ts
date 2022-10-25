@@ -7,6 +7,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import 'virtual:windi.css'
+import '../node_modules/vue3-single-date-picker/dist/style.css'
 import '@/common/dayjs'
 
 import App from './App.vue'
