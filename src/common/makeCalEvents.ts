@@ -12,11 +12,10 @@ function getUsersFromAppAndPendings(
   arg: Array<Appointment & PendingAppointment>
 ) {
   return arg.reduce((acc: string[], curr) => {
-    const newElements = (
-      curr.ownerName ? [u(curr.ownerName)] : curr.users
-    ) as string[]
+    const ownerName = curr.ownerName || curr.owner
+    const newElements = (ownerName ? [u(ownerName)] : curr.users) as string[]
 
-    return [...acc, ...newElements]
+    return [...acc, ...(newElements || [])]
   }, [])
 }
 
