@@ -109,3 +109,12 @@ function logout() {
     </el-container>
   </div>
 </template>
+
+<style>
+:root {
+  --vsdp-primary-color: #69ddb8;
+  --vsdp-accent-color: var(--vsdp-primary-color);
+  --vsdp-secondary-color: #3f9878;
+  --vsdp-primary-text: #0b4f38;
+}
+</style>

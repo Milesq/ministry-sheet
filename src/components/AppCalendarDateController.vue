@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import dayjs, { type Dayjs } from 'dayjs'
 import ChevronLeft from '~icons/mdi/ChevronLeft'
 import ChevronRight from '~icons/mdi/ChevronRight'
+import { CalendarView } from 'vue3-single-date-picker'
 import { i18nFormat } from '@/common'
 
+// eslint-disable-next-line sonarjs/no-duplicate-string
 const emit = defineEmits(['prev', 'next', 'update:modelValue'])
 const props = withDefaults(
   defineProps<{
@@ -51,6 +53,26 @@ function format(day: Dayjs): string {
     formattedStr.slice(4),
   ].join('')
 }
+const pickDateModalOpened = ref(false)
+
+function pickDate() {
+  pickDateModalOpened.value = true
+}
+
+interface SingleDatePickerDateFormat {
+  year: number
+  month: number
+  date: number
+}
+
+function changeDateViaPicker(data: SingleDatePickerDateFormat) {
+  // eslint-disable-next-line prefer-const
+  let { year, month, date } = data
+  month++
+
+  emit('update:modelValue', dayjs(`${year}-${month}-${date}`))
+  pickDateModalOpened.value = false
+}
 </script>
 
 <template>
@@ -69,7 +91,7 @@ function format(day: Dayjs): string {
       -
       {{ format(weekBeg.add(6, 'days')) }}
     </span>
-    <span v-else>
+    <span v-else @click="pickDate">
       {{ format(modelValue) }}
     </span>
 
@@ -79,6 +101,9 @@ function format(day: Dayjs): string {
       text="25px"
     />
   </div>
+  <el-dialog width="100%" v-model="pickDateModalOpened">
+    <CalendarView @select-date="changeDateViaPicker" />
+  </el-dialog>
 </template>
 
 <style scoped lang="scss">
