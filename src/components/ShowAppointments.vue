@@ -6,6 +6,7 @@ import { type Place, Appointment, PendingAppointment } from '@/models'
 import { DataStore } from '@aws-amplify/datastore'
 import { Swal, makeCalEvents, i18nFormat, type CalendarEvent } from '@/common'
 import useAppointments from '@/stores/appointments'
+import useUser from '@/stores/user'
 import Errors from '@/errors'
 
 const props = defineProps<{
@@ -15,6 +16,7 @@ const props = defineProps<{
 }>()
 
 const { t } = useI18n()
+const user = useUser()
 
 const appointments = useAppointments()
 const events = computedAsync(
