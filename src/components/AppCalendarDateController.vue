@@ -101,7 +101,7 @@ function changeDateViaPicker(data: SingleDatePickerDateFormat) {
       text="25px"
     />
   </div>
-  <el-dialog width="100%" v-model="pickDateModalOpened">
+  <el-dialog width="100%" class="center" v-model="pickDateModalOpened">
     <CalendarView @select-date="changeDateViaPicker" />
   </el-dialog>
 </template>
