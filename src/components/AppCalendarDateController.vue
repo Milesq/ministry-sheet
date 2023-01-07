@@ -5,6 +5,7 @@ import ChevronLeft from '~icons/mdi/ChevronLeft'
 import ChevronRight from '~icons/mdi/ChevronRight'
 import { CalendarView } from 'vue3-single-date-picker'
 import { i18nFormat } from '@/common'
+import { useStorage } from '@vueuse/core'
 
 // eslint-disable-next-line sonarjs/no-duplicate-string
 const emit = defineEmits(['prev', 'next', 'update:modelValue'])
@@ -20,6 +21,8 @@ const props = withDefaults(
     blockGoingToPast: false,
   }
 )
+
+const usedDatePicker = useStorage('usedDatePicker', false)
 
 const weekBeg = computed(() => props.modelValue.weekday(0))
 
@@ -56,6 +59,7 @@ function format(day: Dayjs): string {
 const pickDateModalOpened = ref(false)
 
 function pickDate() {
+  usedDatePicker.value = true
   pickDateModalOpened.value = true
 }
 
@@ -91,7 +95,11 @@ function changeDateViaPicker(data: SingleDatePickerDateFormat) {
       -
       {{ format(weekBeg.add(6, 'days')) }}
     </span>
-    <span v-else @click="pickDate" class="box-animated-border">
+    <span
+      v-else
+      @click="pickDate"
+      :class="{ 'box-animated-border': !usedDatePicker }"
+    >
       {{ format(modelValue) }}
     </span>
 
