@@ -91,7 +91,7 @@ function changeDateViaPicker(data: SingleDatePickerDateFormat) {
       -
       {{ format(weekBeg.add(6, 'days')) }}
     </span>
-    <span v-else @click="pickDate">
+    <span v-else @click="pickDate" class="box-animated-border">
       {{ format(modelValue) }}
     </span>
 

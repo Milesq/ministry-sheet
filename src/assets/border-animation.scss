@@ -1,0 +1,43 @@
+/**
+ * @inspired by https://codepen.io/shshaw/pen/RwJwJJx
+*/
+
+:root {
+  --anim-box-bg: #fff;
+}
+
+html.dark {
+  --anim-box-bg: #121212;
+}
+
+.box-animated-border {
+  --border-size: 3px;
+  --border-angle: 0turn;
+  padding: calc(var(--border-size) * 2);
+  border-radius: 3px;
+  background-image: conic-gradient(
+      from var(--border-angle),
+      var(--anim-box-bg),
+      var(--anim-box-bg) 50%,
+      var(--anim-box-bg)
+    ),
+    conic-gradient(from var(--border-angle), transparent 20%, #08f, #f03);
+  background-size: calc(100% - (var(--border-size) * 2))
+      calc(100% - (var(--border-size) * 2)),
+    cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  animation: bg-spin 3s linear infinite;
+  @keyframes bg-spin {
+    to {
+      --border-angle: 1turn;
+    }
+  }
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
