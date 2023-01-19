@@ -1,5 +1,5 @@
 import { Auth } from '@aws-amplify/auth'
-import API from '@aws-amplify/api-rest'
+import { RestAPI } from '@aws-amplify/api-rest'
 
 async function genericAdminRequest(api: string, body: Record<string, unknown>) {
   const command = `/${api}`
@@ -13,7 +13,7 @@ async function genericAdminRequest(api: string, body: Record<string, unknown>) {
     },
   }
 
-  return API.post('AdminQueries', command, config)
+  return RestAPI.post('AdminQueries', command, config)
 }
 
 export default genericAdminRequest
