@@ -47,8 +47,8 @@ const myAppointments = computed(() => {
       >
         <ShowAppointments
           v-if="activePlace === place.name"
-          :appointments="getAppointments(place)"
-          :pending-appointments="getPendings(place)"
+          :appointments="getAppointments(place as unknown as Place)"
+          :pending-appointments="getPendings(place as unknown as Place)"
           :place="place"
         />
       </el-tab-pane>

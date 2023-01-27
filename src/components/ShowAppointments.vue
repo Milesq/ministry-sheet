@@ -54,7 +54,7 @@ async function missingPlaceSwal(): Promise<Place> {
     throw new Error(Errors.Cancelled)
   }
 
-  return appointments.places.find(({ id }) => id === selectedPlace)!
+  return appointments.places.find(({ id }) => id === selectedPlace) as Place
 }
 
 async function addEvent(date: Dayjs) {

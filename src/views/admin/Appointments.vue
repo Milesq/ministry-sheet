@@ -27,7 +27,7 @@ const events = computedAsync(() => {
   return makeCalEvents({
     appointments: getAppointments(place.id),
     pendingAppointments: getPendings(place.id),
-    place,
+    place: place as unknown as Place,
   })
 })
 
@@ -131,7 +131,7 @@ async function onEventClick(place: Place, date: Dayjs) {
         <div class="flex justify-center">
           <AppCalendar
             v-if="activePlace === place.name"
-            @event-click="onEventClick(place, $event)"
+            @event-click="onEventClick(place as unknown as Place, $event)"
             :events="events"
             :blockGoingToPast="false"
           />
