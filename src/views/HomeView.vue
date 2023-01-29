@@ -14,11 +14,11 @@ onMounted(() => {
 })
 
 function getAppointments({ id }: Place): Appointment[] {
-  return appointments.appointments?.filter(({ place }) => place.id === id)
+  return appointments.appointments?.filter(({ placeID }) => placeID === id)
 }
 
 function getPendings({ id }: Place): PendingAppointment[] {
-  return appointments.myPendings?.filter(({ place }) => place.id === id)
+  return appointments.myPendings?.filter(({ placeID }) => placeID === id)
 }
 
 const myAppointments = computed(() => {

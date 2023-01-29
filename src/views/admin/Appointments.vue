@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { computed, ref, watchEffect } from 'vue'
+import { ref, watchEffect } from 'vue'
+import { computedAsync } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 import type { Dayjs } from 'dayjs'
 import type { Appointment, PendingAppointment, Place } from '@/models'
@@ -16,7 +17,7 @@ watchEffect(() => {
     activePlace.value = appointments.places[0].name
 })
 
-const events = computed(() => {
+const events = computedAsync(() => {
   const place = appointments.places.find(
     ({ name }) => name === activePlace.value
   )
@@ -24,19 +25,19 @@ const events = computed(() => {
   if (!place) return []
 
   return makeCalEvents({
-    appointments: getAppointments(place),
-    pendingAppointments: getPendings(place),
+    appointments: getAppointments(place.id),
+    pendingAppointments: getPendings(place.id),
     place,
   })
 })
 
-function getAppointments({ id }: Place): Appointment[] {
-  return appointments.appointments?.filter(({ place }) => place.id === id)
+function getAppointments(id: string): Appointment[] {
+  return appointments.appointments?.filter(({ placeID }) => placeID === id)
 }
 
-function getPendings({ id }: Place): PendingAppointment[] {
+function getPendings(id: string): PendingAppointment[] {
   return appointments.pendingAppointments?.filter(
-    ({ place }) => place.id === id
+    ({ placeID }) => placeID === id
   )
 }
 
@@ -44,7 +45,7 @@ async function deleteApprovedAppointment(place: Place, date: Dayjs) {
   const isoDate = date.toISOString()
 
   const app = appointments.appointments.find(
-    a => a.place.id === place.id && a.datetime === isoDate
+    a => a.placeID === place.id && a.datetime === isoDate
   )
 
   if (!app) return
@@ -69,7 +70,7 @@ async function deleteApprovedAppointment(place: Place, date: Dayjs) {
 
 async function onEventClick(place: Place, date: Dayjs) {
   const unapprovedUsers = appointments.pendingAppointments.filter(app => {
-    return app.place.id === place.id && date.isSame(app.datetime)
+    return app.placeID === place.id && date.isSame(app.datetime)
   })
 
   if (!unapprovedUsers.length) {
