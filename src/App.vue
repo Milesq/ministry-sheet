@@ -4,12 +4,14 @@ import { useI18n } from 'vue-i18n'
 import { DataStore } from '@aws-amplify/datastore'
 import Home from '~icons/mdi/Home'
 import LogoutVariant from '~icons/mdi/LogoutVariant'
+import Security from '~icons/mdi/Security'
 import Brightness from '~icons/mdi/brightness'
 import Refresh from '~icons/mdi/refresh'
 import WeatherNight from '~icons/mdi/WeatherNight'
 import Translate from '~icons/mdi/translate'
 import useUser from '@/stores/user'
 import useLocale from '@/stores/locale'
+import { Routes } from '@/router'
 
 import MenuItem from './components/MenuItem.vue'
 import theme from './composables/theme'
@@ -55,9 +57,13 @@ function logout() {
             {{ t('appName') }}
           </el-button>
         </div>
-        <div class="hidden md:block">
+        <div class="hidden md:flex">
           <router-link to="/">
             <MenuItem :tooltip="$t('homePage')" :icon="Home" />
+          </router-link>
+
+          <router-link :to="{ name: Routes.AdminLogin }" v-if="!user.isAdmin">
+            <MenuItem :tooltip="$t('admin')" :icon="Security" />
           </router-link>
         </div>
 

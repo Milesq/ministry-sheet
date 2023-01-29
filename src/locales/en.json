@@ -1,6 +1,7 @@
 {
   "appName": "Ministry Sheet",
   "homePage": "Home",
+  "admin": "Admin Panel",
   "changeTheme": "Change theme",
   "refresh": "Enforce refresh",
   "logout": "Logout",

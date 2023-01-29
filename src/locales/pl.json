@@ -1,6 +1,7 @@
 {
   "appName": "Grafik Wózków",
   "homePage": "Strona Główna",
+  "admin": "Panel Admina",
   "changeTheme": "Zmień tło",
   "refresh": "Wymuś odświeżenie",
   "logout": "Wyloguj się",
