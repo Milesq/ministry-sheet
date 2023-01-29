@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onBeforeMount } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
 import { DataStore } from '@aws-amplify/datastore'
 import Home from '~icons/mdi/Home'
 import LogoutVariant from '~icons/mdi/LogoutVariant'
@@ -19,6 +20,7 @@ import theme from './composables/theme'
 const { t, availableLocales } = useI18n()
 const locale = useLocale()
 const user = useUser()
+const route = useRoute()
 
 onBeforeMount(async () => {
   locale.sync()
@@ -45,8 +47,12 @@ function logout() {
   <div class="common-layout">
     <el-container>
       <el-header
-        bg="primary"
         class="flex justify-between items-center text-[2rem]"
+        :class="
+          route.name?.toString().startsWith(Routes.Admin)
+            ? 'bg-[#5b3c88]'
+            : 'bg-primary'
+        "
       >
         <div class="md:hidden text-[1rem]">
           <el-button
