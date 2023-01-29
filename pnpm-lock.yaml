@@ -6,7 +6,7 @@ specifiers:
   '@aws-amplify/core': ^5.0.11
   '@aws-amplify/datastore': ^4.0.11
   '@iconify-json/mdi': ^1.1.44
-  '@intlify/vite-plugin-vue-i18n': ^7.0.0
+  '@intlify/unplugin-vue-i18n': ^0.8.1
   '@rushstack/eslint-patch': ^1.2.0
   '@sweetalert2/theme-dark': ^5.0.15
   '@testing-library/jest-dom': ^5.16.5
@@ -81,7 +81,7 @@ dependencies:
 
 devDependencies:
   '@iconify-json/mdi': 1.1.44
-  '@intlify/vite-plugin-vue-i18n': 7.0.0_vite@4.0.4+vue-i18n@9.2.2
+  '@intlify/unplugin-vue-i18n': 0.8.1_vue-i18n@9.2.2
   '@rushstack/eslint-patch': 1.2.0
   '@testing-library/jest-dom': 5.16.5
   '@testing-library/vue': 6.6.1_tfvhctuaqmmqnirfl65c47tqwu
@@ -1330,29 +1330,33 @@ packages:
     engines: {node: '>= 14'}
     dev: true
 
-  /@intlify/vite-plugin-vue-i18n/7.0.0_vite@4.0.4+vue-i18n@9.2.2:
-    resolution: {integrity: sha512-2TbDOQ8XD+vkc0s5OFmr+IY/k4mYMC7pzvx0xGQn+cU/ev314+yi7Z7N7rWcBgiYk1WOUalbGSo3d4nJDxOOyw==}
-    engines: {node: '>= 14.6'}
-    deprecated: This plugin support until Vite 3. If you would like to use on Vite 4, please use @intlify/unplugin-vue-i18n
+  /@intlify/unplugin-vue-i18n/0.8.1_vue-i18n@9.2.2:
+    resolution: {integrity: sha512-BhigujPmP6JL1FSxmpogCaL+REozncHCVkJuUnefz4GWBu3X+pRe5O7PeJn8/g+Iml2ieQJz4ISPMmEbuGQjqQ==}
+    engines: {node: '>= 14.16'}
     peerDependencies:
       petite-vue-i18n: '*'
-      vite: ^2.9.0 || ^3.0.0
       vue-i18n: '*'
+      vue-i18n-bridge: '*'
     peerDependenciesMeta:
       petite-vue-i18n:
         optional: true
-      vite:
-        optional: true
       vue-i18n:
+        optional: true
+      vue-i18n-bridge:
         optional: true
     dependencies:
       '@intlify/bundle-utils': 3.4.0_vue-i18n@9.2.2
       '@intlify/shared': 9.3.0-beta.16
       '@rollup/pluginutils': 4.2.1
+      '@vue/compiler-sfc': 3.2.45
       debug: 4.3.4
       fast-glob: 3.2.12
+      js-yaml: 4.1.0
+      json5: 2.2.3
+      pathe: 1.1.0
+      picocolors: 1.0.0
       source-map: 0.6.1
-      vite: 4.0.4_ovmyjmuuyckt3r3gpaexj2onji
+      unplugin: 1.0.1
       vue-i18n: 9.2.2_vue@3.2.45
     transitivePeerDependencies:
       - supports-color
