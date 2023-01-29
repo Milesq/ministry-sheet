@@ -62,6 +62,10 @@ const router = createRouter({
       name: Routes.AdminLogin,
       component: () => import('../views/LoginView.vue'),
     },
+    {
+      path: '/:pathMatch(.*)',
+      redirect: { name: Routes.Home },
+    },
   ],
 })
 
