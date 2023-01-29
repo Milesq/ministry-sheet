@@ -68,7 +68,7 @@ function logout() {
             <MenuItem :tooltip="$t('homePage')" :icon="Home" />
           </router-link>
 
-          <router-link :to="{ name: Routes.Admin }">
+          <router-link :to="{ name: Routes.AdminAppointments }">
             <MenuItem :tooltip="$t('admin')" :icon="Security" />
           </router-link>
         </div>
