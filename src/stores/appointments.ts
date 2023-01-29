@@ -49,11 +49,11 @@ const useAppointments = defineStore('appointments', {
 
       await this.loadEvents(monday, sunday)
 
-      DataStore.observeQuery(Appointment, c =>
-        c.datetime('gt', monday)
-      ).subscribe(({ items }) => {
-        this.appointments = items
-      })
+      DataStore.observeQuery(Appointment, c => c.datetime.gt(monday)).subscribe(
+        ({ items }) => {
+          this.appointments = items
+        }
+      )
 
       DataStore.observeQuery(PendingAppointment).subscribe(({ items }) => {
         this.pendingAppointments = items
@@ -61,7 +61,7 @@ const useAppointments = defineStore('appointments', {
     },
     async loadEvents(after: string, before: string) {
       const appointments = await DataStore.query(Appointment, c =>
-        c.and(c => c.datetime('gt', after).datetime('lt', before))
+        c.and(c => [c.datetime.gt(after), c.datetime.lt(before)])
       )
 
       this.appointments = appointments
@@ -114,11 +114,12 @@ const useAppointments = defineStore('appointments', {
         throw new Error(Errors.PendingAppointmentNotFound)
       }
 
-      const { datetime, place, ownerName } = pa
+      const { datetime, ownerName } = pa
+      const place = await pa.place
 
       const oldAppointment = (
-        await DataStore.query(Appointment, c => c.datetime('eq', datetime))
-      ).find(c => c.place.id === place.id)
+        await DataStore.query(Appointment, c => c.datetime.eq(datetime))
+      ).find(c => c.placeID === place.id)
 
       if (oldAppointment) {
         await DataStore.save(

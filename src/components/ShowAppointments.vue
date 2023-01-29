@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, watch } from 'vue'
+import { computedAsync } from '@vueuse/core'
 import dayjs, { type Dayjs } from 'dayjs'
 import { useI18n } from 'vue-i18n'
 import { type Place, Appointment, PendingAppointment } from '@/models'
@@ -17,12 +18,14 @@ const props = defineProps<{
 const { t } = useI18n()
 
 const appointments = useAppointments()
-const events = computed(() =>
-  makeCalEvents({
-    appointments: props.appointments,
-    pendingAppointments: props.pendingAppointments,
-    place: props.place,
-  })
+const events = computedAsync(
+  () =>
+    makeCalEvents({
+      appointments: props.appointments,
+      pendingAppointments: props.pendingAppointments,
+      place: props.place,
+    }),
+  []
 )
 
 async function missingPlaceSwal(): Promise<Place> {
@@ -51,7 +54,7 @@ async function missingPlaceSwal(): Promise<Place> {
     throw new Error(Errors.Cancelled)
   }
 
-  return appointments.places.find(({ id }) => id === selectedPlace)!
+  return appointments.places.find(({ id }) => id === selectedPlace) as Place
 }
 
 async function addEvent(date: Dayjs) {
@@ -123,7 +126,7 @@ async function removeEvent({
   const formattedDate = t('confirmDate.dateFormat', {
     day,
     hour,
-    place: app.place.name,
+    place: (await app.place).name,
   })
 
   const { isConfirmed } = await Swal.fire({

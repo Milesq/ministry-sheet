@@ -33,14 +33,14 @@ function makeCalEvents({
   appointments,
   pendingAppointments,
   place,
-}: CalEventsArgs): CalendarEvent[] {
+}: CalEventsArgs): Promise<CalendarEvent[]> {
   const user = useUser()
   const grouped = groupBy(
     [...appointments, ...pendingAppointments],
-    e => e.place.id + e.datetime
+    e => e.placeID + e.datetime
   )
 
-  return Object.values(grouped).map(appointments => {
+  const promiseList = Object.values(grouped).map(async appointments => {
     const [appointment] = appointments
     const isPending = appointments.some(a => isAppPending(a))
     const users = getUsersFromAppAndPendings(appointments)
@@ -52,11 +52,13 @@ function makeCalEvents({
       id: appointment.id,
       content: users,
       datetime: dayjs(appointment.datetime),
-      title: !place ? appointment.place.name : '',
+      title: !place ? (await appointment.place).name : '',
       pending: isPending,
       removable: isPending || isMyAppointment,
     } as CalendarEvent
   })
+
+  return Promise.all(promiseList)
 }
 
 export default makeCalEvents
