@@ -49,6 +49,12 @@ async function login() {
 }
 
 onBeforeMount(() => {
+  if (isAdminLogin.value && !user.isAdmin) {
+    router.push('/admin')
+
+    return
+  }
+
   if (user.isLoggedIn) {
     router.push('/')
   }
