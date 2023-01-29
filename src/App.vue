@@ -62,7 +62,7 @@ function logout() {
             <MenuItem :tooltip="$t('homePage')" :icon="Home" />
           </router-link>
 
-          <router-link :to="{ name: Routes.AdminLogin }" v-if="!user.isAdmin">
+          <router-link :to="{ name: Routes.AdminLogin }">
             <MenuItem :tooltip="$t('admin')" :icon="Security" />
           </router-link>
         </div>
