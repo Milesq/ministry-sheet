@@ -74,13 +74,13 @@ router.beforeEach(to => {
 
   if (to.meta.requiresAuth && !user) {
     return {
-      name: 'login',
+      name: Routes.Login,
     }
   }
 
   if (to.meta.adminOnly && !isAdmin) {
     return {
-      name: 'adminLogin',
+      name: Routes.AdminLogin,
     }
   }
 })
