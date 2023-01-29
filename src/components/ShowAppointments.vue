@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
 import { computedAsync } from '@vueuse/core'
 import dayjs, { type Dayjs } from 'dayjs'
 import { useI18n } from 'vue-i18n'
