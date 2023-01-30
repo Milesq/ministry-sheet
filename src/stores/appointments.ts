@@ -32,7 +32,7 @@ const useAppointments = defineStore('appointments', {
       )
     },
     byPlaces(state): Record<string, PendingAppointment[]> {
-      return groupBy(state.pendingAppointments, 'place.name')
+      return groupBy(state.pendingAppointments, 'placeID')
     },
   },
   actions: {
