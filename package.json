@@ -17,10 +17,10 @@
     "deploy:ftp-raw": "node scripts/deploy-ftp.js"
   },
   "dependencies": {
-    "@aws-amplify/api-rest": "^3.0.11",
-    "@aws-amplify/auth": "^5.1.5",
-    "@aws-amplify/core": "^5.0.11",
-    "@aws-amplify/datastore": "^4.0.11",
+    "@aws-amplify/api-rest": "^3.0.12",
+    "@aws-amplify/auth": "^5.1.6",
+    "@aws-amplify/core": "^5.0.12",
+    "@aws-amplify/datastore": "^4.0.12",
     "@sweetalert2/theme-dark": "^5.0.15",
     "@vueuse/components": "^9.12.0",
     "@vueuse/core": "^9.12.0",
@@ -65,7 +65,7 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.8.3",
     "sass": "^1.57.1",
-    "typescript": "~4.9.4",
+    "typescript": "~4.9.5",
     "unplugin-auto-import": "^0.13.0",
     "unplugin-icons": "^0.15.2",
     "unplugin-vue-components": "^0.23.0",
