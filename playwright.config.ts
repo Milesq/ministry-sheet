@@ -37,10 +37,12 @@ const config: PlaywrightTestConfig = {
       },
     },
   ],
-  webServer: {
-    command: 'npm run dev',
-    port: 3000,
-  },
+  webServer: process.env.CI
+    ? {
+        command: 'npm run dev',
+        port: 3000,
+      }
+    : undefined,
 }
 
 export default config
