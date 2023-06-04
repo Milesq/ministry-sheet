@@ -37,6 +37,7 @@ src/API.ts
 
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
+amplify-codegen-temp\models
 amplify/.config/local-*
 amplify/logs
 amplify/mock-data

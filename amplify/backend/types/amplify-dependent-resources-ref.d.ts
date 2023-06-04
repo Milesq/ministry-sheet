@@ -29,6 +29,7 @@ export type AmplifyDependentResourcesAttributes = {
     "AdminQueriesbee25ea4": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
       "Name": "string",
       "Region": "string"
     }

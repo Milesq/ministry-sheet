@@ -52,7 +52,6 @@ type LazyAppointment = {
   readonly datetime: string;
   readonly users?: (string | null)[] | null;
   readonly place: AsyncItem<Place>;
-  readonly placeID?: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -79,7 +78,6 @@ type LazyPendingAppointment = {
   readonly ownerName?: string | null;
   readonly owner?: string | null;
   readonly place: AsyncItem<Place>;
-  readonly placeID?: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

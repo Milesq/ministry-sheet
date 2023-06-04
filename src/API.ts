@@ -13,6 +13,7 @@ export type ModelPlaceConditionInput = {
   and?: Array< ModelPlaceConditionInput | null > | null,
   or?: Array< ModelPlaceConditionInput | null > | null,
   not?: ModelPlaceConditionInput | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
 export type ModelStringInput = {
@@ -53,6 +54,13 @@ export type ModelSizeInput = {
   ge?: number | null,
   gt?: number | null,
   between?: Array< number | null > | null,
+};
+
+export type ModelBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
 };
 
 export type Place = {
@@ -137,6 +145,7 @@ export type ModelAppointmentConditionInput = {
   and?: Array< ModelAppointmentConditionInput | null > | null,
   or?: Array< ModelAppointmentConditionInput | null > | null,
   not?: ModelAppointmentConditionInput | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
 export type ModelIDInput = {
@@ -185,6 +194,7 @@ export type ModelPendingAppointmentConditionInput = {
   and?: Array< ModelPendingAppointmentConditionInput | null > | null,
   or?: Array< ModelPendingAppointmentConditionInput | null > | null,
   not?: ModelPendingAppointmentConditionInput | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
 export type UpdatePendingAppointmentInput = {
@@ -207,6 +217,7 @@ export type ModelPlaceFilterInput = {
   and?: Array< ModelPlaceFilterInput | null > | null,
   or?: Array< ModelPlaceFilterInput | null > | null,
   not?: ModelPlaceFilterInput | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
 export type ModelPlaceConnection = {
@@ -224,6 +235,7 @@ export type ModelAppointmentFilterInput = {
   and?: Array< ModelAppointmentFilterInput | null > | null,
   or?: Array< ModelAppointmentFilterInput | null > | null,
   not?: ModelAppointmentFilterInput | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
 export type ModelPendingAppointmentFilterInput = {
@@ -235,6 +247,7 @@ export type ModelPendingAppointmentFilterInput = {
   and?: Array< ModelPendingAppointmentFilterInput | null > | null,
   or?: Array< ModelPendingAppointmentFilterInput | null > | null,
   not?: ModelPendingAppointmentFilterInput | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
 export type ModelSubscriptionPlaceFilterInput = {
@@ -242,6 +255,7 @@ export type ModelSubscriptionPlaceFilterInput = {
   name?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionPlaceFilterInput | null > | null,
   or?: Array< ModelSubscriptionPlaceFilterInput | null > | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
 export type ModelSubscriptionIDInput = {
@@ -281,6 +295,7 @@ export type ModelSubscriptionAppointmentFilterInput = {
   placeID?: ModelSubscriptionIDInput | null,
   and?: Array< ModelSubscriptionAppointmentFilterInput | null > | null,
   or?: Array< ModelSubscriptionAppointmentFilterInput | null > | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
 export type ModelSubscriptionPendingAppointmentFilterInput = {
@@ -290,6 +305,7 @@ export type ModelSubscriptionPendingAppointmentFilterInput = {
   placeID?: ModelSubscriptionIDInput | null,
   and?: Array< ModelSubscriptionPendingAppointmentFilterInput | null > | null,
   or?: Array< ModelSubscriptionPendingAppointmentFilterInput | null > | null,
+  _deleted?: ModelBooleanInput | null,
 };
 
 export type CreatePlaceMutationVariables = {
