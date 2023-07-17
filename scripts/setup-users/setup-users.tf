@@ -26,4 +26,5 @@ resource "aws_cognito_user_in_group" "name" {
   user_pool_id = local.user_pool_id
   username = var.user_name
   group_name = "admins"
+  depends_on = [ aws_cognito_user.name ]
 }
