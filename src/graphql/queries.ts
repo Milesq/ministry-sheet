@@ -18,9 +18,11 @@ export const getPlace = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          __typename
         }
         nextToken
         startedAt
+        __typename
       }
       PendingAppointments {
         items {
@@ -34,15 +36,18 @@ export const getPlace = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          __typename
         }
         nextToken
         startedAt
+        __typename
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -59,19 +64,23 @@ export const listPlaces = /* GraphQL */ `
         Appointments {
           nextToken
           startedAt
+          __typename
         }
         PendingAppointments {
           nextToken
           startedAt
+          __typename
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -94,19 +103,23 @@ export const syncPlaces = /* GraphQL */ `
         Appointments {
           nextToken
           startedAt
+          __typename
         }
         PendingAppointments {
           nextToken
           startedAt
+          __typename
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -123,22 +136,26 @@ export const getAppointment = /* GraphQL */ `
         Appointments {
           nextToken
           startedAt
+          __typename
         }
         PendingAppointments {
           nextToken
           startedAt
+          __typename
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -162,15 +179,18 @@ export const listAppointments = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          __typename
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -200,15 +220,18 @@ export const syncAppointments = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          __typename
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -226,22 +249,26 @@ export const getPendingAppointment = /* GraphQL */ `
         Appointments {
           nextToken
           startedAt
+          __typename
         }
         PendingAppointments {
           nextToken
           startedAt
+          __typename
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -270,15 +297,18 @@ export const listPendingAppointments = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          __typename
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;
@@ -309,15 +339,18 @@ export const syncPendingAppointments = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          __typename
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       nextToken
       startedAt
+      __typename
     }
   }
 `;

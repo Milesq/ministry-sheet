@@ -18,9 +18,11 @@ export const onCreatePlace = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          __typename
         }
         nextToken
         startedAt
+        __typename
       }
       PendingAppointments {
         items {
@@ -34,15 +36,18 @@ export const onCreatePlace = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          __typename
         }
         nextToken
         startedAt
+        __typename
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -62,9 +67,11 @@ export const onUpdatePlace = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          __typename
         }
         nextToken
         startedAt
+        __typename
       }
       PendingAppointments {
         items {
@@ -78,15 +85,18 @@ export const onUpdatePlace = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          __typename
         }
         nextToken
         startedAt
+        __typename
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -106,9 +116,11 @@ export const onDeletePlace = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          __typename
         }
         nextToken
         startedAt
+        __typename
       }
       PendingAppointments {
         items {
@@ -122,15 +134,18 @@ export const onDeletePlace = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          __typename
         }
         nextToken
         startedAt
+        __typename
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -149,22 +164,26 @@ export const onCreateAppointment = /* GraphQL */ `
         Appointments {
           nextToken
           startedAt
+          __typename
         }
         PendingAppointments {
           nextToken
           startedAt
+          __typename
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -183,22 +202,26 @@ export const onUpdateAppointment = /* GraphQL */ `
         Appointments {
           nextToken
           startedAt
+          __typename
         }
         PendingAppointments {
           nextToken
           startedAt
+          __typename
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -217,22 +240,26 @@ export const onDeleteAppointment = /* GraphQL */ `
         Appointments {
           nextToken
           startedAt
+          __typename
         }
         PendingAppointments {
           nextToken
           startedAt
+          __typename
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -253,22 +280,26 @@ export const onCreatePendingAppointment = /* GraphQL */ `
         Appointments {
           nextToken
           startedAt
+          __typename
         }
         PendingAppointments {
           nextToken
           startedAt
+          __typename
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -289,22 +320,26 @@ export const onUpdatePendingAppointment = /* GraphQL */ `
         Appointments {
           nextToken
           startedAt
+          __typename
         }
         PendingAppointments {
           nextToken
           startedAt
+          __typename
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
@@ -325,22 +360,26 @@ export const onDeletePendingAppointment = /* GraphQL */ `
         Appointments {
           nextToken
           startedAt
+          __typename
         }
         PendingAppointments {
           nextToken
           startedAt
+          __typename
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        __typename
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      __typename
     }
   }
 `;
