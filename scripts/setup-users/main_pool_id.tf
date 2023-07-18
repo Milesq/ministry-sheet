@@ -1,10 +1,10 @@
 variable "stage" {
-  type = string
+  type    = string
   default = "dev"
 }
 
 locals {
-  cli_inputs = one(fileset(path.module, "../../amplify/backend/auth/ministrysheet*/cli-inputs.json"))
+  cli_inputs     = one(fileset(path.module, "../../amplify/backend/auth/ministrysheet*/cli-inputs.json"))
   user_pool_name = jsondecode(file(local.cli_inputs)).cognitoConfig.userPoolName
 }
 
